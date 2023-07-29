@@ -5,16 +5,13 @@ from typing import (
     List,
     NamedTuple,
     Protocol,
-    Set,
     Tuple,
     Type,
     TypeVar,
-    cast,
     runtime_checkable,
 )
 
 import numpy as np
-import pandas as pd
 import pydantic
 
 
@@ -61,6 +58,9 @@ class Condition(pydantic.BaseModel):
     """
     Condition
     """
+
+    def __hash__(self) -> int:
+        return hash(self.name)
 
     name: str
     umls_code: str
