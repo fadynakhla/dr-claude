@@ -17,6 +17,9 @@ notebook = "^7.0.0"
 pandas = "^2.0.3"
 bs4 = "^0.0.1"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
