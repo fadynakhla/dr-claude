@@ -8,6 +8,7 @@ from typing import (
     Tuple,
     Type,
     TypeVar,
+    Union,
     runtime_checkable,
 )
 
@@ -90,9 +91,26 @@ Helper methods
 """
 
 
-class MatrixIndex(NamedTuple):
+class ProbabilityMatrix(NamedTuple):
+    """
+    A matrix of probabilities
+    Rows are symptoms
+    Columns are conditions
+    """
+
+    matrix: np.ndarray
     rows: Dict[Symptom, int]
     columns: Dict[Condition, int]
+
+    def __getitem__(
+        self, item: Tuple[Union[Symptom, slice], Union[Condition, slice]]
+    ) -> np.ndarray:
+        symptom, condition = item
+        if not isinstance(symptom, slice):
+            symptom = self.rows[symptom]
+        if not isinstance(condition, slice):
+            condition = self.columns[condition]
+        return self.matrix[symptom, condition]
 
 
 class MonotonicCounter:
@@ -117,7 +135,7 @@ class SymptomTransformer:
 
 class DiseaseSymptomKnowledgeBaseTransformer:
     @staticmethod
-    def to_numpy(kb: DiseaseSymptomKnowledgeBase) -> Tuple[np.ndarray, MatrixIndex]:
+    def to_numpy(kb: DiseaseSymptomKnowledgeBase) -> ProbabilityMatrix:
         """
         Returns a numpy array of the weights of each symptom for each condition
         """
@@ -143,4 +161,8 @@ class DiseaseSymptomKnowledgeBaseTransformer:
             for symptom in symptoms:
                 probas[symptom_idx[symptom], disease_idx[condition]] = symptom.weight
 
-        return (probas, MatrixIndex(symptom_idx, disease_idx))
+        return ProbabilityMatrix(
+            matrix=probas,
+            rows=dict(symptom_idx),
+            columns=dict(disease_idx),
+        )
