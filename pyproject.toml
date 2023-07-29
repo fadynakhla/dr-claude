@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "dr-claude"
+version = "0.1.0"
+description = "TODO"
+authors = ["Arthur, Fady, Sukru, Wian"]
+license = "Apache"
+readme = "README.md"
+packages = [{include = "dr_claude"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+transformers = "^4.31.0"
+langchain = "^0.0.247"
+pydantic = ">=1,<2"
+torch = "^2.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
