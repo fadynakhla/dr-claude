@@ -17,6 +17,7 @@ faiss-cpu = "^1.7.4"
 notebook = "^7.0.0"
 pandas = "^2.0.3"
 bs4 = "^0.0.1"
+mcts = "^1.0.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
