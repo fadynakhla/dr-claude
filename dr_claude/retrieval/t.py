@@ -11,7 +11,9 @@ device = torch.device("mps")
 tokenizer = transformers.AutoTokenizer.from_pretrained("bert-base-uncased")
 model = transformers.AutoModel.from_pretrained("bert-base-uncased").to(device)
 
-toks = tokenizer(["Hello world!", "blah"], return_tensors="pt", padding="longest").to(device)
+toks = tokenizer(["Hello world!", "blah"], return_tensors="pt", padding="longest").to(
+    device
+)
 model_out = model(**toks)
 
 print(model_out.last_hidden_state)
