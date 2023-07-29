@@ -35,5 +35,5 @@ def test_matrix():
         }
     )
 
-    dataframe, index = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(db)
-    assert dataframe.shape == (3, 2)
+    matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(db)
+    assert matrix.matrix.shape == (3, 2)
