@@ -13,6 +13,7 @@ transformers = "^4.31.0"
 langchain = "^0.0.247"
 pydantic = ">=1,<2"
 torch = "^2.0.1"
+faiss-cpu = "^1.7.4"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
