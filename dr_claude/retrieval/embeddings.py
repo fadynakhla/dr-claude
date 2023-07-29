@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 import pydantic
 import torch
@@ -6,7 +6,7 @@ import transformers
 from langchain.embeddings import base as embeddings_base
 
 
-class HuggingFaceEncoderEmbeddings(pydantic.BaseModel, embeddings_base.Embeddings):
+class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
     """HuggingFace embedding models not using sentence-transformers.
 
     To use, you should have the ``transformers`` python package installed.
@@ -14,27 +14,33 @@ class HuggingFaceEncoderEmbeddings(pydantic.BaseModel, embeddings_base.Embedding
 
     model: transformers.PreTrainedModel
     tokenizer: transformers.PreTrainedTokenizer
-    device: str
     model_name_or_path: str
-    cache_folder: str = None
-    model_kwargs: Dict[str, Any] = pydantic.Field(default_factory=dict)
-    encode_kwargs: Dict[str, Any] = pydantic.Field(default_factory=dict)
+    device: str
+    pooling: str
 
-    def __init__(self, **kwargs: Any):
+    def __init__(
+        self,
+        model_name_or_path: str,
+        device: str,
+        pooling: Optional[str] = None,
+        **kwargs: Any,
+    ) -> None:
         """Initialize the huggingface embedding model."""
         super().__init__(**kwargs)
-        self.tokenizer: transformers.PreTrainedTokenizer = transformers.AutoTokenizer.from_pretrained(
-            pretrained_model_name_or_path=self.model_name_or_path, cache_dir=self.cache_folder
+        self.model_name_or_path = model_name_or_path
+        self.device = device
+        self.pooling = pooling if pooling is not None else "cls"
+        self.tokenizer: transformers.PreTrainedTokenizer = (
+            transformers.AutoTokenizer.from_pretrained(
+                pretrained_model_name_or_path=self.model_name_or_path
+            )
         )
-        self.model: transformers.PreTrainedModel = transformers.AutoModel.from_pretrained(
-            pretrained_model_name_or_path=self.model_name_or_path, **self.model_kwargs
+        self.model: transformers.PreTrainedModel = (
+            transformers.AutoModel.from_pretrained(
+                pretrained_model_name_or_path=self.model_name_or_path
+            )
         )
         self.model.to(self.device)
-
-    class Config:
-        """Configuration for this pydantic object."""
-
-        extra = pydantic.Extra.forbid
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
         """Compute doc embeddings using a HuggingFace transformer model.
@@ -46,7 +52,7 @@ class HuggingFaceEncoderEmbeddings(pydantic.BaseModel, embeddings_base.Embedding
             List of embeddings, one for each text.
         """
         texts = list(map(lambda x: x.replace("\n", " "), texts))
-        embeddings = self.encode(texts, **self.encode_kwargs)
+        embeddings = self.encode(texts, self.pooling)
         return embeddings.tolist()
 
     def embed_query(self, text: str) -> List[float]:
@@ -59,10 +65,10 @@ class HuggingFaceEncoderEmbeddings(pydantic.BaseModel, embeddings_base.Embedding
             Embeddings for the text.
         """
         text = text.replace("\n", " ")
-        embedding = self.encode(text, **self.encode_kwargs)
+        embedding = self.encode(text, self.pooling)
         return embedding.tolist()
 
-    def encode(self, texts: Union[str, List[str]], pooling: str = "cls") -> torch.Tensor:
+    def encode(self, texts: Union[str, List[str]], pooling: str) -> torch.Tensor:
         """Compute query embeddings using a HuggingFace transformer model.
 
         Args:
@@ -81,13 +87,17 @@ class HuggingFaceEncoderEmbeddings(pydantic.BaseModel, embeddings_base.Embedding
         if pooling == "cls":
             embeddings = model_output.last_hidden_state[:, 0, :].squeeze()
         elif pooling == "mean":
-            embeddings = mean_pooling(model_output.last_hidden_state, model_input["attention_mask"])
+            embeddings = mean_pooling(
+                model_output.last_hidden_state, model_input["attention_mask"]
+            )
         else:
             raise ValueError(f"Pooling method {pooling} not supported.")
         return embeddings
 
 
-def mean_pooling(token_embeddings: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
+def mean_pooling(
+    token_embeddings: torch.Tensor, attention_mask: torch.Tensor
+) -> torch.Tensor:
     """Compute mean pooling."""
     attention_mask_expanded = (
         attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
@@ -98,3 +108,10 @@ def mean_pooling(token_embeddings: torch.Tensor, attention_mask: torch.Tensor) -
     pooled_output = sum_embeddings / sum_mask
 
     return pooled_output
+
+
+if __name__ == "__main__":
+    embedder = HuggingFaceEncoderEmbeddings(
+        model_name_or_path="bert-base-uncased", device="mps"
+    )
+    print(embedder.embed_documents(["Hello world!", "blah"]))
