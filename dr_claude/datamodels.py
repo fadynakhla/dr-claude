@@ -1,5 +1,4 @@
-import collections
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 import pydantic
 
@@ -32,6 +31,9 @@ class Condition(UMLSMixin, pydantic.BaseModel):
     Condition
     """
 
+    def __hash__(self) -> int:
+        return hash(self.name)
+
     name: str
     umls_code: str
 
@@ -45,4 +47,4 @@ class WeightedSymptom(Symptom):
 
 
 class DiseaseSymptomKnowledgeBase(pydantic.BaseModel):
-    pairs: Dict[Condition, List[WeightedSymptom]]
+    condition_symptoms: Dict[Condition, List[WeightedSymptom]]
