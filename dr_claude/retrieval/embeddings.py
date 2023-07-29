@@ -6,6 +6,12 @@ import transformers
 from langchain.embeddings import base as embeddings_base
 
 
+class HuggingFaceEncoderEmbeddingsConfig(pydantic.BaseModel):
+    model_name_or_path: str
+    device: str
+    pooling: Optional[str] = None
+
+
 class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
     """HuggingFace embedding models not using sentence-transformers.
 
@@ -93,6 +99,10 @@ class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
         else:
             raise ValueError(f"Pooling method {pooling} not supported.")
         return embeddings
+
+    @classmethod
+    def from_config(cls, config: HuggingFaceEncoderEmbeddingsConfig) -> "HuggingFaceEncoderEmbeddings":
+        return cls(**config.dict())
 
 
 def mean_pooling(
