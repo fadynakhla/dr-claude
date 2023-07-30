@@ -1,10 +1,10 @@
-from typing import Union
+from typing import Union, Dict
 import mcts
 from loguru import logger
 
 from dr_claude import kb_reading, datamodels, chaining_the_chains
 from dr_claude.retrieval import retriever
-from dr_claude.mcts import action_states
+from dr_claude.claude_mcts import action_states
 
 
 def main() -> None:
@@ -12,38 +12,47 @@ def main() -> None:
     kb = reader.load_knowledge_base()
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
     state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
+    symptom_name_to_symptom: Dict[str, datamodels.Symptom] = {}
     for symptom_group in kb.condition_symptoms.values():
-        for s in symptom_group:
-            if s.name.lower().strip() == "fever":
-                symptom = datamodels.SymptomTransformer.to_symptom(s)
-    state.pertinent_pos.update(symptom)
+        for weighted_symptom in symptom_group:
+            symptom = datamodels.SymptomTransformer.to_symptom(weighted_symptom)
+            symptom_name_to_symptom[symptom.name.strip()] = symptom
+            if weighted_symptom.name.lower().strip() == "fever":
+                fever = symptom
+    state.pertinent_pos.update([fever])
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     searcher = mcts.mcts(timeLimit=3000, rolloutPolicy=rollout_policy)
     note = ("The patient has syncope, vertigo, nausea and is sweating",)
-    symptoms = [
-        "fever",
-        "vertigo",
-        "syncope",
-        "nausea",
-        "heavy sweating",
-        "abdominal cramps",
-    ]
+    embedding_model_name = "/data/models/RoSaBERTa_large/"
+    # embedding_model_name = "bert-base-uncased"
     retrieval_config = retriever.HuggingFaceEncoderEmbeddingsConfig(
-        model_name_or_path="bert-base-uncased",
+        model_name_or_path=embedding_model_name,
         device="cpu",
     )
     chain_chainer = chaining_the_chains.ChainChainer(
         patient_note=note,
         retrieval_config=retrieval_config,
-        symptoms=symptoms,
+        symptoms=list(set(symptom_name_to_symptom)),
     )
-    action = None
     while not isinstance(
         (action := searcher.search(initialState=state)), datamodels.Condition
     ):
         assert isinstance(action, datamodels.Symptom)
         logger.info(f"{action=}")
         patient_symptom_response = chain_chainer.interaction(action.name)
+        new_positives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in patient_symptom_response
+            if s.present
+        ]
+        new_negatives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in patient_symptom_response
+            if not s.present
+        ]
+        state.pertinent_pos.update(new_positives)
+        state.pertinent_neg.update(new_negatives)
+
     diagnosis = action
     logger.info(f"Diagnosis: {diagnosis}")
     print(chain_chainer.interaction("fever"))

@@ -7,6 +7,7 @@ from dr_claude.chains import matcher
 from dr_claude.chains import prompts
 from dr_claude.retrieval import retriever
 from loguru import logger
+import time
 
 
 class ChainChainer:
@@ -29,9 +30,11 @@ class ChainChainer:
     def interaction(self, symptom: str) -> List[datamodels.SymptomMatch]:
         doc_inputs = {"symptom": symptom}
         doc_response = self.doc_chain(doc_inputs)["text"]
+        time.sleep(0.5)
         logger.info("Doc question: {}", doc_response)
         patient_inputs = {"medical_note": self.patient_note, "question": doc_response}
         patient_response = self.patient_chain(patient_inputs)["text"]
+        time.sleep(0.5)
         logger.info("Patient response: {}", patient_response)
         matcher_inputs = {"question": doc_response, "response": patient_response}
         match_list = self.matcher_chain(matcher_inputs)
