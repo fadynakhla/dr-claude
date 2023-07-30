@@ -25,7 +25,7 @@ from loguru import logger
 
 import transformers
 
-transformers.set_seed(42) 
+transformers.set_seed(42)
 
 app = FastAPI()
 
@@ -154,7 +154,8 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
         try:
             message = await receive_message(websocket)
             logger.info("Received {}", message)
-            await run_chain(note=message["content"], chainer=chainer)
+            diagnosis = await run_chain(note=message["content"], chainer=chainer)
+            await websocket.send_json({"diagnosis": diagnosis.name})
         except WebSocketDisconnect:
             logger.info("websocket disconnect")
             break
@@ -184,7 +185,9 @@ async def receive_message(websocket: WebSocket):
     return message_dict
 
 
-async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
+async def run_chain(
+    note: str, chainer: chaining_the_chains.ChainChainer
+) -> Optional[datamodels.Condition]:
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
     state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
 
@@ -216,6 +219,7 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
 
     diagnosis = actions[0]
     logger.info(f"Diagnosis: {diagnosis}")
+    return diagnosis
 
 
 def make_new_symptoms(
