@@ -14,7 +14,7 @@ class HuggingFAISS(FAISS):
         model_config: HuggingFaceEncoderEmbeddingsConfig,
         metadatas: Optional[List[Dict]] = None,
         ids: Optional[List[str]] = None,
-    ) -> None:
+    ) -> "HuggingFAISS":
         embeddings = HuggingFaceEncoderEmbeddings.from_config(model_config)
         return cls.from_texts(texts, embeddings, metadatas, ids)
 
