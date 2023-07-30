@@ -49,6 +49,7 @@ class NextBestActionState(
     """
 
     diagnosis: Optional[datamodels.Condition] = None
+    remaining_symptoms: Set[datamodels.Symptom]
 
     def takeAction(
         self, action: Union[datamodels.Symptom, datamodels.Condition]
@@ -82,6 +83,7 @@ class SimulationMixin:
     dynamics: datamodels.ProbabilityMatrix
     pertinent_pos: Set[datamodels.Symptom]
     pertinent_neg: Set[datamodels.Symptom]
+    remaining_symptoms: Set[datamodels.Symptom]
 
     def getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
         condition_posterior = self.getConditionProbabilityVector()
