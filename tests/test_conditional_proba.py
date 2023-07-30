@@ -1,5 +1,5 @@
 from dr_claude import datamodels
-from dr_claude.mcts_module import probability_calcs
+from dr_claude.mcts import probability_calcs
 
 
 def test_conditional_condition_proba():
