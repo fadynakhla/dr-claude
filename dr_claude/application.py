@@ -223,6 +223,9 @@ async def run_chain(
         logger.error(e)
         return
     logger.info("Chief complaints are {}", chief_complaints)
+    await websocket.send_json(
+        {"patient": f'I have {", ".join([c.name for c in chief_complaints])}'}
+    )
     state.pertinent_pos.update(chief_complaints)
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     searcher = multi_choice_mcts.MultiChoiceMCTS(
