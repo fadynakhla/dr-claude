@@ -5,7 +5,7 @@ from loguru import logger
 from dr_claude import kb_reading, datamodels, chaining_the_chains
 from dr_claude.retrieval import retriever
 from dr_claude.claude_mcts import action_states, multi_choice_mcts
-from dr_claude.chains import decision_claude
+from dr_claude.chains import decision_claude, doctor, matcher, patient, prompts
 
 
 def main():
@@ -32,9 +32,18 @@ def main():
         model_name_or_path=embedding_model_name,
         device="cpu",
     )
-    chain_chainer = chaining_the_chains.ChainChainer(
+    matcher_chain = matcher.MatchingChain.from_anthropic(
+        symptom_extract_prompt=prompts.SYMPTOM_EXTRACT_PROMPT,
+        symptom_match_prompt=prompts.SYMPTOM_MATCH_PROMPT,
         retrieval_config=retrieval_config,
-        symptoms=list(set(symptom_name_to_symptom)),
+        texts=list(set(symptom_name_to_symptom)),
+    )
+    doc_chain = doctor.get_doc_chain()
+    patient_chain = patient.get_patient_chain()
+    chain_chainer = chaining_the_chains.ChainChainer(
+        matcher_chain=matcher_chain,
+        doc_chain=doc_chain,
+        patient_chain=patient_chain,
     )
     while not isinstance(
         (actions := searcher.search(initialState=state, top_k=5))[0], datamodels.Condition
@@ -45,7 +54,7 @@ def main():
 
         action_name = action_picker(actions=actions, state=state)
 
-        patient_symptom_response = chain_chainer.interaction(action_name)
+        patient_symptom_response = chain_chainer.interaction(note, action_name)
 
         new_positives = [
             symptom_name_to_symptom[s.symptom_match.strip()]

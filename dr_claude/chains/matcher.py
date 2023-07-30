@@ -180,7 +180,11 @@ class MatchingChain(Chain):
 
 
 def parse_xml_line(line: str) -> str:
-    root = ET.fromstring(line)
+    try:
+        root = ET.fromstring(line)
+    except ET.ParseError as e:
+        logger.error(f"Failed to parse XML line: {line}")
+        raise e
     return root.text
 
 
