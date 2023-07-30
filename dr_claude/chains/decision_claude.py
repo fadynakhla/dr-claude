@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Union
 
 import loguru
 from langchain.chat_models import ChatAnthropic
@@ -6,6 +6,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
 from dr_claude import datamodels
+from dr_claude.claude_mcts import action_states
 
 
 logger = loguru.logger
@@ -42,7 +43,7 @@ class DecisionClaude:
         return action
 
     def get_action_picker_inputs(
-        self, actions: List[datamodels.Symptom], state
+        self, actions: List[datamodels.Symptom], state: action_states.SimulationNextActionState
     ) -> Dict[str, str]:
         return {
             "positive_symptoms": " | ".join(
@@ -54,6 +55,15 @@ class DecisionClaude:
             "symptoms": " | ".join([action.name for action in actions]),
         }
 
+    def valid_action(
+        action: Union[datamodels.Condition, datamodels.Symptom],
+        state: action_states.SimulationNextActionState,
+    ) -> bool:
+        return (
+            not isinstance(action, datamodels.Condition)
+            and action not in state.pertinent_pos
+            and action not in state.pertinent_neg
+        )
 
 def get_decision_claude() -> LLMChain:
     return LLMChain(
