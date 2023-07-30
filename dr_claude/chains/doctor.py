@@ -5,9 +5,8 @@ from langchain.prompts import PromptTemplate
 
 
 _doc_prompt_template = (
-    "You are an inteligent and curious doctor. You are interacting with a patient and "
-    "you wish to ask them whether they are experiencing the following symptom: {symptom}.\n\n"
-    "Remember to only ask one question at a time about the provided symptom."
+    "You are an insightful and inquisitive doctor. You are with a patient and need to inquire about a specific symptom: {symptom}.\n\n"
+    "Compose a single, direct question that exclusively probes the presence of this particular symptom. Ensure your response contains only this question, with no additional commentary or elements. The entire response should be the question itself."
 )
 DOC_PROMPT = PromptTemplate.from_template(_doc_prompt_template)
 
