@@ -8,7 +8,7 @@ from dr_claude.claude_mcts import action_states, multi_choice_mcts
 from dr_claude.chains import decision_claude
 
 
-def main() -> None:
+def main():
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
     kb = reader.load_knowledge_base()
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
@@ -33,7 +33,6 @@ def main() -> None:
         device="cpu",
     )
     chain_chainer = chaining_the_chains.ChainChainer(
-        patient_note=note,
         retrieval_config=retrieval_config,
         symptoms=list(set(symptom_name_to_symptom)),
     )
