@@ -101,7 +101,9 @@ class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
         return embeddings
 
     @classmethod
-    def from_config(cls, config: HuggingFaceEncoderEmbeddingsConfig) -> "HuggingFaceEncoderEmbeddings":
+    def from_config(
+        cls, config: HuggingFaceEncoderEmbeddingsConfig
+    ) -> "HuggingFaceEncoderEmbeddings":
         return cls(**config.dict())
 
 
