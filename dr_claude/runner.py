@@ -74,7 +74,7 @@ def main():
     action = actions[0]
     diagnosis = action
     logger.info(f"Diagnosis: {diagnosis}")
-    print(chain_chainer.interaction("fever"))
+    # print(chain_chainer.interaction("fever"))
 
 
 def get_action_picker_inputs(
