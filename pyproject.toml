@@ -9,10 +9,8 @@ packages = [{include = "dr_claude"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-transformers = "^4.31.0"
 langchain = "^0.0.247"
 pydantic = ">=1,<2"
-torch = "^2.0.1"
 faiss-cpu = "^1.7.4"
 notebook = "^7.0.0"
 pandas = "^2.0.3"
@@ -21,6 +19,11 @@ mcts = "^1.0.4"
 loguru = "^0.7.0"
 anthropic = "^0.3.6"
 nest-asyncio = "^1.5.7"
+torch = "^2.0.1"
+pip = "^23.2.1"
+install = "^1.3.5"
+nvidia-cuda-cupti-cu11 = "^11.8.87"
+transformers = "^4.31.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
