@@ -50,7 +50,6 @@ class XmlOutputParser(BaseOutputParser[str]):
 
 
 class MatchingChain(Chain):
-
     symptom_extract_chain: LLMChain
     stuff_retrievals_match_chain: StuffDocumentsChain
     retriever: VectorStoreRetriever
@@ -62,9 +61,13 @@ class MatchingChain(Chain):
     ) -> Dict[str, Any]:
         raw_symptom_extract = self.symptom_extract_chain(inputs)
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
-        for symptom in symptom_list.symptoms: # suboptimal but fine for now
-            symptom.input_documents = self.retriever.get_relevant_documents(symptom.symptom)
-            logger.info(f"Retrieved {len(symptom.input_documents)} documents for {symptom.symptom}")
+        for symptom in symptom_list.symptoms:  # suboptimal but fine for now
+            symptom.input_documents = self.retriever.get_relevant_documents(
+                symptom.symptom
+            )
+            logger.info(
+                f"Retrieved {len(symptom.input_documents)} documents for {symptom.symptom}"
+            )
             logger.debug(f"Retrieved documents: {symptom.input_documents}")
         return self.run_matching_batch(symptom_list)
 
@@ -75,20 +78,24 @@ class MatchingChain(Chain):
     ) -> Dict[str, Any]:
         raw_symptom_extract = await self.symptom_extract_chain.acall(inputs)
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
-        for symptom in symptom_list.symptoms: # suboptimal but fine for now
-            symptom.input_documents = await self.retriever.aget_relevant_documents(symptom.symptom)
+        for symptom in symptom_list.symptoms:  # suboptimal but fine for now
+            symptom.input_documents = await self.retriever.aget_relevant_documents(
+                symptom.symptom
+            )
         return self.run_matching_loop(symptom_list)
 
     def run_matching_batch(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
+        async def run_batched(symptom_list: SymptomList, sem) -> List[Dict[str, Any]]:
+            async with sem:
+                tasks = []
+                for symptom in symptom_list.symptoms:
+                    output = self.stuff_retrievals_match_chain.acall(dict(symptom))
+                    tasks.append(output)
+                return await asyncio.gather(*tasks)
 
-        async def run_batched(symptom_list: SymptomList) -> List[Dict[str, Any]]:
-            tasks = []
-            for symptom in symptom_list.symptoms:
-                output = self.stuff_retrievals_match_chain.acall(dict(symptom))
-                tasks.append(output)
-            return await asyncio.gather(*tasks)
+        sem = asyncio.Semaphore(1)
 
-        return asyncio.run(run_batched(symptom_list))
+        return asyncio.run(run_batched(symptom_list, sem))
 
     def run_matching_loop(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
         outputs = []
@@ -162,10 +169,7 @@ class MatchingChain(Chain):
         retrieval_config: HuggingFaceEncoderEmbeddingsConfig,
         texts: List[str],
     ) -> "MatchingChain":
-        anthropic = ChatAnthropic(
-            temperature=0.0,
-            verbose=True,
-        )
+        anthropic = ChatAnthropic(temperature=0.0, verbose=True)
         return cls.from_llm(
             llm=anthropic,
             symptom_extract_prompt=symptom_extract_prompt,
@@ -203,7 +207,7 @@ if __name__ == "__main__":
             model_name_or_path="bert-base-uncased",
             device="cpu",
         ),
-        texts=["fever", "cough", "headache", "sore throat", "runny nose"]
+        texts=["fever", "cough", "headache", "sore throat", "runny nose"],
     )
     inputs = {
         "question": "Do you have a fever?",
