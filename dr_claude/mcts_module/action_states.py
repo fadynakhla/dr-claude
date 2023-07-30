@@ -5,11 +5,11 @@ import math
 import random
 from typing import Collection, Dict, Generic, List, Optional, Set, TypeVar, Union
 from typing_extensions import Self
-
+import mcts
 import numpy as np
 
 from dr_claude import datamodels
-from dr_claude.mcts import probability_calcs
+from dr_claude.mcts_module import probability_calcs
 
 
 T = TypeVar("T")
@@ -200,3 +200,26 @@ class ArgMaxDiagnosisRolloutPolicy(RollOutPolicy):
     def __call__(self, state: SimulationNextActionState) -> float:
         actions_space = state.getConditionProbabilityDict()
         return max(actions_space.values())
+
+
+"""
+The MCTS algorithm
+"""
+
+
+class MCTS(mcts.mcts):
+    def getBestChild(self, node: mcts.treeNode, explorationValue: float):
+        bestValue = float("-inf")
+        bestNodes = []
+        for child in node.children.values():
+            nodeValue = (
+                node.state.getCurrentPlayer() * child.totalReward / child.numVisits
+                + explorationValue
+                * math.sqrt(2 * math.log(node.numVisits) / child.numVisits)
+            )
+            if nodeValue > bestValue:
+                bestValue = nodeValue
+                bestNodes = [child]
+            elif nodeValue == bestValue:
+                bestNodes.append(child)
+        return random.choice(bestNodes)
