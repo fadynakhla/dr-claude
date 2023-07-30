@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Union
 
 import loguru
 from langchain.chat_models import ChatAnthropic
@@ -6,6 +6,7 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
 from dr_claude import datamodels
+from dr_claude.claude_mcts import action_states
 
 
 logger = loguru.logger
@@ -19,7 +20,7 @@ Known patient state:
 positive symptoms: {positive_symptoms}
 negative symptoms: {negative_symptoms}
 
-Symptoms to consider: {symptoms}
+Symptoms to consider ordered by value: {symptoms}
 
 What is the the best symptom to ask the patient about?
 
@@ -34,15 +35,16 @@ class DecisionClaude:
     def __init__(self):
         self.chain = get_decision_claude()
 
-    def __call__(self, actions: List[datamodels.Symptom], state):
-        inputs = self.get_action_picker_inputs(actions, state)
+    def __call__(self, actions: List[Union[datamodels.Symptom, datamodels.Condition]], state):
+        valid_actions = [action for action in actions if self.valid_action(action, state)]
+        inputs = self.get_action_picker_inputs(valid_actions, state)
         response = self.chain(inputs)
         action = response["text"].strip()
         logger.info(f"Chosen Action: {action}")
         return action
 
     def get_action_picker_inputs(
-        self, actions: List[datamodels.Symptom], state
+        self, actions: List[datamodels.Symptom], state: action_states.SimulationNextActionState
     ) -> Dict[str, str]:
         return {
             "positive_symptoms": " | ".join(
@@ -54,6 +56,16 @@ class DecisionClaude:
             "symptoms": " | ".join([action.name for action in actions]),
         }
 
+    def valid_action(
+        self,
+        action: Union[datamodels.Condition, datamodels.Symptom],
+        state: action_states.SimulationNextActionState,
+    ) -> bool:
+        return (
+            not isinstance(action, datamodels.Condition)
+            and action not in state.pertinent_pos
+            and action not in state.pertinent_neg
+        )
 
 def get_decision_claude() -> LLMChain:
     return LLMChain(
