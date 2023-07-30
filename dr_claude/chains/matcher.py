@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 import pydantic
 import loguru
-from langchain import Anthropic
+from langchain.chat_models import ChatAnthropic
 from langchain.chains.base import Chain
 from langchain.chains import LLMChain, StuffDocumentsChain
 from langchain.llms.base import LLM
@@ -155,7 +155,7 @@ class MatchingChain(Chain):
         retrieval_config: HuggingFaceEncoderEmbeddingsConfig,
         texts: List[str],
     ) -> "MatchingChain":
-        anthropic = Anthropic(
+        anthropic = ChatAnthropic(
             temperature=0.0,
             verbose=True,
         )
