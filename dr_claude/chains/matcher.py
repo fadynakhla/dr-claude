@@ -77,7 +77,7 @@ class MatchingChain(Chain):
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
         for symptom in symptom_list.symptoms: # suboptimal but fine for now
             symptom.input_documents = await self.retriever.aget_relevant_documents(symptom.symptom)
-        return self.run_matching_batch(symptom_list)
+        return self.run_matching_loop(symptom_list)
 
     def run_matching_batch(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
 
@@ -89,6 +89,13 @@ class MatchingChain(Chain):
             return await asyncio.gather(*tasks)
 
         return asyncio.run(run_batched(symptom_list))
+
+    def run_matching_loop(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
+        outputs = []
+        for symptom in symptom_list.symptoms:
+            output = self.stuff_retrievals_match_chain(dict(symptom))
+            outputs.append(output)
+        return outputs
 
     # def _validate_outputs(self, outputs: List[Dict[str, Any]]) -> None:
     #     for output in outputs:
