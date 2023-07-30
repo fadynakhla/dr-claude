@@ -11,8 +11,8 @@ from loguru import logger
 
 from dr_claude import kb_reading, datamodels, chaining_the_chains
 from dr_claude.retrieval import retriever
-from dr_claude.claude_mcts import action_states
-from dr_claude.chains import matcher, prompts, doctor, patient
+from dr_claude.claude_mcts import action_states, multi_choice_mcts
+from dr_claude.chains import decision_claude, matcher, prompts, doctor, patient
 
 
 from fastapi.middleware.cors import CORSMiddleware
@@ -76,6 +76,7 @@ async def startup_event() -> None:
     global symptom_name_to_symptom
     global fever
     global matcher_chain
+    global action_picker
 
     embedding_model_name = "/data/models/RoSaBERTa_large/"
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
@@ -97,6 +98,7 @@ async def startup_event() -> None:
         retrieval_config=retrieval_config,
         texts=list(set(symptom_name_to_symptom)),
     )
+    action_picker = decision_claude.DecisionClaude()
 
 
 @app.get("/health")
@@ -157,14 +159,17 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
 
     state.pertinent_pos.update([fever])
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
-    searcher = mcts.mcts(timeLimit=3000, rolloutPolicy=rollout_policy)
+    searcher = multi_choice_mcts.MultiChoiceMCTS(timeLimit=3000, rolloutPolicy=rollout_policy)
 
     while not isinstance(
-        (action := searcher.search(initialState=state)), datamodels.Condition
+        (actions := searcher.search(initialState=state, top_k=5))[0], datamodels.Condition
     ):
-        assert isinstance(action, datamodels.Symptom)
-        logger.info(f"{action=}")
-        patient_symptom_response = chainer.interaction(note, action.name)
+        assert isinstance(actions[0], datamodels.Symptom)
+        logger.info(f"{actions=}")
+
+        action_name = action_picker(actions=actions, state=state)
+
+        patient_symptom_response = chainer.interaction(note, action_name)
         new_positives = [
             symptom_name_to_symptom[s.symptom_match.strip()]
             for s in patient_symptom_response
@@ -178,5 +183,5 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         state.pertinent_pos.update(new_positives)
         state.pertinent_neg.update(new_negatives)
 
-    diagnosis = action
+    diagnosis = actions[0]
     logger.info(f"Diagnosis: {diagnosis}")
