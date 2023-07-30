@@ -1,5 +1,5 @@
 import copy
-from typing import Callable, Collection
+from typing import Callable, Collection, Self
 
 import loguru
 
@@ -11,10 +11,7 @@ import mcts
 from dr_claude import kb_reading
 
 
-class PatientWithConditionMixin(
-    action_states.SimulationMixin,
-    action_states.NextBestActionState,
-):
+class PatientWithConditionMixin(action_states.SimulationMixin):
     """
     A mixin for debugging convergence (patient with a condition)
     """
@@ -25,18 +22,13 @@ class PatientWithConditionMixin(
         self.condition = condition
         self.true_pertinent_positives = pert_pos
 
-    def handleSymptom(
-        self, symptom: datamodels.Symptom
-    ) -> action_states.NextBestActionState:
+    def handleSymptom(self, symptom: datamodels.Symptom) -> Self:
         next_self = copy.deepcopy(self)
         if symptom in next_self.true_pertinent_positives:
             next_self.pertinent_pos.add(symptom)
         else:
             next_self.pertinent_neg.add(symptom)
         return next_self
-
-    # def getReward(self) -> float:
-    #     return float(self.condition == self.diagnosis)
 
 
 class ConvergenceTestState(
@@ -52,10 +44,12 @@ def logtrueconditionhook(
     counter = int()
 
     def log_wrapper(state: ConvergenceTestState) -> float:
+        nonlocal counter
+        counter += 1
         if not counter % log_freq:
             probas = state.getConditionProbabilityDict()
             true_condition_proba = probas[state.condition]
-            loguru.logger.info(f"True condition is {true_condition_proba}")
+            loguru.logger.debug(f"{true_condition_proba=} after {counter} rollouts")
         return rollout_policy(state)
 
     return log_wrapper
@@ -83,14 +77,14 @@ def test_convergence():
     rollout_policy = logtrueconditionhook(rollout_policy)
 
     ## create the initial state
-    searcher = mcts.mcts(timeLimit=10000, rolloutPolicy=rollout_policy)
+    searcher = mcts.mcts(timeLimit=3000, rolloutPolicy=rollout_policy)
 
     action = None
     while not isinstance(action, datamodels.Condition):
         action = searcher.search(initialState=state)
-    state = state.takeAction(action)
-
-    diagnosis = searcher.search(initialState=state)
+        state = state.takeAction(action)
+        loguru.logger.info(f"action={action}")
+    diagnosis = action
 
     assert (
         diagnosis == the_condition
