@@ -219,9 +219,8 @@ def make_new_symptoms(
     non_key_error_symptoms = []
     for s in patient_symptom_response:
         try:
-            symptom_name = s.symptom_match.strip()
-            symptom_name_to_symptom[symptom_name]
-            non_key_error_symptoms.append(symptom_name)
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            non_key_error_symptoms.append(s)
         except KeyError:
             pass
 
