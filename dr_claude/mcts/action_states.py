@@ -138,16 +138,6 @@ class SimulationNextActionState(SimulationMixin, NextBestActionState):
     ) -> List[Union[datamodels.Symptom, datamodels.Condition]]:
         return list(self.remaining_symptoms.union(self.conditions))
 
-    def takeAction(
-        self, action: Union[datamodels.Symptom, datamodels.Condition]
-    ) -> "NextBestActionState":
-        if isinstance(action, datamodels.Symptom):
-            return self.handleSymptom(action)
-        elif isinstance(action, datamodels.Condition):
-            return self.handleDiagnostic(action)
-        else:
-            raise ValueError(f"Unknown action type {action}")
-
     def handleSymptom(self, symptom: datamodels.Symptom) -> "NextBestActionState":
         next_self = copy.deepcopy(self)
         next_self.remaining_symptoms.remove(symptom)
