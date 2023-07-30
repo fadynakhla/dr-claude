@@ -1,8 +1,9 @@
 import copy
 import random
-from typing import Callable, Collection, Self
+from typing import Callable, Collection
 
 import loguru
+from loguru import logger
 
 from dr_claude import datamodels
 from dr_claude.mcts import action_states
@@ -58,10 +59,10 @@ def logtrueconditionhook(
 
 def test_convergence():
     ## load the knowledge base
-    reader = kb_reading.NYPHKnowldegeBaseReader("data/NYPHKnowldegeBase.html")
+    # reader = kb_reading.NYPHKnowldegeBaseReader("data/NYPHKnowldegeBase.html")
+    reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
     kb = reader.load_knowledge_base()
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
-
     ## create the initial state
     conditions = list(matrix.columns.keys())
     the_condition = conditions[0]  # TODO chose condiiton here
@@ -71,11 +72,13 @@ def test_convergence():
         if matrix[symptom, the_condition] > symptom.noise_rate
     ]
     state = ConvergenceTestState(matrix, discount_rate=1e-9)
+    # state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
+
     state.set_condition(the_condition, the_symptoms)
-    state.pertinent_pos.update(random.choices(the_symptoms, k=2))
+    state.pertinent_pos.update(random.choices(the_symptoms, k=1))
 
     ## Rollout policy
-    rollout_policy = action_states.RandomRollOutPolicy()
+    rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     rollout_policy = logtrueconditionhook(rollout_policy)
 
     ## create the initial state
@@ -83,11 +86,14 @@ def test_convergence():
 
     action = None
     while not isinstance(action, datamodels.Condition):
+        if action is not None:
+            assert isinstance(action, datamodels.Symptom)
         action = searcher.search(initialState=state)
-        assert isinstance(action, datamodels.Symptom)
         if action in the_symptoms:
+            logger.info("got a pertinent positive: {}", action)
             state.pertinent_pos.add(action)
         else:
+            logger.info("got a pertinent negative: {}", action)
             state.pertinent_neg.add(action)
         loguru.logger.info(f"action={action}")
     diagnosis = action
