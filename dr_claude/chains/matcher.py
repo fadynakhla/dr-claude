@@ -55,8 +55,7 @@ class MatchingChain(Chain):
     ) -> Dict[str, Any]:
         raw_symptom_extract = self.symptom_extract_chain(inputs)
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
-        # asyncio.run(self.retriever.aget_relevant_documents([s.symptom for s in symptoms]))
-        for symptom in symptom_list.symptoms:
+        for symptom in symptom_list.symptoms: # suboptimal but fine for now
             symptom.retrievals = self.retriever.get_relevant_documents(symptom.symptom)
         return self.run_matching_batch(symptom_list)
 
