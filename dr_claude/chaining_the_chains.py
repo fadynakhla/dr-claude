@@ -48,5 +48,4 @@ if __name__ == "__main__":
         retrieval_config=retrieval_config,
         symptoms=symptoms,
     )
-    print("CHAINED")
     print(chain_chainer.interaction("abdominal cramps"))
