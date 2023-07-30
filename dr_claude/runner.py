@@ -30,7 +30,7 @@ def main() -> None:
         device="cpu",
     )
     chain_chainer = chaining_the_chains.ChainChainer(
-        patient_note=note,
+    patient_note=note,
         retrieval_config=retrieval_config,
         symptoms=list(set(symptom_name_to_symptom)),
     )
