@@ -156,7 +156,7 @@ class MatchingChain(Chain):
         texts: List[str],
     ) -> "MatchingChain":
         anthropic = Anthropic(
-            temperature=0.1,
+            temperature=0.0,
             verbose=True,
         )
         return cls.from_llm(
