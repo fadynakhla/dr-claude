@@ -14,12 +14,19 @@ from loguru import logger
 from dr_claude import kb_reading, datamodels, chaining_the_chains
 from dr_claude.retrieval import retriever
 from dr_claude.claude_mcts import action_states, multi_choice_mcts
-from dr_claude.chains import decision_claude, matcher, prompts, doctor, patient
+from dr_claude.chains import (
+    decision_claude,
+    matcher,
+    prompts,
+    doctor,
+    patient,
+    cc_prompts,
+)
 
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
-
+from dr_claude.retrieval.retriever import HuggingFAISS
 import json
 from loguru import logger
 
@@ -101,9 +108,9 @@ async def startup_event() -> None:
     global kb
     global chain_chainer
     global symptom_name_to_symptom
-    global fever
     global matcher_chain
     global action_picker
+    global chiefcomplaint_chain
 
     embedding_model_name = "bert-base-uncased"
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
@@ -117,13 +124,20 @@ async def startup_event() -> None:
         for weighted_symptom in symptom_group:
             symptom = datamodels.SymptomTransformer.to_symptom(weighted_symptom)
             symptom_name_to_symptom[symptom.name.strip()] = symptom
-            if weighted_symptom.name.lower().strip() == "fever":
-                fever = symptom
-    matcher_chain = matcher.MatchingChain.from_anthropic(
+
+    texts = list(set(symptom_name_to_symptom))
+    vectorstore = HuggingFAISS.from_model_config_and_texts(texts, retrieval_config)
+    matcher_chain = matcher.MatchingChain.from_anthropic_and_retriever(
         symptom_extract_prompt=prompts.SYMPTOM_EXTRACT_PROMPT,
         symptom_match_prompt=prompts.SYMPTOM_MATCH_PROMPT,
-        retrieval_config=retrieval_config,
-        texts=list(set(symptom_name_to_symptom)),
+        vec_store=vectorstore,
+        parser=matcher.parse_raw_extract,
+    )
+    chiefcomplaint_chain = matcher.MatchingChain.from_anthropic_and_retriever(
+        symptom_extract_prompt=cc_prompts.CC_EXTRACT_PROMPT,
+        symptom_match_prompt=cc_prompts.CC_MATCH_PROMPT,
+        vec_store=vectorstore,
+        parser=matcher.parse_raw_extract_cc,
     )
     action_picker = decision_claude.DecisionClaude()
 
@@ -183,13 +197,24 @@ async def receive_message(websocket: WebSocket):
 async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
     state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
-
-    state.pertinent_pos.update([fever])
+    try:
+        cc_matches_raw = chiefcomplaint_chain({"note": note})
+        cc_matches: List[datamodels.SymptomMatch] = [
+            datamodels.SymptomMatch(**match) for match in cc_matches_raw
+        ]
+        chief_complaints = [
+            symptom_name_to_symptom[m.symptom_match.strip()] for m in cc_matches
+        ]
+    except Exception as e:
+        logger.error(e)
+        return
+    logger.info("Chief complaints are {}", chief_complaints)
+    state.pertinent_pos.update(chief_complaints)
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     searcher = multi_choice_mcts.MultiChoiceMCTS(
         timeLimit=3000, rolloutPolicy=rollout_policy
     )
-
+    q_counter = 0
     while not isinstance(
         (actions := searcher.search(initialState=state, top_k=5))[0],
         datamodels.Condition,

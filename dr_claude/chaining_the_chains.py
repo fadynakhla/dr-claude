@@ -1,4 +1,5 @@
 from typing import Any, Dict, List
+from dr_claude.retrieval.retriever import HuggingFAISS
 from dr_claude import datamodels
 from langchain import LLMChain
 

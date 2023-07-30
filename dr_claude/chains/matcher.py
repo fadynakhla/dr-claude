@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Callable
 import asyncio
 import xml.etree.ElementTree as ET
 
@@ -19,6 +19,45 @@ from dr_claude.retrieval.embeddings import HuggingFaceEncoderEmbeddingsConfig
 
 
 logger = loguru.logger
+
+
+class Symptom(pydantic.BaseModel):
+    symptom: str
+    present: bool
+    input_documents: Optional[List[Document]] = None
+
+
+class SymptomList(pydantic.BaseModel):
+    symptoms: List[Symptom]
+
+
+def parse_raw_extract(text: str) -> SymptomList:
+    symptom_strings = text.strip().split("\n")
+    symptoms = []
+    logger.debug(f"Raw symptom strings: {symptom_strings}")
+    for symptom_string in symptom_strings:
+        logger.debug(f"Single line response: {symptom_string}")
+        symptom_string = parse_xml_line(symptom_string)
+        # gets here
+        name, present = symptom_string.split(":")
+        symptom = Symptom(symptom=name.strip(), present=present.strip() == "yes")
+        symptoms.append(symptom)
+    logger.info("finished parsing")
+    return SymptomList(symptoms=symptoms)
+
+
+def parse_raw_extract_cc(text: str) -> SymptomList:
+    symptom_strings = text.strip().split("\n")
+    symptoms = []
+    logger.debug(f"Raw symptom strings: {symptom_strings}")
+    for symptom_string in symptom_strings:
+        logger.debug(f"Single line response: {symptom_string}")
+        symptom_string = parse_xml_line(symptom_string)
+        name = symptom_string
+        symptom = Symptom(symptom=name.strip(), present="yes")
+        symptoms.append(symptom)
+    logger.info("finished parsing")
+    return SymptomList(symptoms=symptoms)
 
 
 class Symptom(pydantic.BaseModel):
@@ -53,6 +92,7 @@ class MatchingChain(Chain):
     symptom_extract_chain: LLMChain
     stuff_retrievals_match_chain: StuffDocumentsChain
     retriever: VectorStoreRetriever
+    parser: Callable = parse_raw_extract
 
     def _call(
         self,
@@ -60,7 +100,8 @@ class MatchingChain(Chain):
         run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, Any]:
         raw_symptom_extract = self.symptom_extract_chain(inputs)
-        symptom_list = parse_raw_extract(raw_symptom_extract["text"])
+        symptom_list = self.parser(raw_symptom_extract["text"])
+        logger.info("extracted symptom list: {}", symptom_list)
         for symptom in symptom_list.symptoms:  # suboptimal but fine for now
             symptom.input_documents = self.retriever.get_relevant_documents(
                 symptom.symptom
@@ -77,7 +118,7 @@ class MatchingChain(Chain):
         run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, Any]:
         raw_symptom_extract = await self.symptom_extract_chain.acall(inputs)
-        symptom_list = parse_raw_extract(raw_symptom_extract["text"])
+        symptom_list = self.parser(raw_symptom_extract["text"])
         for symptom in symptom_list.symptoms:  # suboptimal but fine for now
             symptom.input_documents = await self.retriever.aget_relevant_documents(
                 symptom.symptom
@@ -85,19 +126,17 @@ class MatchingChain(Chain):
         return self.run_matching_loop(symptom_list)
 
     def run_matching_batch(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
-        async def run_batched(symptom_list: SymptomList, sem) -> List[Dict[str, Any]]:
-            async with sem:
-                tasks = []
-                for symptom in symptom_list.symptoms:
-                    output = self.stuff_retrievals_match_chain.acall(dict(symptom))
-                    tasks.append(output)
-                return await asyncio.gather(*tasks)
+        async def run_batched(symptom_list: SymptomList) -> List[Dict[str, Any]]:
+            tasks = []
+            for symptom in symptom_list.symptoms:
+                output = self.stuff_retrievals_match_chain.acall(dict(symptom))
+                tasks.append(output)
+            return await asyncio.gather(*tasks)
 
-        sem = asyncio.Semaphore(1)
-
-        return asyncio.run(run_batched(symptom_list, sem))
+        return asyncio.run(run_batched(symptom_list))
 
     def run_matching_loop(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
+        logger.info("matching symptom list {}", symptom_list)
         outputs = []
         for symptom in symptom_list.symptoms:
             output = self.stuff_retrievals_match_chain(dict(symptom))
@@ -162,6 +201,38 @@ class MatchingChain(Chain):
         )
 
     @classmethod
+    def from_anthropic_and_retriever(
+        cls,
+        symptom_extract_prompt: PromptTemplate,
+        symptom_match_prompt: PromptTemplate,
+        vec_store: HuggingFAISS,
+        parser,
+    ):
+        llm = ChatAnthropic(temperature=0.0, verbose=True)
+        symptom_extract_chain = LLMChain(
+            llm=llm,
+            prompt=symptom_extract_prompt,
+        )
+        symptom_match_chain = LLMChain(
+            llm=llm,
+            prompt=symptom_match_prompt,
+            output_parser=XmlOutputParser(),
+        )
+        stuff_retrievals_match_chain = StuffDocumentsChain(
+            llm_chain=symptom_match_chain,
+            document_variable_name="retrievals",
+            verbose=True,
+            callbacks=[],
+            output_key="symptom_match",
+        )
+        return cls(
+            symptom_extract_chain=symptom_extract_chain,
+            stuff_retrievals_match_chain=stuff_retrievals_match_chain,
+            retriever=vec_store.as_retriever(),
+            parser=parser,
+        )
+
+    @classmethod
     def from_anthropic(
         cls,
         symptom_extract_prompt: PromptTemplate,
@@ -186,19 +257,6 @@ def parse_xml_line(line: str) -> str:
         logger.error(f"Failed to parse XML line: {line}")
         raise e
     return root.text
-
-
-def parse_raw_extract(text: str) -> SymptomList:
-    symptom_strings = text.strip().split("\n")
-    symptoms = []
-    logger.debug(f"Raw symptom strings: {symptom_strings}")
-    for symptom_string in symptom_strings:
-        logger.debug(f"Single line response: {symptom_string}")
-        symptom_string = parse_xml_line(symptom_string)
-        name, present = symptom_string.split(":")
-        symptom = Symptom(symptom=name.strip(), present=present.strip() == "yes")
-        symptoms.append(symptom)
-    return SymptomList(symptoms=symptoms)
 
 
 if __name__ == "__main__":
