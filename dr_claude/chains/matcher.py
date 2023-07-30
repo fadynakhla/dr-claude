@@ -58,14 +58,15 @@ class MatchingChain(Chain):
         # asyncio.run(self.retriever.aget_relevant_documents([s.symptom for s in symptoms]))
         for symptom in symptom_list.symptoms:
             symptom.retrievals = self.retriever.get_relevant_documents(symptom.symptom)
-
+        return self.run_matching_batch(symptom_list)
 
     def run_matching_batch(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
 
         async def run_batched(symptom_list: SymptomList) -> List[Dict[str, Any]]:
             tasks = []
             for symptom in symptom_list.symptoms:
-                output = self.stuff_retrievals_match_chain.acall(symptom)
+                output = self.stuff_retrievals_match_chain.acall(symptom.dict(exclude={"present"}))
+                output["present"] = symptom.present
                 tasks.append(output)
             return await asyncio.gather(*tasks)
 
