@@ -162,10 +162,7 @@ class MatchingChain(Chain):
         retrieval_config: HuggingFaceEncoderEmbeddingsConfig,
         texts: List[str],
     ) -> "MatchingChain":
-        anthropic = ChatAnthropic(
-            temperature=0.0,
-            verbose=True,
-        )
+        anthropic = ChatAnthropic(temperature=0.0, verbose=True)
         return cls.from_llm(
             llm=anthropic,
             symptom_extract_prompt=symptom_extract_prompt,
