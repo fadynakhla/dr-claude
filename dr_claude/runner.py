@@ -22,7 +22,9 @@ def main():
                 fever = symptom
     state.pertinent_pos.update([fever])
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
-    searcher = multi_choice_mcts.MultiChoiceMCTS(timeLimit=3000, rolloutPolicy=rollout_policy)
+    searcher = multi_choice_mcts.MultiChoiceMCTS(
+        timeLimit=3000, rolloutPolicy=rollout_policy
+    )
 
     action_picker = decision_claude.DecisionClaude()
     note = ("The patient has syncope, vertigo, nausea and is sweating",)
@@ -46,7 +48,8 @@ def main():
         patient_chain=patient_chain,
     )
     while not isinstance(
-        (actions := searcher.search(initialState=state, top_k=5))[0], datamodels.Condition
+        (actions := searcher.search(initialState=state, top_k=5))[0],
+        datamodels.Condition,
     ):
         assert isinstance(actions[0], datamodels.Symptom)
         logger.info(f"{actions=}")
@@ -77,7 +80,7 @@ def main():
 
 def valid_action(
     action: Union[datamodels.Condition, datamodels.Symptom],
-    state: action_states.SimulationNextActionState
+    state: action_states.SimulationNextActionState,
 ) -> bool:
     return (
         not isinstance(action, datamodels.Condition)
@@ -86,10 +89,16 @@ def valid_action(
     )
 
 
-def get_action_picker_inputs(actions: List[datamodels.Symptom], state) -> Dict[str, str]:
+def get_action_picker_inputs(
+    actions: List[datamodels.Symptom], state
+) -> Dict[str, str]:
     return {
-        "positive_symptoms": " | ".join([action.name for action in state.pertinent_pos]),
-        "negative_symptoms": " | ".join([action.name for action in state.pertinent_neg]),
+        "positive_symptoms": " | ".join(
+            [action.name for action in state.pertinent_pos]
+        ),
+        "negative_symptoms": " | ".join(
+            [action.name for action in state.pertinent_neg]
+        ),
         "symptoms": " | ".join([action.name for action in actions]),
     }
 
