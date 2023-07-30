@@ -41,10 +41,16 @@ class DecisionClaude:
         logger.info(f"Chosen Action: {action}")
         return action
 
-    def get_action_picker_inputs(self, actions: List[datamodels.Symptom], state) -> Dict[str, str]:
+    def get_action_picker_inputs(
+        self, actions: List[datamodels.Symptom], state
+    ) -> Dict[str, str]:
         return {
-            "positive_symptoms": " | ".join([action.name for action in state.pertinent_pos]),
-            "negative_symptoms": " | ".join([action.name for action in state.pertinent_neg]),
+            "positive_symptoms": " | ".join(
+                [action.name for action in state.pertinent_pos]
+            ),
+            "negative_symptoms": " | ".join(
+                [action.name for action in state.pertinent_neg]
+            ),
             "symptoms": " | ".join([action.name for action in actions]),
         }
 

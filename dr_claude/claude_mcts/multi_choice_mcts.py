@@ -5,11 +5,12 @@ import heapq
 
 from mcts import treeNode, mcts
 
+
 class MultiChildMixin:
     def search(self, initialState, top_k):
         self.root = treeNode(initialState, None)
 
-        if self.limitType == 'time':
+        if self.limitType == "time":
             timeLimit = time.time() + self.timeLimit / 1000
             while time.time() < timeLimit:
                 self.executeRound()
@@ -23,8 +24,11 @@ class MultiChildMixin:
     def getBestChild(self, node, explorationValue, top_k):
         node_values = []
         for i, child in enumerate(node.children.values()):
-            nodeValue = child.totalReward / child.numVisits + explorationValue * math.sqrt(
-                2 * math.log(node.numVisits) / child.numVisits)
+            nodeValue = (
+                child.totalReward / child.numVisits
+                + explorationValue
+                * math.sqrt(2 * math.log(node.numVisits) / child.numVisits)
+            )
             # Use negative value because heapq is a min heap, i to break ties
             heapq.heappush(node_values, (-nodeValue, i, child))
             # Keep only the top_k node values
