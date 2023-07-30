@@ -87,12 +87,12 @@ def make_new_symptoms(
     if non_key_error_symptoms:
         new_positives = [
             symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
+            for s in non_key_error_symptoms
             if s.present
         ]
         new_negatives = [
             symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
+            for s in non_key_error_symptoms
             if not s.present
         ]
     else:
