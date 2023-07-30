@@ -1,10 +1,12 @@
 import copy
+import random
 from typing import Callable, Collection, Self
 
 import loguru
 
 from dr_claude import datamodels
-from dr_claude.mcts import action_states
+from dr_claude import mcts_module
+from dr_claude.mcts_module import action_states
 
 import mcts
 
@@ -71,13 +73,14 @@ def test_convergence():
     ]
     state = ConvergenceTestState(matrix, discount_rate=1e-9)
     state.set_condition(the_condition, the_symptoms)
+    state.pertinent_pos.add(random.choice(the_symptoms))
 
     ## Rollout policy
-    rollout_policy = action_states.RandomRollOutPolicy()
+    rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     rollout_policy = logtrueconditionhook(rollout_policy)
 
     ## create the initial state
-    searcher = mcts.mcts(timeLimit=3000, rolloutPolicy=rollout_policy)
+    searcher = action_states.MCTS(timeLimit=3000, rolloutPolicy=rollout_policy)
 
     action = None
     while not isinstance(action, datamodels.Condition):
