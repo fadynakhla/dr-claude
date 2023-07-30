@@ -1,7 +1,10 @@
 from typing import Any, Dict, List, Optional
 import asyncio
-from langchain import Anthropic, OpenAI
+import xml.etree.ElementTree as ET
+
 import pydantic
+import loguru
+from langchain import Anthropic
 from langchain.chains.base import Chain
 from langchain.chains import LLMChain, StuffDocumentsChain
 from langchain.llms.base import LLM
@@ -9,19 +12,41 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.prompts import PromptTemplate
 from langchain.docstore.document import Document
 from langchain.vectorstores.base import VectorStoreRetriever
+from langchain.schema.output_parser import BaseOutputParser
 
 from dr_claude.retrieval.retriever import HuggingFAISS
 from dr_claude.retrieval.embeddings import HuggingFaceEncoderEmbeddingsConfig
 
 
+logger = loguru.logger
+
+
 class Symptom(pydantic.BaseModel):
     symptom: str
     present: bool
-    retrievals: Optional[List[Document]] = None
+    input_documents: Optional[List[Document]] = None
 
 
 class SymptomList(pydantic.BaseModel):
     symptoms: List[Symptom]
+
+
+class XmlOutputParser(BaseOutputParser[str]):
+    """OutputParser that parses LLMResult into the top likely string.."""
+
+    @property
+    def lc_serializable(self) -> bool:
+        """Whether the class LangChain serializable."""
+        return True
+
+    @property
+    def _type(self) -> str:
+        """Return the output parser type for serialization."""
+        return "default"
+
+    def parse(self, text: str) -> str:
+        """Returns the input text with no changes."""
+        return parse_xml_line(text.strip())
 
 
 class MatchingChain(Chain):
@@ -38,7 +63,9 @@ class MatchingChain(Chain):
         raw_symptom_extract = self.symptom_extract_chain(inputs)
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
         for symptom in symptom_list.symptoms: # suboptimal but fine for now
-            symptom.retrievals = self.retriever.get_relevant_documents(symptom.symptom)
+            symptom.input_documents = self.retriever.get_relevant_documents(symptom.symptom)
+            logger.info(f"Retrieved {len(symptom.input_documents)} documents for {symptom.symptom}")
+            logger.debug(f"Retrieved documents: {symptom.input_documents}")
         return self.run_matching_batch(symptom_list)
 
     async def _acall(
@@ -57,16 +84,35 @@ class MatchingChain(Chain):
         async def run_batched(symptom_list: SymptomList) -> List[Dict[str, Any]]:
             tasks = []
             for symptom in symptom_list.symptoms:
-                output = self.stuff_retrievals_match_chain.acall(symptom.dict(exclude={"present"}))
-                output["present"] = symptom.present
+                output = self.stuff_retrievals_match_chain.acall(dict(symptom))
                 tasks.append(output)
             return await asyncio.gather(*tasks)
 
         return asyncio.run(run_batched(symptom_list))
 
+    # def _validate_outputs(self, outputs: List[Dict[str, Any]]) -> None:
+    #     for output in outputs:
+    #         super()._validate_outputs(output)
+
+    def prep_outputs(
+        self,
+        inputs: Dict[str, str],
+        outputs: List[Dict[str, str]],
+        return_only_outputs: bool = False,
+    ) -> Dict[str, str]:
+        new_outputs = []
+        for output in outputs:
+            new_output = super().prep_outputs(inputs, output)
+            new_outputs.append(new_output)
+        return new_outputs
+
     @property
     def input_keys(self) -> List[str]:
         return self.symptom_extract_chain.input_keys
+
+    @property
+    def output_keys(self) -> List[str]:
+        return ["match", "present"]
 
     @classmethod
     def from_llm(
@@ -84,12 +130,14 @@ class MatchingChain(Chain):
         symptom_match_chain = LLMChain(
             llm=llm,
             prompt=symptom_match_prompt,
+            output_parser=XmlOutputParser(),
         )
         stuff_retrievals_match_chain = StuffDocumentsChain(
             llm_chain=symptom_match_chain,
             document_variable_name="retrievals",
             verbose=True,
             callbacks=[],
+            output_key="match",
         )
         vectorstore = HuggingFAISS.from_model_config_and_texts(texts, retrieval_config)
         retriever = vectorstore.as_retriever()
@@ -119,11 +167,39 @@ class MatchingChain(Chain):
             texts=texts,
         )
 
+
+def parse_xml_line(line: str) -> str:
+    root = ET.fromstring(line)
+    return root.text
+
+
 def parse_raw_extract(text: str) -> SymptomList:
-    symptom_strings = text.split("\n")
+    symptom_strings = text.strip().split("\n")
     symptoms = []
+    logger.debug(f"Raw symptom strings: {symptom_strings}")
     for symptom_string in symptom_strings:
+        logger.debug(f"Single line response: {symptom_string}")
+        symptom_string = parse_xml_line(symptom_string)
         name, present = symptom_string.split(":")
         symptom = Symptom(symptom=name.strip(), present=present.strip() == "yes")
         symptoms.append(symptom)
     return SymptomList(symptoms=symptoms)
+
+
+if __name__ == "__main__":
+    from dr_claude.chains import prompts
+
+    chain = MatchingChain.from_anthropic(
+        symptom_extract_prompt=prompts.SYMPTOM_EXTRACT_PROMPT,
+        symptom_match_prompt=prompts.SYMPTOM_MATCH_PROMPT,
+        retrieval_config=HuggingFaceEncoderEmbeddingsConfig(
+            model_name_or_path="bert-base-uncased",
+            device="cpu",
+        ),
+        texts=["fever", "cough", "headache", "sore throat", "runny nose"]
+    )
+    inputs = {
+        "question": "Do you have a fever?",
+        "response": "yes and I have a headache as well",
+    }
+    print(chain(inputs))
