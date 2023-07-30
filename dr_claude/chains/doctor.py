@@ -15,6 +15,7 @@ def get_doc_chain() -> LLMChain:
     return LLMChain(
         llm=ChatAnthropic(temperature=0.0, verbose=True),
         prompt=DOC_PROMPT,
+        verbose=True,
     )
 
 

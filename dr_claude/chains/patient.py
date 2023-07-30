@@ -6,9 +6,9 @@ from langchain.prompts import PromptTemplate
 _patient_prompt_template = (
     "You are a patient who is seeing their doctor. Your medical state is described as follows:\n\n"
     "{medical_note}\n\n"
-    "The docter will ask you questions about your symptoms. Answer them only according to the "
+    "The doctor will ask you questions about your symptoms. Answer them only according to the "
     "information provided above. If the doctor asks if you have a symptom not "
-    "mentioned above, answer no.\n\n"
+    "mentioned above, answer no and do not reveal any other symptoms.\n\n"
     "Question:\n{question}\n\n"
     "Answer:"
 )
@@ -19,6 +19,7 @@ def get_patient_chain() -> LLMChain:
     return LLMChain(
         llm=ChatAnthropic(temperature=0.0, verbose=True),
         prompt=PATIENT_PROMPT,
+        verbose=True,
     )
 
 
