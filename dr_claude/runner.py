@@ -28,8 +28,8 @@ def main():
 
     action_picker = decision_claude.DecisionClaude()
     note = ("The patient has syncope, vertigo, nausea and is sweating",)
-    # embedding_model_name = "/data/models/RoSaBERTa_large/"
-    embedding_model_name = "roberta-large"
+    embedding_model_name = "/data/models/RoSaBERTa_large/"
+    # embedding_model_name = "roberta-large"
     retrieval_config = retriever.HuggingFaceEncoderEmbeddingsConfig(
         model_name_or_path=embedding_model_name,
         device="cpu",
@@ -58,37 +58,46 @@ def main():
 
         patient_symptom_response = chain_chainer.interaction(note, action_name)
 
-        new_positives = [
-            symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
-            if s.present
-        ]
-        new_negatives = [
-            symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
-            if not s.present
-        ]
+        new_positives, new_negatives = make_new_symptoms(
+            action_name, patient_symptom_response, symptom_name_to_symptom
+        )
         state.pertinent_pos.update(new_positives)
         state.pertinent_neg.update(new_negatives)
 
     action = actions[0]
     diagnosis = action
     logger.info(f"Diagnosis: {diagnosis}")
-    print(chain_chainer.interaction("fever"))
+    # print(chain_chainer.interaction("fever"))
 
 
-def get_action_picker_inputs(
-    actions: List[datamodels.Symptom], state
-) -> Dict[str, str]:
-    return {
-        "positive_symptoms": " | ".join(
-            [action.name for action in state.pertinent_pos]
-        ),
-        "negative_symptoms": " | ".join(
-            [action.name for action in state.pertinent_neg]
-        ),
-        "symptoms": " | ".join([action.name for action in actions]),
-    }
+def make_new_symptoms(
+    action_name: str,
+    patient_symptom_response: List[datamodels.SymptomMatch],
+    symptom_name_to_symptom: Dict[str, datamodels.Symptom],
+):
+    non_key_error_symptoms = []
+    for s in patient_symptom_response:
+        try:
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            non_key_error_symptoms.append(s)
+        except KeyError:
+            pass
+
+    if non_key_error_symptoms:
+        new_positives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in non_key_error_symptoms
+            if s.present
+        ]
+        new_negatives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in non_key_error_symptoms
+            if not s.present
+        ]
+    else:
+        new_positives = []
+        new_negatives = [symptom_name_to_symptom[action_name.strip()]]
+    return new_positives, new_negatives
 
 
 if __name__ == "__main__":

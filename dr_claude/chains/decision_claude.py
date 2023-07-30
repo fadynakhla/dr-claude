@@ -35,8 +35,12 @@ class DecisionClaude:
     def __init__(self):
         self.chain = get_decision_claude()
 
-    def __call__(self, actions: List[Union[datamodels.Symptom, datamodels.Condition]], state):
-        valid_actions = [action for action in actions if self.valid_action(action, state)]
+    def __call__(
+        self, actions: List[Union[datamodels.Symptom, datamodels.Condition]], state
+    ):
+        valid_actions = [
+            action for action in actions if self.valid_action(action, state)
+        ]
         inputs = self.get_action_picker_inputs(valid_actions, state)
         response = self.chain(inputs)
         action = response["text"].strip()
@@ -44,7 +48,9 @@ class DecisionClaude:
         return action
 
     def get_action_picker_inputs(
-        self, actions: List[datamodels.Symptom], state: action_states.SimulationNextActionState
+        self,
+        actions: List[datamodels.Symptom],
+        state: action_states.SimulationNextActionState,
     ) -> Dict[str, str]:
         return {
             "positive_symptoms": " | ".join(
@@ -66,6 +72,7 @@ class DecisionClaude:
             and action not in state.pertinent_pos
             and action not in state.pertinent_neg
         )
+
 
 def get_decision_claude() -> LLMChain:
     return LLMChain(

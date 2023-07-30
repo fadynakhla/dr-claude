@@ -186,8 +186,10 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
 
     state.pertinent_pos.update([fever])
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
-    searcher = mcts.mcts(timeLimit=3000, rolloutPolicy=rollout_policy)
-    q_counter = 0
+    searcher = multi_choice_mcts.MultiChoiceMCTS(
+        timeLimit=3000, rolloutPolicy=rollout_policy
+    )
+
     while not isinstance(
         (actions := searcher.search(initialState=state, top_k=5))[0],
         datamodels.Condition,
@@ -201,18 +203,39 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         action_name = action_picker(actions=actions, state=state)
 
         patient_symptom_response = chainer.interaction(note, action_name)
-        new_positives = [
-            symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
-            if s.present
-        ]
-        new_negatives = [
-            symptom_name_to_symptom[s.symptom_match.strip()]
-            for s in patient_symptom_response
-            if not s.present
-        ]
+        new_positives, new_negatives = make_new_symptoms(
+            action_name, patient_symptom_response
+        )
         state.pertinent_pos.update(new_positives)
         state.pertinent_neg.update(new_negatives)
 
     diagnosis = actions[0]
     logger.info(f"Diagnosis: {diagnosis}")
+
+
+def make_new_symptoms(
+    action_name: str, patient_symptom_response: List[datamodels.SymptomMatch]
+):
+    non_key_error_symptoms = []
+    for s in patient_symptom_response:
+        try:
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            non_key_error_symptoms.append(s)
+        except KeyError:
+            pass
+
+    if non_key_error_symptoms:
+        new_positives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in non_key_error_symptoms
+            if s.present
+        ]
+        new_negatives = [
+            symptom_name_to_symptom[s.symptom_match.strip()]
+            for s in non_key_error_symptoms
+            if not s.present
+        ]
+    else:
+        new_positives = []
+        new_negatives = [symptom_name_to_symptom[action_name.strip()]]
+    return new_positives, new_negatives
