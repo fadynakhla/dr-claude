@@ -24,13 +24,13 @@ class PatientWithConditionMixin(action_states.SimulationMixin):
         self.condition = condition
         self.true_pertinent_positives = pert_pos
 
-    def handleSymptom(self, symptom: datamodels.Symptom) -> Self:
-        next_self = copy.deepcopy(self)
-        if symptom in next_self.true_pertinent_positives:
-            next_self.pertinent_pos.add(symptom)
-        else:
-            next_self.pertinent_neg.add(symptom)
-        return next_self
+    # def handleSymptom(self, symptom: datamodels.Symptom) -> Self:
+    #     next_self = copy.deepcopy(self)
+    #     if symptom in next_self.true_pertinent_positives:
+    #         next_self.pertinent_pos.add(symptom)
+    #     else:
+    #         next_self.pertinent_neg.add(symptom)
+    #     return next_self
 
 
 class ConvergenceTestState(
@@ -65,7 +65,7 @@ def test_convergence():
 
     ## create the initial state
     conditions = list(matrix.columns.keys())
-    the_condition = conditions[0]
+    the_condition = conditions[0]  # TODO chose condiiton here
     the_symptoms = [
         symptom
         for symptom in matrix.rows
@@ -73,7 +73,7 @@ def test_convergence():
     ]
     state = ConvergenceTestState(matrix, discount_rate=1e-9)
     state.set_condition(the_condition, the_symptoms)
-    state.pertinent_pos.add(random.choice(the_symptoms))
+    state.pertinent_pos.update(random.choices(the_symptoms, k=2))
 
     ## Rollout policy
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
@@ -85,7 +85,11 @@ def test_convergence():
     action = None
     while not isinstance(action, datamodels.Condition):
         action = searcher.search(initialState=state)
-        state = state.takeAction(action)
+        assert isinstance(action, datamodels.Symptom)
+        if action in the_symptoms:
+            state.pertinent_pos.add(action)
+        else:
+            state.pertinent_neg.add(action)
         loguru.logger.info(f"action={action}")
     diagnosis = action
 
