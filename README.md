@@ -5,5 +5,5 @@ Anthropic Claude2 Hackathon: Building MCTS with Claude for optimal action predic
 
 We use a [Disease-Symptom Knowledge Database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html) for Dr Claude to reason over.
 
-<img src="images/demo.png" width="500">
+<img src="images/demo.png" width="780">
 
