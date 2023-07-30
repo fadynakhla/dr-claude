@@ -23,6 +23,10 @@ from fastapi.templating import Jinja2Templates
 import json
 from loguru import logger
 
+import transformers
+
+transformers.set_seed(42) 
+
 app = FastAPI()
 
 
@@ -190,6 +194,7 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         timeLimit=3000, rolloutPolicy=rollout_policy
     )
 
+    q_counter = 0
     while not isinstance(
         (actions := searcher.search(initialState=state, top_k=5))[0],
         datamodels.Condition,
@@ -239,3 +244,10 @@ def make_new_symptoms(
         new_positives = []
         new_negatives = [symptom_name_to_symptom[action_name.strip()]]
     return new_positives, new_negatives
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    ...
