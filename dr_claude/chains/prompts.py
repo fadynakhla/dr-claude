@@ -16,10 +16,10 @@ _symptom_match_template = """Given the symptom: {symptom} which of the following
 Retrievals:
 {retrievals}
 
-Select only one and write it below in the following formatt:
+Select only one and write it below in the following format:
 <match> match </match>
 
-Remember, do not include any other text and ensure your choice is in the provided retrievals.
+Remember, do not include any other text, ensure your choice is in the provided retrievals, and follow the output format.
 """
 
 
