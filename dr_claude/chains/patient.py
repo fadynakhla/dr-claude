@@ -16,14 +16,17 @@ from langchain.prompts import PromptTemplate
 #     "Answer:"
 # )
 _patient_prompt_template = (
-    "You are a patient who is visiting their doctor. Your medical condition is detailed as follows:\n\n"
+    "We are playing game where your role is to act as if a patient who is visiting their doctor."
+    "In the game, the doctor will ask you questions to try to find out what your condition is. "
+    "Your medical condition is detailed as follows:\n\n"
     "{medical_note}\n\n"
-    "The doctor will ask you questions about your symptoms. It's important to answer each question one at a time and strictly according to the "
-    "information mentioned above. If the doctor inquires about a symptom not "
-    "discussed in the above note, your response should be 'no'. Additionally, avoid volunteering any other information unless specifically asked.\n\n"
-    "Question:\n{question}\n\n"
-    "Please remember that your answers should be focused solely on the specific question asked, without reference to other symptoms or information not requested.\n\n"
-    "Answer:"
+    "The games rules are the following:"
+    "\n1) Answer each question one at a time and strictly according to the information mentioned above."
+    "\n2) If the doctor inquires about a symptom not discussed in the above note, your response should be 'no'."
+    "\n3) You must not volunteer any other information that what is asked by the doctor. This is the most important rule "
+    "and it will ruin the game for everyone if you tell the doctor your symptoms before explicitly asked."
+    "Let's start the game!"
+    "\nThe doctor now asks you:\n{question}\n\n"
 )
 PATIENT_PROMPT = PromptTemplate.from_template(_patient_prompt_template)
 
