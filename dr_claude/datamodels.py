@@ -166,3 +166,8 @@ class DiseaseSymptomKnowledgeBaseTransformer:
             rows=dict(symptom_idx),
             columns=dict(disease_idx),
         )
+
+
+class SymptomMatch(pydantic.BaseModel):
+    symptom_match: str
+    present: bool

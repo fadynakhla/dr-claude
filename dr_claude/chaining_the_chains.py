@@ -1,4 +1,5 @@
 from typing import Any, Dict, List
+from dr_claude import datamodels
 
 from dr_claude.chains import doctor
 from dr_claude.chains import patient
@@ -31,7 +32,8 @@ class ChainChainer:
         patient_inputs = {"medical_note": self.patient_note, "question": doc_response}
         patient_response = self.patient_chain(patient_inputs)["text"]
         matcher_inputs = {"question": doc_response, "response": patient_response}
-        return self.matcher_chain(matcher_inputs)
+        match_list = self.matcher_chain(matcher_inputs)
+        return [datamodels.SymptomMatch(**match) for match in match_list]
 
 
 if __name__ == "__main__":
@@ -46,4 +48,5 @@ if __name__ == "__main__":
         retrieval_config=retrieval_config,
         symptoms=symptoms,
     )
+    print("CHAINED")
     print(chain_chainer.interaction("abdominal cramps"))
