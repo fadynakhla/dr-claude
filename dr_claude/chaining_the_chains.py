@@ -3,10 +3,7 @@ from dr_claude.retrieval.retriever import HuggingFAISS
 from dr_claude import datamodels
 from langchain import LLMChain
 
-from dr_claude.chains import doctor
-from dr_claude.chains import patient
 from dr_claude.chains import matcher
-from dr_claude.chains import prompts
 from dr_claude.retrieval import retriever
 from loguru import logger
 import time

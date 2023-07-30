@@ -1,4 +1,4 @@
-from typing import Optional, Union, Dict, Any, List
+from typing import Optional, Tuple, Union, Dict, Any, List
 import asyncio
 import nest_asyncio
 from uuid import UUID
@@ -29,6 +29,10 @@ from fastapi.templating import Jinja2Templates
 from dr_claude.retrieval.retriever import HuggingFAISS
 import json
 from loguru import logger
+
+import transformers
+
+transformers.set_seed(42)
 
 app = FastAPI()
 
@@ -164,7 +168,12 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
         try:
             message = await receive_message(websocket)
             logger.info("Received {}", message)
-            await run_chain(note=message["content"], chainer=chainer)
+            diagnosis = await run_chain(
+                websocket=websocket,
+                note=message["content"],
+                chainer=chainer,
+            )
+            await websocket.send_json({"condition": diagnosis.name})
         except WebSocketDisconnect:
             logger.info("websocket disconnect")
             break
@@ -194,7 +203,12 @@ async def receive_message(websocket: WebSocket):
     return message_dict
 
 
-async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
+K = 5
+
+
+async def run_chain(
+    websocket: WebSocket, note: str, chainer: chaining_the_chains.ChainChainer
+) -> Optional[datamodels.Condition]:
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
     state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
     try:
@@ -219,8 +233,13 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         (actions := searcher.search(initialState=state, top_k=5))[0],
         datamodels.Condition,
     ):
+        top_k = get_top_k_condition_probas(state, k=K)
+        await websocket.send_json({"brain": [(c.name, p) for c, p in top_k]})
+
         q_counter += 1
         if q_counter > 10:
+            await websocket.send_json({"condition": "I'm sorry, I'm not sure."})
+            await websocket.close()
             return
         assert isinstance(actions[0], datamodels.Symptom)
         logger.info(f"{actions=}")
@@ -231,11 +250,28 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         new_positives, new_negatives = make_new_symptoms(
             action_name, patient_symptom_response
         )
+
+        logger.info(f"{new_positives=}")
+        logger.info(f"{new_negatives=}")
         state.pertinent_pos.update(new_positives)
         state.pertinent_neg.update(new_negatives)
 
     diagnosis = actions[0]
     logger.info(f"Diagnosis: {diagnosis}")
+    return diagnosis
+
+
+def get_top_k_condition_probas(
+    state: action_states.SimulationNextActionState, k: int
+) -> List[Tuple[datamodels.Condition, float]]:
+    condition_probas = state.getConditionProbabilityDict()
+    top_k = sorted(
+        condition_probas.items(),
+        key=lambda x: x[1],
+        reverse=True,
+    )[:K]
+    logger.info(f"{top_k=}")
+    return top_k
 
 
 def make_new_symptoms(
@@ -264,3 +300,10 @@ def make_new_symptoms(
         new_positives = []
         new_negatives = [symptom_name_to_symptom[action_name.strip()]]
     return new_positives, new_negatives
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+    ...
