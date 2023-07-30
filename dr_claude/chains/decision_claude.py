@@ -12,22 +12,20 @@ from dr_claude.claude_mcts import action_states
 logger = loguru.logger
 
 
-_decision_template = """You will be given the context of a patient through a list of positive and negative symptoms.
-You will then be given a set of symptoms that an intelligent system has predicted are the next best questions to ask the patient.
-Your job is to choose the best action.
-
-Known patient state:
-positive symptoms: {positive_symptoms}
-negative symptoms: {negative_symptoms}
-
-Symptoms to consider ordered by value: {symptoms}
-
-What is the the best symptom to ask the patient about?
-
-Remember to ensure the chosen symptom exactly matches one of those you are asked to consider. Do not provide any other information or text.
-Chosen Symptom:
-"""
-
+_decision_template = (
+    "You are an insightful and inquisitive doctor. "
+    "You are with a patient and need to inquire about the patient for enabling the best possible diagnosis."
+    "\nYour job is to choose the best symptom to inquire about next."
+    "The following symptoms have already been confirmed and rejected, so asking about them again is a waste of time:"
+    "\npositive symptoms: {positive_symptoms}"
+    "\nnegative symptoms: {negative_symptoms}"
+    "You will then be given a set of symptoms that an intelligent system has predicted are the next best questions to ask the patient. "
+    "The intelligent system has predicted that the following symptoms are the most valuable to confirm or reject next: {symptoms}. "
+    "Your job is to determine which one of the symptoms from the intelligent system that we should inquire about next."
+    "\nRemember to ensure that symptom you chose should match exactly one of those that the intelligent system suggested."
+    "Now, given the information from above, determine which symptom that is the best to ask from the list predicted by the intelligent system."
+    "What is the best symptom to inquire about? Answer by quoting only the name of the symptom."
+)
 DECISION_PROMPT = PromptTemplate.from_template(_decision_template)
 
 
