@@ -33,14 +33,17 @@ def set_umls_methods(cls: Type[HasUMLSClass]) -> Type[HasUMLSClass]:
         return hash(self.umls_code)
 
     def __eq__(self: HasUMLSClass, other: object) -> bool:
-        return isinstance(other, HasUMLS) and self.umls_code == other.umls_code
+        return (
+            isinstance(other, HasUMLS)
+            and self.umls_code == other.umls_code
+            and self.name
+        )
 
     cls.__hash__ = __hash__
     cls.__eq__ = __eq__
     return cls
 
 
-@set_umls_methods
 class Symptom(pydantic.BaseModel):
     """
     Symptom
@@ -52,6 +55,9 @@ class Symptom(pydantic.BaseModel):
 
     class Config:
         frozen = True
+
+    def __eq__(self, other):
+        return self.name == other.name and self.umls_code == other.umls_code
 
 
 @set_umls_methods
@@ -70,7 +76,6 @@ class Condition(pydantic.BaseModel):
         frozen = True
 
 
-@set_umls_methods
 class WeightedSymptom(Symptom):
     """
     Weight
@@ -80,6 +85,9 @@ class WeightedSymptom(Symptom):
 
     class Config:
         frozen = True
+
+    def __eq__(self, other):
+        return self.name == other.name and self.umls_code == other.umls_code
 
 
 class DiseaseSymptomKnowledgeBase(pydantic.BaseModel):
@@ -151,6 +159,8 @@ class DiseaseSymptomKnowledgeBaseTransformer:
 
         ## the antagonist
         probas = np.zeros((len(symptom_idx), len(disease_idx)))
+        symptom_idx = dict(symptom_idx)
+        disease_idx = dict(disease_idx)
 
         ## fill noise vals
         for symptom, index in symptom_idx.items():
@@ -159,7 +169,10 @@ class DiseaseSymptomKnowledgeBaseTransformer:
         ## fill known probas
         for condition, symptoms in kb.condition_symptoms.items():
             for symptom in symptoms:
-                probas[symptom_idx[symptom], disease_idx[condition]] = symptom.weight
+                probas[
+                    symptom_idx[SymptomTransformer.to_symptom(symptom)],
+                    disease_idx[condition],
+                ] = symptom.weight
 
         return ProbabilityMatrix(
             matrix=probas,
