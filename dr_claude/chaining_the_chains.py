@@ -1,5 +1,6 @@
 from typing import Any, Dict, List
 from dr_claude import datamodels
+from langchain import LLMChain
 
 from dr_claude.chains import doctor
 from dr_claude.chains import patient
@@ -13,26 +14,22 @@ import time
 class ChainChainer:
     def __init__(
         self,
-        patient_note: str,
-        retrieval_config: retriever.HuggingFaceEncoderEmbeddingsConfig,
-        symptoms: List[str],
+        matcher_chain: matcher.MatchingChain,
+        doc_chain: LLMChain,
+        patient_chain: LLMChain,
     ) -> None:
-        self.patient_note = patient_note
-        self.doc_chain = doctor.get_doc_chain()
-        self.patient_chain = patient.get_patient_chain()
-        self.matcher_chain = matcher.MatchingChain.from_anthropic(
-            symptom_extract_prompt=prompts.SYMPTOM_EXTRACT_PROMPT,
-            symptom_match_prompt=prompts.SYMPTOM_MATCH_PROMPT,
-            retrieval_config=retrieval_config,
-            texts=symptoms,
-        )
+        self.doc_chain = doc_chain
+        self.patient_chain = patient_chain
+        self.matcher_chain = matcher_chain
 
-    def interaction(self, symptom: str) -> List[datamodels.SymptomMatch]:
+    def interaction(
+        self, patient_note: str, symptom: str
+    ) -> List[datamodels.SymptomMatch]:
         doc_inputs = {"symptom": symptom}
         doc_response = self.doc_chain(doc_inputs)["text"]
         time.sleep(0.5)
         logger.info("Doc question: {}", doc_response)
-        patient_inputs = {"medical_note": self.patient_note, "question": doc_response}
+        patient_inputs = {"medical_note": patient_note, "question": doc_response}
         patient_response = self.patient_chain(patient_inputs)["text"]
         time.sleep(0.5)
         logger.info("Patient response: {}", patient_response)
