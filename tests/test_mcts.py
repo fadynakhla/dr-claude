@@ -1,5 +1,7 @@
 import copy
-from typing import Collection
+from typing import Callable, Collection
+
+import loguru
 
 from dr_claude import datamodels
 from dr_claude.mcts import action_states
@@ -9,7 +11,10 @@ import mcts
 from dr_claude import kb_reading
 
 
-class PatientWithConditionMixin(action_states.NextBestActionState):
+class PatientWithConditionMixin(
+    action_states.SimulationMixin,
+    action_states.NextBestActionState,
+):
     """
     A mixin for debugging convergence (patient with a condition)
     """
@@ -30,8 +35,8 @@ class PatientWithConditionMixin(action_states.NextBestActionState):
             next_self.pertinent_neg.add(symptom)
         return next_self
 
-    def getReward(self) -> float:
-        return float(self.condition == self.diagnosis)
+    # def getReward(self) -> float:
+    #     return float(self.condition == self.diagnosis)
 
 
 class ConvergenceTestState(
@@ -39,6 +44,21 @@ class ConvergenceTestState(
     action_states.SimulationNextActionState,
 ):
     ...
+
+
+def logtrueconditionhook(
+    rollout_policy: action_states.RollOutPolicy, log_freq: int = 10
+) -> Callable[[ConvergenceTestState], float]:
+    counter = int()
+
+    def log_wrapper(state: ConvergenceTestState) -> float:
+        if not counter % log_freq:
+            probas = state.getConditionProbabilityDict()
+            true_condition_proba = probas[state.condition]
+            loguru.logger.info(f"True condition is {true_condition_proba}")
+        return rollout_policy(state)
+
+    return log_wrapper
 
 
 def test_convergence():
@@ -55,13 +75,26 @@ def test_convergence():
         for symptom in matrix.rows
         if matrix[symptom, the_condition] > symptom.noise_rate
     ]
-
-    ## create the initial state
     state = ConvergenceTestState(matrix, discount_rate=1e-9)
     state.set_condition(the_condition, the_symptoms)
-    searcher = mcts.mcts(timeLimit=10000)
+
+    ## Rollout policy
+    rollout_policy = action_states.RandomRollOutPolicy()
+    rollout_policy = logtrueconditionhook(rollout_policy)
+
+    ## create the initial state
+    searcher = mcts.mcts(timeLimit=10000, rolloutPolicy=rollout_policy)
+
+    action = None
+    while not isinstance(action, datamodels.Condition):
+        action = searcher.search(initialState=state)
+    state = state.takeAction(action)
+
     diagnosis = searcher.search(initialState=state)
 
     assert (
         diagnosis == the_condition
     ), f"Convergence test failed {diagnosis}!={the_condition}"
+
+
+test_convergence()
