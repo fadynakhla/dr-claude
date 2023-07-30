@@ -1,4 +1,5 @@
 from typing import Any, Dict, List
+from dr_claude import datamodels
 
 from dr_claude.chains import doctor
 from dr_claude.chains import patient
@@ -14,7 +15,7 @@ class ChainChainer:
         patient_note: str,
         retrieval_config: retriever.HuggingFaceEncoderEmbeddingsConfig,
         symptoms: List[str],
-    ) -> List[Dict[str, Any]]:
+    ) -> None:
         self.patient_note = patient_note
         self.doc_chain = doctor.get_doc_chain()
         self.patient_chain = patient.get_patient_chain()
@@ -25,7 +26,7 @@ class ChainChainer:
             texts=symptoms,
         )
 
-    def interaction(self, symptom: str):
+    def interaction(self, symptom: str) -> List[datamodels.SymptomMatch]:
         doc_inputs = {"symptom": symptom}
         doc_response = self.doc_chain(doc_inputs)["text"]
         logger.info("Doc question: {}", doc_response)
@@ -33,7 +34,8 @@ class ChainChainer:
         patient_response = self.patient_chain(patient_inputs)["text"]
         logger.info("Patient response: {}", patient_response)
         matcher_inputs = {"question": doc_response, "response": patient_response}
-        return self.matcher_chain(matcher_inputs)
+        match_list = self.matcher_chain(matcher_inputs)
+        return [datamodels.SymptomMatch(**match) for match in match_list]
 
 
 if __name__ == "__main__":
