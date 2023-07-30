@@ -24,10 +24,10 @@ def main() -> None:
     rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
     searcher = multi_choice_mcts.MultiChoiceMCTS(timeLimit=3000, rolloutPolicy=rollout_policy)
 
-    action_picker = decision_claude.get_decision_claude()
+    action_picker = decision_claude.DecisionClaude()
     note = ("The patient has syncope, vertigo, nausea and is sweating",)
     # embedding_model_name = "/data/models/RoSaBERTa_large/"
-    embedding_model_name = "bert-base-uncased"
+    embedding_model_name = "roberta-large"
     retrieval_config = retriever.HuggingFaceEncoderEmbeddingsConfig(
         model_name_or_path=embedding_model_name,
         device="cpu",
@@ -44,11 +44,10 @@ def main() -> None:
         logger.info(f"{actions=}")
         actions = [action for action in actions if valid_action(action, state)]
 
-        action_picker_inputs = get_action_picker_inputs(actions, state)
-        action_name = action_picker(action_picker_inputs)["text"]
+        action_name = action_picker(actions=actions, state=state)
 
         patient_symptom_response = chain_chainer.interaction(action_name)
-        exit()
+
         new_positives = [
             symptom_name_to_symptom[s.symptom_match.strip()]
             for s in patient_symptom_response
