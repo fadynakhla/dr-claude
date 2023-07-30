@@ -1,4 +1,5 @@
 from langchain.chat_models import ChatAnthropic
+from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
@@ -15,11 +16,12 @@ _patient_prompt_template = (
 PATIENT_PROMPT = PromptTemplate.from_template(_patient_prompt_template)
 
 
-def get_patient_chain() -> LLMChain:
+def get_patient_chain(handler: BaseCallbackHandler = BaseCallbackHandler()) -> LLMChain:
     return LLMChain(
-        llm=ChatAnthropic(temperature=0.0, verbose=True),
+        llm=ChatAnthropic(temperature=0.0, verbose=True, callbacks=[handler]),
         prompt=PATIENT_PROMPT,
         verbose=True,
+        callbacks=[handler],
     )
 
 

@@ -1,3 +1,4 @@
+from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chat_models import ChatAnthropic
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
@@ -11,11 +12,12 @@ _doc_prompt_template = (
 DOC_PROMPT = PromptTemplate.from_template(_doc_prompt_template)
 
 
-def get_doc_chain() -> LLMChain:
+def get_doc_chain(handler: BaseCallbackHandler = BaseCallbackHandler()) -> LLMChain:
     return LLMChain(
-        llm=ChatAnthropic(temperature=0.0, verbose=True),
+        llm=ChatAnthropic(temperature=0.0, verbose=True, callbacks=[handler]),
         prompt=DOC_PROMPT,
         verbose=True,
+        callbacks=[handler],
     )
 
 
