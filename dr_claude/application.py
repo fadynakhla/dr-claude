@@ -1,11 +1,13 @@
 from typing import Optional, Union, Dict, Any, List
+import asyncio
+import nest_asyncio
 from uuid import UUID
 from langchain.schema.output import LLMResult
 from starlette.templating import _TemplateResponse
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 
 import mcts
-from langchain.callbacks.base import AsyncCallbackHandler
+from langchain.callbacks.base import AsyncCallbackHandler, BaseCallbackHandler
 
 from loguru import logger
 
@@ -31,13 +33,17 @@ app = FastAPI()
 #     allow_methods=["*"],  # Allows all methods
 #     allow_headers=["*"],  # Allows all headers
 # )
-class PatientHandler(AsyncCallbackHandler):
+
+nest_asyncio.apply()
+
+
+class PatientHandler(BaseCallbackHandler):
     """Callback handler for question generation."""
 
     def __init__(self, websocket: WebSocket):
         self.websocket = websocket
 
-    async def on_llm_end(
+    def on_llm_end(
         self,
         response: LLMResult,
         *,
@@ -46,17 +52,37 @@ class PatientHandler(AsyncCallbackHandler):
         tags: List[str] | None = None,
         **kwargs: Any,
     ) -> None:
+        logger.error("PATIENT ON LLM END")
         text = response.generations[0][0].text
-        self.websocket.send_json({"patient": text})
+        # await self.websocket.send_json({"patient": text})
+        asyncio.run(self.websocket.send_json({"patient": text}))
 
 
-class DoctorHandler(AsyncCallbackHandler):
+def send_json_sync(websocket, text, patient: bool):
+    # Define an asynchronous function that we'll run in the event loop
+    async def async_send_json(websocket, text):
+        await websocket.send_json({"patient": text})
+
+    async def async_send_doc_json(websocket, text):
+        await websocket.send_json({"doctor": text})
+
+    # Get a reference to the current event loop, or create a new one
+    loop = asyncio.get_event_loop()
+
+    # Run the async function in the event loop
+    if patient:
+        loop.run_until_complete(async_send_json(websocket, text))
+    else:
+        loop.run_until_complete(async_send_doc_json(websocket, text))
+
+
+class DoctorHandler(BaseCallbackHandler):
     """Callback handler for question generation."""
 
     def __init__(self, websocket: WebSocket):
         self.websocket = websocket
 
-    async def on_llm_end(
+    def on_llm_end(
         self,
         response: LLMResult,
         *,
@@ -65,8 +91,9 @@ class DoctorHandler(AsyncCallbackHandler):
         tags: List[str] | None = None,
         **kwargs: Any,
     ) -> None:
+        logger.error("DOCTOR ON LLM END")
         text = response.generations[0][0].text
-        self.websocket.send_json({"doctor": text})
+        asyncio.run(self.websocket.send_json({"doctor": text}))
 
 
 @app.on_event("startup")
@@ -78,14 +105,14 @@ async def startup_event() -> None:
     global matcher_chain
     global action_picker
 
-    embedding_model_name = "/data/models/RoSaBERTa_large/"
+    embedding_model_name = "bert-base-uncased"
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
     kb = reader.load_knowledge_base()
     retrieval_config = retriever.HuggingFaceEncoderEmbeddingsConfig(
         model_name_or_path=embedding_model_name,
         device="cpu",
     )
-    symptom_name_to_symptom: Dict[str, datamodels.Symptom] = {}
+    symptom_name_to_symptom = {}
     for symptom_group in kb.condition_symptoms.values():
         for weighted_symptom in symptom_group:
             symptom = datamodels.SymptomTransformer.to_symptom(weighted_symptom)
@@ -167,6 +194,9 @@ async def run_chain(note: str, chainer: chaining_the_chains.ChainChainer):
         (actions := searcher.search(initialState=state, top_k=5))[0],
         datamodels.Condition,
     ):
+        q_counter += 1
+        if q_counter > 10:
+            return
         assert isinstance(actions[0], datamodels.Symptom)
         logger.info(f"{actions=}")
 
