@@ -31,7 +31,7 @@ Retrievals:
 {retrievals}
 
 Select only one and write it below in the following format:
-<match> match </match>
+<match> choice </match>
 
 Remember, do not include any other text, ensure your choice is in the provided retrievals, and follow the output format.
 """
