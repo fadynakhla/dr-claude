@@ -14,7 +14,7 @@ class ChainChainer:
         patient_note: str,
         retrieval_config: retriever.HuggingFaceEncoderEmbeddingsConfig,
         symptoms: List[str],
-    ) -> List[Dict[str, Any]]:
+    ) -> None:
         self.patient_note = patient_note
 
         self.doc_chain = doctor.get_doc_chain()
@@ -26,7 +26,7 @@ class ChainChainer:
             texts=symptoms,
         )
 
-    def interaction(self, symptom: str):
+    def interaction(self, symptom: str) -> List[datamodels.SymptomMatch]:
         doc_inputs = {"symptom": symptom}
         doc_response = self.doc_chain(doc_inputs)["text"]
         patient_inputs = {"medical_note": self.patient_note, "question": doc_response}
