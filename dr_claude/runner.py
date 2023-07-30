@@ -53,7 +53,6 @@ def main():
     ):
         assert isinstance(actions[0], datamodels.Symptom)
         logger.info(f"{actions=}")
-        actions = [action for action in actions if valid_action(action, state)]
 
         action_name = action_picker(actions=actions, state=state)
 
@@ -76,17 +75,6 @@ def main():
     diagnosis = action
     logger.info(f"Diagnosis: {diagnosis}")
     print(chain_chainer.interaction("fever"))
-
-
-def valid_action(
-    action: Union[datamodels.Condition, datamodels.Symptom],
-    state: action_states.SimulationNextActionState,
-) -> bool:
-    return (
-        not isinstance(action, datamodels.Condition)
-        and action not in state.pertinent_pos
-        and action not in state.pertinent_neg
-    )
 
 
 def get_action_picker_inputs(
