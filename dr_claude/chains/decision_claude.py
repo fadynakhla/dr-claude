@@ -20,7 +20,7 @@ Known patient state:
 positive symptoms: {positive_symptoms}
 negative symptoms: {negative_symptoms}
 
-Symptoms to consider: {symptoms}
+Symptoms to consider ordered by value: {symptoms}
 
 What is the the best symptom to ask the patient about?
 
@@ -35,7 +35,7 @@ class DecisionClaude:
     def __init__(self):
         self.chain = get_decision_claude()
 
-    def __call__(self, actions: List[datamodels.Symptom], state):
+    def __call__(self, actions: List[Union[datamodels.Symptom, datamodels.Condition]], state):
         valid_actions = [action for action in actions if self.valid_action(action, state)]
         inputs = self.get_action_picker_inputs(valid_actions, state)
         response = self.chain(inputs)
@@ -57,6 +57,7 @@ class DecisionClaude:
         }
 
     def valid_action(
+        self,
         action: Union[datamodels.Condition, datamodels.Symptom],
         state: action_states.SimulationNextActionState,
     ) -> bool:
