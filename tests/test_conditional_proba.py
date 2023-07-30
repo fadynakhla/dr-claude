@@ -1,5 +1,5 @@
 from dr_claude import datamodels
-from dr_claude.mcts import base
+from dr_claude.mcts import probability_calcs
 
 
 def test_conditional_condition_proba():
@@ -28,7 +28,7 @@ def test_conditional_condition_proba():
         }
     )
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(db)
-    conditional_probas = base.compute_condition_posterior_flat_prior_dict(
+    conditional_probas = probability_calcs.compute_condition_posterior_flat_prior_dict(
         matrix,
         pertinent_positives=[common_symptom, condition_1_differential_symptom],
         pertinent_negatives=[condition_2_differential_symptom],
@@ -63,12 +63,12 @@ def test_conditional_proba_symptom():
         }
     )
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(db)
-    condition_probas = base.compute_condition_posterior_flat_prior(
+    condition_probas = probability_calcs.compute_condition_posterior_flat_prior(
         matrix,
         pertinent_positives=[common_symptom, condition_1_differential_symptom],
         pertinent_negatives=[condition_2_differential_symptom],
     )
-    symptom_probas = base.compute_symptom_posterior_flat_prior_dict(
+    symptom_probas = probability_calcs.compute_symptom_posterior_flat_prior_dict(
         matrix, condition_probas
     )
 
