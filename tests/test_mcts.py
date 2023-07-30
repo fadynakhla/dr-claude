@@ -11,7 +11,10 @@ import mcts
 from dr_claude import kb_reading
 
 
-class PatientWithConditionMixin(action_states.NextBestActionState):
+class PatientWithConditionMixin(
+    action_states.SimulationMixin,
+    action_states.NextBestActionState,
+):
     """
     A mixin for debugging convergence (patient with a condition)
     """
@@ -32,8 +35,8 @@ class PatientWithConditionMixin(action_states.NextBestActionState):
             next_self.pertinent_neg.add(symptom)
         return next_self
 
-    def getReward(self) -> float:
-        return float(self.condition == self.diagnosis)
+    # def getReward(self) -> float:
+    #     return float(self.condition == self.diagnosis)
 
 
 class ConvergenceTestState(
@@ -81,6 +84,12 @@ def test_convergence():
 
     ## create the initial state
     searcher = mcts.mcts(timeLimit=10000, rolloutPolicy=rollout_policy)
+
+    action = None
+    while not isinstance(action, datamodels.Condition):
+        action = searcher.search(initialState=state)
+    state = state.takeAction(action)
+
     diagnosis = searcher.search(initialState=state)
 
     assert (
