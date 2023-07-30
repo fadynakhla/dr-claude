@@ -6,7 +6,7 @@ import heapq
 from mcts import treeNode, mcts
 
 
-class MultiChildMixin:
+class MultiChildMixin(mcts):
     def search(self, initialState, top_k):
         self.root = treeNode(initialState, None)
 
@@ -21,7 +21,7 @@ class MultiChildMixin:
         bestChild = self.getBestChild(self.root, 0, top_k)
         return self.getAction(self.root, bestChild)
 
-    def getBestChild(self, node, explorationValue, top_k):
+    def getBestChild(self: mcts, node, explorationValue, top_k):
         node_values = []
         for i, child in enumerate(node.children.values()):
             nodeValue = (
