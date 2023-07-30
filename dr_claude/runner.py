@@ -7,7 +7,7 @@ from dr_claude.retrieval import retriever
 from dr_claude.claude_mcts import action_states
 
 
-def main() -> None:
+def a():
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
     kb = reader.load_knowledge_base()
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
@@ -30,7 +30,6 @@ def main() -> None:
         device="cpu",
     )
     chain_chainer = chaining_the_chains.ChainChainer(
-    patient_note=note,
         retrieval_config=retrieval_config,
         symptoms=list(set(symptom_name_to_symptom)),
     )
@@ -39,7 +38,7 @@ def main() -> None:
     ):
         assert isinstance(action, datamodels.Symptom)
         logger.info(f"{action=}")
-        patient_symptom_response = chain_chainer.interaction(action.name)
+        patient_symptom_response = chain_chainer.interaction(note, action.name)
         new_positives = [
             symptom_name_to_symptom[s.symptom_match.strip()]
             for s in patient_symptom_response
