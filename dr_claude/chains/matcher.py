@@ -76,7 +76,7 @@ class MatchingChain(Chain):
         raw_symptom_extract = await self.symptom_extract_chain.acall(inputs)
         symptom_list = parse_raw_extract(raw_symptom_extract["text"])
         for symptom in symptom_list.symptoms: # suboptimal but fine for now
-            symptom.retrievals = await self.retriever.aget_relevant_documents(symptom.symptom)
+            symptom.input_documents = await self.retriever.aget_relevant_documents(symptom.symptom)
         return self.run_matching_batch(symptom_list)
 
     def run_matching_batch(self, symptom_list: SymptomList) -> List[Dict[str, Any]]:
@@ -99,7 +99,7 @@ class MatchingChain(Chain):
         inputs: Dict[str, str],
         outputs: List[Dict[str, str]],
         return_only_outputs: bool = False,
-    ) -> Dict[str, str]:
+    ) -> List[Dict[str, str]]:
         new_outputs = []
         for output in outputs:
             new_output = super().prep_outputs(inputs, output)
@@ -112,7 +112,7 @@ class MatchingChain(Chain):
 
     @property
     def output_keys(self) -> List[str]:
-        return ["match", "present"]
+        return ["symptom_match", "present"]
 
     @classmethod
     def from_llm(
@@ -137,7 +137,7 @@ class MatchingChain(Chain):
             document_variable_name="retrievals",
             verbose=True,
             callbacks=[],
-            output_key="match",
+            output_key="symptom_match",
         )
         vectorstore = HuggingFAISS.from_model_config_and_texts(texts, retrieval_config)
         retriever = vectorstore.as_retriever()
