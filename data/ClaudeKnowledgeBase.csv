@@ -1,0 +1,1735 @@
+,Disease Code,Disease,Symptom Code,Symptom,Weight,Noise
+0,C0020538,hypertensive disease,none,pain chest,0.6,0.03
+1,C0020538,hypertensive disease,none,shortness of breath,0.6,0.03
+2,C0020538,hypertensive disease,none,dizziness,0.6,0.03
+3,C0020538,hypertensive disease,none,asthenia,0.3,0.03
+4,C0020538,hypertensive disease,none,fall,0.3,0.03
+5,C0020538,hypertensive disease,none,syncope,0.3,0.03
+6,C0020538,hypertensive disease,none,vertigo,0.3,0.03
+7,C0020538,hypertensive disease,none,sweat,0.6,0.03
+8,C0020538,hypertensive disease,none,sweating increased,0.6,0.03
+9,C0020538,hypertensive disease,none,palpitation,0.6,0.03
+10,C0020538,hypertensive disease,none,nausea,0.6,0.03
+11,C0020538,hypertensive disease,none,angina pectoris,0.3,0.03
+12,C0020538,hypertensive disease,none,pressure chest,0.6,0.03
+13,C0011847,diabetes,none,polyuria,0.6,0.03
+14,C0011847,diabetes,none,polydypsia,0.6,0.03
+15,C0011847,diabetes,none,shortness of breath,0.6,0.03
+16,C0011847,diabetes,none,pain chest,0.6,0.03
+17,C0011847,diabetes,none,asthenia,0.6,0.03
+18,C0011847,diabetes,none,nausea,0.6,0.03
+19,C0011847,diabetes,none,orthopnea,0.3,0.03
+20,C0011847,diabetes,none,rale,0.3,0.03
+21,C0011847,diabetes,none,sweat,0.6,0.03
+22,C0011847,diabetes,none,sweating increased,0.6,0.03
+23,C0011847,diabetes,none,unresponsiveness,0.1,0.03
+24,C0011847,diabetes,none,mental status changes,0.1,0.03
+25,C0011847,diabetes,none,vertigo,0.3,0.03
+26,C0011847,diabetes,none,vomiting,0.6,0.03
+27,C0011847,diabetes,none,labored breathing,0.3,0.03
+28,C0011570,depression mental or depressive disorder,none,feeling suicidal,0.6,0.03
+29,C0011570,depression mental or depressive disorder,none,suicidal,0.6,0.03
+30,C0011570,depression mental or depressive disorder,none,hallucinations auditory,0.3,0.03
+31,C0011570,depression mental or depressive disorder,none,feeling hopeless,0.9,0.03
+32,C0011570,depression mental or depressive disorder,none,weepiness,0.6,0.03
+33,C0011570,depression mental or depressive disorder,none,sleeplessness,0.9,0.03
+34,C0011570,depression mental or depressive disorder,none,motor retardation,0.6,0.03
+35,C0011570,depression mental or depressive disorder,none,irritable mood,0.9,0.03
+36,C0011570,depression mental or depressive disorder,none,blackout,0.3,0.03
+37,C0011570,depression mental or depressive disorder,none,mood depressed,0.9,0.03
+38,C0011570,depression mental or depressive disorder,none,hallucinations visual,0.3,0.03
+39,C0011570,depression mental or depressive disorder,none,worry,0.9,0.03
+40,C0011570,depression mental or depressive disorder,none,agitation,0.6,0.03
+41,C0011570,depression mental or depressive disorder,none,tremor,0.3,0.03
+42,C0011570,depression mental or depressive disorder,none,intoxication,0.3,0.03
+43,C0011570,depression mental or depressive disorder,none,verbal auditory hallucinations,0.3,0.03
+44,C0011570,depression mental or depressive disorder,none,energy increased,0.3,0.03
+45,C0011570,depression mental or depressive disorder,none,difficulty,0.6,0.03
+46,C0011570,depression mental or depressive disorder,none,nightmare,0.6,0.03
+47,C0011570,depression mental or depressive disorder,none,unable to concentrate,0.9,0.03
+48,C0011570,depression mental or depressive disorder,none,homelessness,0.3,0.03
+49,C0010054,coronary arteriosclerosis or coronary heart disease,none,pain chest,0.9,0.03
+50,C0010054,coronary arteriosclerosis or coronary heart disease,none,angina pectoris,0.9,0.03
+51,C0010054,coronary arteriosclerosis or coronary heart disease,none,shortness of breath,0.9,0.03
+52,C0010054,coronary arteriosclerosis or coronary heart disease,none,hypokinesia,0.6,0.03
+53,C0010054,coronary arteriosclerosis or coronary heart disease,none,sweat,0.6,0.03
+54,C0010054,coronary arteriosclerosis or coronary heart disease,none,sweating increased,0.6,0.03
+55,C0010054,coronary arteriosclerosis or coronary heart disease,none,pressure chest,0.6,0.03
+56,C0010054,coronary arteriosclerosis or coronary heart disease,none,dyspnea on exertion,0.6,0.03
+57,C0010054,coronary arteriosclerosis or coronary heart disease,none,orthopnea,0.3,0.03
+58,C0010054,coronary arteriosclerosis or coronary heart disease,none,chest tightness,0.6,0.03
+59,C0032285,pneumonia,none,cough,0.9,0.03
+60,C0032285,pneumonia,none,fever,0.9,0.03
+61,C0032285,pneumonia,none,decreased translucency,0.3,0.03
+62,C0032285,pneumonia,none,shortness of breath,0.6,0.03
+63,C0032285,pneumonia,none,rale,0.6,0.03
+64,C0032285,pneumonia,none,productive cough,0.6,0.03
+65,C0032285,pneumonia,none,pleuritic pain,0.3,0.03
+66,C0032285,pneumonia,none,yellow sputum,0.3,0.03
+67,C0032285,pneumonia,none,breath sounds decreased,0.3,0.03
+68,C0032285,pneumonia,none,chill,0.6,0.03
+69,C0032285,pneumonia,none,rhonchus,0.3,0.03
+70,C0032285,pneumonia,none,green sputum,0.3,0.03
+71,C0032285,pneumonia,none,non,0.3,0.03
+72,C0032285,pneumonia,none,wheezing,0.3,0.03
+73,C0032285,pneumonia,none,haemoptysis,0.1,0.03
+74,C0032285,pneumonia,none,distress respiratory,0.3,0.03
+75,C0032285,pneumonia,none,tachypnea,0.6,0.03
+76,C0032285,pneumonia,none,malaise,0.6,0.03
+77,C0032285,pneumonia,none,night sweat,0.3,0.03
+78,C0018802,failure heart congestive,none,shortness of breath,0.9,0.03
+79,C0018802,failure heart congestive,none,orthopnea,0.6,0.03
+80,C0018802,failure heart congestive,none,jugular venous distention,0.6,0.03
+81,C0018802,failure heart congestive,none,rale,0.6,0.03
+82,C0018802,failure heart congestive,none,dyspnea,0.9,0.03
+83,C0018802,failure heart congestive,none,cough,0.9,0.03
+84,C0018802,failure heart congestive,none,wheezing,0.6,0.03
+85,C0038454,accidentcerebrovascular,none,dysarthria,0.6,0.03
+86,C0038454,accidentcerebrovascular,none,asthenia,0.6,0.03
+87,C0038454,accidentcerebrovascular,none,speech slurred,0.6,0.03
+88,C0038454,accidentcerebrovascular,none,facial paresis,0.6,0.03
+89,C0038454,accidentcerebrovascular,none,hemiplegia,0.6,0.03
+90,C0038454,accidentcerebrovascular,none,unresponsiveness,0.3,0.03
+91,C0038454,accidentcerebrovascular,none,seizure,0.3,0.03
+92,C0038454,accidentcerebrovascular,none,numbness,0.6,0.03
+93,C0027051,myocardial infarction,none,pain chest,0.9,0.03
+94,C0027051,myocardial infarction,none,st segment elevation,0.9,0.03
+95,C0027051,myocardial infarction,none,sweat,0.6,0.03
+96,C0027051,myocardial infarction,none,sweating increased,0.6,0.03
+97,C0027051,myocardial infarction,none,shortness of breath,0.9,0.03
+98,C0027051,myocardial infarction,none,st segment depression,0.6,0.03
+99,C0027051,myocardial infarction,none,hypokinesia,0.3,0.03
+100,C0027051,myocardial infarction,none,angina pectoris,0.6,0.03
+101,C0027051,myocardial infarction,none,pressure chest,0.6,0.03
+102,C0027051,myocardial infarction,none,t wave inverted,0.6,0.03
+103,C0027051,myocardial infarction,none,orthopnea,0.3,0.03
+104,C0027051,myocardial infarction,none,rale,0.3,0.03
+105,C0027051,myocardial infarction,none,chest tightness,0.6,0.03
+106,C0027051,myocardial infarction,none,presence of q wave,0.6,0.03
+107,C0027051,myocardial infarction,none,palpitation,0.3,0.03
+108,C0027051,myocardial infarction,none,dyspnea,0.6,0.03
+109,C0027051,myocardial infarction,none,chest discomfort,0.6,0.03
+110,C0027051,myocardial infarction,none,bradycardia,0.1,0.03
+111,C0027051,myocardial infarction,none,syncope,0.3,0.03
+112,C0020443,hypercholesterolemia,none,pain,0.6,0.03
+113,C0020443,hypercholesterolemia,none,pain chest,0.6,0.03
+114,C0020443,hypercholesterolemia,none,sweat,0.6,0.03
+115,C0020443,hypercholesterolemia,none,sweating increased,0.6,0.03
+116,C0020443,hypercholesterolemia,none,nonsmoker,0.3,0.03
+117,C0020443,hypercholesterolemia,none,pressure chest,0.6,0.03
+118,C0020443,hypercholesterolemia,none,syncope,0.3,0.03
+119,C0020443,hypercholesterolemia,none,numbness,0.3,0.03
+120,C0020443,hypercholesterolemia,none,chest discomfort,0.6,0.03
+121,C0020443,hypercholesterolemia,none,shortness of breath,0.6,0.03
+122,C0020443,hypercholesterolemia,none,st segment depression,0.3,0.03
+123,C0020443,hypercholesterolemia,none,worry,0.6,0.03
+124,C0020443,hypercholesterolemia,none,t wave inverted,0.3,0.03
+125,C0020443,hypercholesterolemia,none,bradycardia,0.3,0.03
+126,C0020443,hypercholesterolemia,none,dyspnea,0.6,0.03
+127,C0021311,infection,none,fever,0.9,0.03
+128,C0021311,infection,none,erythema,0.6,0.03
+129,C0021311,infection,none,decreased translucency,0.3,0.03
+130,C0021311,infection,none,hepatosplenomegaly,0.1,0.03
+131,C0021311,infection,none,chill,0.6,0.03
+132,C0021311,infection,none,pruritus,0.3,0.03
+133,C0021311,infection,none,diarrhea,0.6,0.03
+134,C0021311,infection,none,abscess bacterial,0.1,0.03
+135,C0021311,infection,none,swelling,0.6,0.03
+136,C0021311,infection,none,pain,0.9,0.03
+137,C0021311,infection,none,apyrexial,0.3,0.03
+138,C0021311,infection,none,cough,0.9,0.03
+139,C0042029,infection urinary tract,none,fever,0.9,0.03
+140,C0042029,infection urinary tract,none,dysuria,0.6,0.03
+141,C0042029,infection urinary tract,none,hematuria,0.6,0.03
+142,C0042029,infection urinary tract,none,renal angle tenderness,0.3,0.03
+143,C0042029,infection urinary tract,none,lethargy,0.6,0.03
+144,C0042029,infection urinary tract,none,asthenia,0.6,0.03
+145,C0042029,infection urinary tract,none,hyponatremia,0.3,0.03
+146,C0042029,infection urinary tract,none,hemodynamically stable,0.3,0.03
+147,C0042029,infection urinary tract,none,distress respiratory,0.3,0.03
+148,C0042029,infection urinary tract,none,difficulty passing urine,0.6,0.03
+149,C0042029,infection urinary tract,none,mental status changes,0.3,0.03
+150,C0042029,infection urinary tract,none,consciousness clear,0.1,0.03
+151,C0002871,anemia,none,chill,0.6,0.03
+152,C0002871,anemia,none,guaiac positive,0.3,0.03
+153,C0002871,anemia,none,monoclonal,0.3,0.03
+154,C0002871,anemia,none,ecchymosis,0.6,0.03
+155,C0002871,anemia,none,tumor cell invasion,0.1,0.03
+156,C0002871,anemia,none,haemorrhage,0.3,0.03
+157,C0002871,anemia,none,pallor,0.9,0.03
+158,C0002871,anemia,none,asthenia,0.6,0.03
+159,C0002871,anemia,none,fatigue,0.9,0.03
+160,C0002871,anemia,none,heme positive,0.6,0.03
+161,C0002871,anemia,none,pain back,0.6,0.03
+162,C0002871,anemia,none,orthostasis,0.6,0.03
+163,C0002871,anemia,none,hyponatremia,0.3,0.03
+164,C0002871,anemia,none,dizziness,0.6,0.03
+165,C0002871,anemia,none,shortness of breath,0.6,0.03
+166,C0002871,anemia,none,pain,0.6,0.03
+167,C0002871,anemia,none,rhonchus,0.3,0.03
+168,C0002871,anemia,none,arthralgia,0.6,0.03
+169,C0002871,anemia,none,swelling,0.6,0.03
+170,C0002871,anemia,none,transaminitis,0.3,0.03
+171,C0024117,chronic obstructive airway disease,none,shortness of breath,0.9,0.03
+172,C0024117,chronic obstructive airway disease,none,wheezing,0.9,0.03
+173,C0024117,chronic obstructive airway disease,none,cough,0.9,0.03
+174,C0024117,chronic obstructive airway disease,none,dyspnea,0.6,0.03
+175,C0024117,chronic obstructive airway disease,none,distress respiratory,0.6,0.03
+176,C0024117,chronic obstructive airway disease,none,sputum purulent,0.6,0.03
+177,C0024117,chronic obstructive airway disease,none,hypoxemia,0.3,0.03
+178,C0024117,chronic obstructive airway disease,none,hypercapnia,0.3,0.03
+179,C0024117,chronic obstructive airway disease,none,patient non compliance,0.1,0.03
+180,C0024117,chronic obstructive airway disease,none,chest tightness,0.6,0.03
+181,C0497327,dementia,none,fever,0.9,0.03
+182,C0497327,dementia,none,fall,0.6,0.03
+183,C0497327,dementia,none,unresponsiveness,0.3,0.03
+184,C0497327,dementia,none,lethargy,0.6,0.03
+185,C0497327,dementia,none,agitation,0.6,0.03
+186,C0497327,dementia,none,ecchymosis,0.3,0.03
+187,C0497327,dementia,none,syncope,0.3,0.03
+188,C0497327,dementia,none,rale,0.3,0.03
+189,C0497327,dementia,none,unconscious state,0.1,0.03
+190,C0497327,dementia,none,cough,0.6,0.03
+191,C0497327,dementia,none,bedridden,0.6,0.03
+192,C0497327,dementia,none,bedridden,0.6,0.03
+193,C0497327,dementia,none,pain,0.9,0.03
+194,C0497327,dementia,none,facial paresis,0.3,0.03
+195,C0497327,dementia,none,abdominal tenderness,0.3,0.03
+196,C0497327,dementia,none,rhonchus,0.3,0.03
+197,C0497327,dementia,none,unsteady gait,0.6,0.03
+198,C0497327,dementia,none,hallucinations auditory,0.3,0.03
+199,C1565489,insufficiency renal,none,shortness of breath,0.9,0.03
+200,C1565489,insufficiency renal,none,hyperkalemia,0.6,0.03
+201,C1565489,insufficiency renal,none,orthopnea,0.6,0.03
+202,C1565489,insufficiency renal,none,rale,0.6,0.03
+203,C1565489,insufficiency renal,none,urgency ofmicturition,0.6,0.03
+204,C1565489,insufficiency renal,none,ascites,0.6,0.03
+205,C1565489,insufficiency renal,none,guaiac positive,0.3,0.03
+206,C1565489,insufficiency renal,none,asthenia,0.6,0.03
+207,C1565489,insufficiency renal,none,apyrexial,0.3,0.03
+208,C1565489,insufficiency renal,none,mental status changes,0.6,0.03
+209,C1565489,insufficiency renal,none,dyspnea,0.9,0.03
+210,C1565489,insufficiency renal,none,difficulty,0.6,0.03
+211,C1565489,insufficiency renal,none,diarrhea,0.3,0.03
+212,C1565489,insufficiency renal,none,hypotension,0.6,0.03
+213,C1565489,insufficiency renal,none,breath sounds decreased,0.6,0.03
+214,C1565489,insufficiency renal,none,swelling,0.9,0.03
+215,C1565489,insufficiency renal,none,hypokinesia,0.3,0.03
+216,C0009676,confusion,none,seizure,0.1,0.03
+217,C0009676,confusion,none,enuresis,0.3,0.03
+218,C0009676,confusion,none,lethargy,0.6,0.03
+219,C0009676,confusion,none,speech slurred,0.6,0.03
+220,C0009676,confusion,none,fall,0.6,0.03
+221,C0009676,confusion,none,consciousness clear,0.3,0.03
+222,C0009676,confusion,none,mental status changes,0.9,0.03
+223,C0009676,confusion,none,asterixis,0.3,0.03
+224,C0009676,confusion,none,unconscious state,0.1,0.03
+225,C0009676,confusion,none,agitation,0.6,0.03
+226,C0009676,confusion,none,muscle twitch,0.3,0.03
+227,C0009676,confusion,none,asthenia,0.6,0.03
+228,C0009676,confusion,none,sleepy,0.6,0.03
+229,C0009676,confusion,none,dizziness,0.9,0.03
+230,C0009676,confusion,none,headache,0.9,0.03
+231,C0009676,confusion,none,dysarthria,0.6,0.03
+232,C0009676,confusion,none,lightheadedness,0.6,0.03
+233,C0009676,confusion,none,tremor,0.3,0.03
+234,C0009676,confusion,none,hyponatremia,0.3,0.03
+235,C0009676,confusion,none,unresponsiveness,0.1,0.03
+236,C0029408,degenerativepolyarthritis,none,pain,0.9,0.03
+237,C0029408,degenerativepolyarthritis,none,food intolerance,0.6,0.03
+238,C0029408,degenerativepolyarthritis,none,numbness of hand,0.3,0.03
+239,C0029408,degenerativepolyarthritis,none,general discomfort,0.6,0.03
+240,C0029408,degenerativepolyarthritis,none,drowsiness,0.6,0.03
+241,C0029408,degenerativepolyarthritis,none,asthenia,0.6,0.03
+242,C0029408,degenerativepolyarthritis,none,nonsmoker,0.3,0.03
+243,C0029408,degenerativepolyarthritis,none,non,0.3,0.03
+244,C0029408,degenerativepolyarthritis,none,polydypsia,0.1,0.03
+245,C0029408,degenerativepolyarthritis,none,stiffness,0.9,0.03
+246,C0029408,degenerativepolyarthritis,none,unsteady gait,0.6,0.03
+247,C0006826,malignant neoplasms or primary malignant neoplasm,none,pain,0.9,0.03
+248,C0006826,malignant neoplasms or primary malignant neoplasm,none,mass of body structure,0.9,0.03
+249,C0006826,malignant neoplasms or primary malignant neoplasm,none,lesion,0.9,0.03
+250,C0006826,malignant neoplasms or primary malignant neoplasm,none,cushingoid facies,0.6,0.03
+251,C0006826,malignant neoplasms or primary malignant neoplasm,none,cushingoidhabitus,0.6,0.03
+252,C0006826,malignant neoplasms or primary malignant neoplasm,none,emphysematous change,0.3,0.03
+253,C0006826,malignant neoplasms or primary malignant neoplasm,none,decreased body weight,0.6,0.03
+254,C0006826,malignant neoplasms or primary malignant neoplasm,none,ascites,0.6,0.03
+255,C0006826,malignant neoplasms or primary malignant neoplasm,none,hoarseness,0.6,0.03
+256,C0006826,malignant neoplasms or primary malignant neoplasm,none,thicken,0.6,0.03
+257,C0006826,malignant neoplasms or primary malignant neoplasm,none,hematuria,0.6,0.03
+258,C0006826,malignant neoplasms or primary malignant neoplasm,none,pulsusparadoxus,0.3,0.03
+259,C0006826,malignant neoplasms or primary malignant neoplasm,none,gravida 10,0.1,0.03
+260,C0006826,malignant neoplasms or primary malignant neoplasm,none,mass of body structure,0.9,0.03
+261,C0006826,malignant neoplasms or primary malignant neoplasm,none,lesion,0.9,0.03
+262,C0006826,malignant neoplasms or primary malignant neoplasm,none,heartburn,0.6,0.03
+263,C0006826,malignant neoplasms or primary malignant neoplasm,none,night sweat,0.6,0.03
+264,C0006826,malignant neoplasms or primary malignant neoplasm,none,thicken,0.6,0.03
+265,C0006826,malignant neoplasms or primary malignant neoplasm,none,chill,0.6,0.03
+266,C0006826,malignant neoplasms or primary malignant neoplasm,none,decreased translucency,0.3,0.03
+267,C0006826,malignant neoplasms or primary malignant neoplasm,none,pain abdominal,0.6,0.03
+268,C0006826,malignant neoplasms or primary malignant neoplasm,none,dullness,0.6,0.03
+269,C0006826,malignant neoplasms or primary malignant neoplasm,none,food intolerance,0.6,0.03
+270,C0006826,malignant neoplasms or primary malignant neoplasm,none,distress respiratory,0.6,0.03
+271,C0006826,malignant neoplasms or primary malignant neoplasm,none,hypotension,0.6,0.03
+272,C0001175,acquiredimmuno or HIV or hiv infections,none,fever,0.9,0.03
+273,C0001175,acquiredimmuno or HIV or hiv infections,none,night sweat,0.6,0.03
+274,C0001175,acquiredimmuno or HIV or hiv infections,none,spontaneous rupture of membranes,0.3,0.03
+275,C0001175,acquiredimmuno or HIV or hiv infections,none,cough,0.9,0.03
+276,C0001175,acquiredimmuno or HIV or hiv infections,none,cough,0.9,0.03
+277,C0001175,acquiredimmuno or HIV or hiv infections,none,decreased body weight,0.6,0.03
+278,C0001175,acquiredimmuno or HIV or hiv infections,none,chill,0.6,0.03
+279,C0001175,acquiredimmuno or HIV or hiv infections,none,diarrhea,0.6,0.03
+280,C0001175,acquiredimmuno or HIV or hiv infections,none,pleuritic pain,0.3,0.03
+281,C0001175,acquiredimmuno or HIV or hiv infections,none,patient non compliance,0.1,0.03
+282,C0001175,acquiredimmuno or HIV or hiv infections,none,tachypnea,0.3,0.03
+283,C0001175,acquiredimmuno or HIV or hiv infections,none,productive cough,0.6,0.03
+284,C0001175,acquiredimmuno or HIV or hiv infections,none,muscle hypotonia,0.3,0.03
+285,C0001175,acquiredimmuno or HIV or hiv infections,none,hypotonic,0.3,0.03
+286,C0001175,acquiredimmuno or HIV or hiv infections,none,feeling suicidal,0.1,0.03
+287,C0007642,cellulitis,none,erythema,0.9,0.03
+288,C0007642,cellulitis,none,pain,0.9,0.03
+289,C0007642,cellulitis,none,swelling,0.9,0.03
+290,C0007642,cellulitis,none,redness,0.9,0.03
+291,C0007642,cellulitis,none,fever,0.6,0.03
+292,C0007642,cellulitis,none,abscess bacterial,0.3,0.03
+293,C0007642,cellulitis,none,patient non compliance,0.3,0.03
+294,C0007642,cellulitis,none,hypesthesia,0.3,0.03
+295,C0007642,cellulitis,none,hyperacusis,0.1,0.03
+296,C0007642,cellulitis,none,pruritus,0.3,0.03
+297,C0007642,cellulitis,none,pain chest,0.3,0.03
+298,C0007642,cellulitis,none,scratch marks,0.3,0.03
+299,C0007642,cellulitis,none,chill,0.3,0.03
+300,C0007642,cellulitis,none,sore to touch,0.6,0.03
+301,C0017168,gastroesophageal reflux disease,none,pain,0.6,0.03
+302,C0017168,gastroesophageal reflux disease,none,pain chest,0.6,0.03
+303,C0017168,gastroesophageal reflux disease,none,burning sensation,0.6,0.03
+304,C0017168,gastroesophageal reflux disease,none,hyponatremia,0.3,0.03
+305,C0017168,gastroesophageal reflux disease,none,satiety early,0.3,0.03
+306,C0017168,gastroesophageal reflux disease,none,throbbing sensation quality,0.3,0.03
+307,C0017168,gastroesophageal reflux disease,none,chest tightness,0.6,0.03
+308,C0017168,gastroesophageal reflux disease,none,sensory discomfort,0.3,0.03
+309,C0017168,gastroesophageal reflux disease,none,presence of q wave,0.3,0.03
+310,C0017168,gastroesophageal reflux disease,none,nausea,0.6,0.03
+311,C0017168,gastroesophageal reflux disease,none,general discomfort,0.6,0.03
+312,C0017168,gastroesophageal reflux disease,none,constipation,0.6,0.03
+313,C0017168,gastroesophageal reflux disease,none,palpitation,0.6,0.03
+314,C0017168,gastroesophageal reflux disease,none,pain abdominal,0.6,0.03
+315,C0017168,gastroesophageal reflux disease,none,heartburn,0.9,0.03
+316,C0017168,gastroesophageal reflux disease,none,sweat,0.6,0.03
+317,C0017168,gastroesophageal reflux disease,none,sweating increased,0.6,0.03
+318,C0017168,gastroesophageal reflux disease,none,asthenia,0.6,0.03
+319,C0036690,septicemia or systemic infection or sepsis,none,fever,0.9,0.03
+320,C0036690,septicemia or systemic infection or sepsis,none,distress respiratory,0.6,0.03
+321,C0036690,septicemia or systemic infection or sepsis,none,hypotension,0.6,0.03
+322,C0036690,septicemia or systemic infection or sepsis,none,tachypnea,0.6,0.03
+323,C0036690,septicemia or systemic infection or sepsis,none,chill,0.6,0.03
+324,C0036690,septicemia or systemic infection or sepsis,none,lethargy,0.6,0.03
+325,C0036690,septicemia or systemic infection or sepsis,none,bradycardia,0.3,0.03
+326,C0036690,septicemia or systemic infection or sepsis,none,breech presentation,0.3,0.03
+327,C0036690,septicemia or systemic infection or sepsis,none,cyanosis,0.3,0.03
+328,C0036690,septicemia or systemic infection or sepsis,none,spontaneous rupture of membranes,0.3,0.03
+329,C0036690,septicemia or systemic infection or sepsis,none,haemorrhage,0.3,0.03
+330,C0036690,septicemia or systemic infection or sepsis,none,unresponsiveness,0.3,0.03
+331,C0036690,septicemia or systemic infection or sepsis,none,rale,0.3,0.03
+332,C0036690,septicemia or systemic infection or sepsis,none,apyrexial,0.1,0.03
+333,C0149871,deep vein thrombosis,none,swelling,0.9,0.03
+334,C0149871,deep vein thrombosis,none,pain,0.9,0.03
+335,C0149871,deep vein thrombosis,none,ecchymosis,0.6,0.03
+336,C0149871,deep vein thrombosis,none,shortness of breath,0.6,0.03
+337,C0149871,deep vein thrombosis,none,pain in lower limb,0.6,0.03
+338,C0149871,deep vein thrombosis,none,cardiomegaly,0.3,0.03
+339,C0149871,deep vein thrombosis,none,rale,0.3,0.03
+340,C0149871,deep vein thrombosis,none,erythema,0.3,0.03
+341,C0149871,deep vein thrombosis,none,hypotension,0.1,0.03
+342,C0149871,deep vein thrombosis,none,clonus,0.1,0.03
+343,C0149871,deep vein thrombosis,none,redness,0.6,0.03
+344,C0011175,dehydration,none,fever,0.9,0.03
+345,C0011175,dehydration,none,diarrhea,0.6,0.03
+346,C0011175,dehydration,none,vomiting,0.6,0.03
+347,C0011175,dehydration,none,hypotension,0.3,0.03
+348,C0011175,dehydration,none,nausea,0.9,0.03
+349,C0011175,dehydration,none,lightheadedness,0.6,0.03
+350,C0011175,dehydration,none,unwell,0.6,0.03
+351,C0011175,dehydration,none,mental status changes,0.3,0.03
+352,C0011175,dehydration,none,anorexia,0.3,0.03
+353,C0011175,dehydration,none,asthenia,0.6,0.03
+354,C0011175,dehydration,none,sensory discomfort,0.3,0.03
+355,C0011175,dehydration,none,syncope,0.3,0.03
+356,C0011175,dehydration,none,lethargy,0.6,0.03
+357,C0011175,dehydration,none,dizziness,0.9,0.03
+358,C0011175,dehydration,none,syncope,0.3,0.03
+359,C0011175,dehydration,none,blackout,0.1,0.03
+360,C0011175,dehydration,none,history of,0.3,0.03
+361,C0027651,neoplasm,none,mass of body structure,0.6,0.03
+362,C0027651,neoplasm,none,lesion,0.6,0.03
+363,C0027651,neoplasm,none,pain chest,0.6,0.03
+364,C0027651,neoplasm,none,hematuria,0.6,0.03
+365,C0027651,neoplasm,none,tumor cell invasion,0.6,0.03
+366,C0027651,neoplasm,none,pain,0.9,0.03
+367,C0027651,neoplasm,none,anosmia,0.3,0.03
+368,C0027651,neoplasm,none,thicken,0.6,0.03
+369,C0027651,neoplasm,none,metastatic lesion,0.6,0.03
+370,C0027651,neoplasm,none,food intolerance,0.3,0.03
+371,C0027651,neoplasm,none,decreased body weight,0.6,0.03
+372,C0027651,neoplasm,none,night sweat,0.6,0.03
+373,C0027651,neoplasm,none,hemianopsia homonymous,0.1,0.03
+374,C0027651,neoplasm,none,satiety early,0.3,0.03
+375,C0027651,neoplasm,none,pain abdominal,0.6,0.03
+376,C0027651,neoplasm,none,headache,0.6,0.03
+377,C0034065,embolism pulmonary,none,shortness of breath,0.9,0.03
+378,C0034065,embolism pulmonary,none,hypoxemia,0.9,0.03
+379,C0034065,embolism pulmonary,none,tachypnea,0.9,0.03
+380,C0034065,embolism pulmonary,none,hematocrit decreased,0.6,0.03
+381,C0034065,embolism pulmonary,none,pain chest,0.9,0.03
+382,C0034065,embolism pulmonary,none,dyspnea,0.9,0.03
+383,C0034065,embolism pulmonary,none,pleuritic pain,0.6,0.03
+384,C0034065,embolism pulmonary,none,neck stiffness,0.3,0.03
+385,C0034065,embolism pulmonary,none,yellow sputum,0.3,0.03
+386,C0034065,embolism pulmonary,none,productive cough,0.6,0.03
+387,C0034065,embolism pulmonary,none,cicatrisation,0.1,0.03
+388,C0034065,embolism pulmonary,none,unresponsiveness,0.1,0.03
+389,C0034065,embolism pulmonary,none,distress respiratory,0.9,0.03
+390,C0034065,embolism pulmonary,none,wheezing,0.6,0.03
+391,C0034065,embolism pulmonary,none,apyrexial,0.3,0.03
+392,C0034065,embolism pulmonary,none,non,0.3,0.03
+393,C0014544,epilepsy,none,seizure,0.9,0.03
+394,C0014544,epilepsy,none,hypometabolism,0.6,0.03
+395,C0014544,epilepsy,none,aura,0.6,0.03
+396,C0014544,epilepsy,none,muscle twitch,0.6,0.03
+397,C0014544,epilepsy,none,drowsiness,0.6,0.03
+398,C0014544,epilepsy,none,tremor,0.6,0.03
+399,C0014544,epilepsy,none,unresponsiveness,0.6,0.03
+400,C0014544,epilepsy,none,hemiplegia,0.3,0.03
+401,C0014544,epilepsy,none,myoclonus,0.3,0.03
+402,C0014544,epilepsy,none,gurgle,0.1,0.03
+403,C0014544,epilepsy,none,sleepy,0.6,0.03
+404,C0014544,epilepsy,none,lethargy,0.6,0.03
+405,C0014544,epilepsy,none,wheelchair bound,0.1,0.03
+406,C0878544,cardiomyopathy,none,shortness of breath,0.9,0.03
+407,C0878544,cardiomyopathy,none,orthopnea,0.6,0.03
+408,C0878544,cardiomyopathy,none,hypokinesia,0.6,0.03
+409,C0878544,cardiomyopathy,none,jugular venous distention,0.6,0.03
+410,C0878544,cardiomyopathy,none,palpitation,0.6,0.03
+411,C0878544,cardiomyopathy,none,pain chest,0.6,0.03
+412,C0878544,cardiomyopathy,none,syncope,0.3,0.03
+413,C0878544,cardiomyopathy,none,yellow sputum,0.3,0.03
+414,C0878544,cardiomyopathy,none,rale,0.6,0.03
+415,C0878544,cardiomyopathy,none,dyspnea,0.9,0.03
+416,C0878544,cardiomyopathy,none,dyspnea on exertion,0.9,0.03
+417,C0878544,cardiomyopathy,none,leftatrialhypertrophy,0.6,0.03
+418,C0878544,cardiomyopathy,none,fatigue,0.9,0.03
+419,C0878544,cardiomyopathy,none,weight gain,0.6,0.03
+420,C0878544,cardiomyopathy,none,patient non compliance,0.6,0.03
+421,C0007097,carcinoma,none,mass of body structure,0.9,0.03
+422,C0007097,carcinoma,none,pain,0.9,0.03
+423,C0007097,carcinoma,none,lesion,0.6,0.03
+424,C0007097,carcinoma,none,tumor cell invasion,0.9,0.03
+425,C0007097,carcinoma,none,thicken,0.6,0.03
+426,C0007097,carcinoma,none,decreased body weight,0.6,0.03
+427,C0007097,carcinoma,none,hoarseness,0.3,0.03
+428,C0007097,carcinoma,none,general discomfort,0.6,0.03
+429,C0007097,carcinoma,none,metastatic lesion,0.6,0.03
+430,C0007097,carcinoma,none,non,0.3,0.03
+431,C0007097,carcinoma,none,constipation,0.6,0.03
+432,C0007097,carcinoma,none,unhappy,0.3,0.03
+433,C0007097,carcinoma,none,paresthesia,0.3,0.03
+434,C0007097,carcinoma,none,gravida 0,0.3,0.03
+435,C0007097,carcinoma,none,diarrhea,0.6,0.03
+436,C0007097,carcinoma,none,sore to touch,0.6,0.03
+437,C0007097,carcinoma,none,heartburn,0.6,0.03
+438,C0007097,carcinoma,none,nausea,0.9,0.03
+439,C0007097,carcinoma,none,lung nodule,0.6,0.03
+440,C0019196,hepatitis C,none,ascites,0.3,0.03
+441,C0019196,hepatitis C,none,distended abdomen,0.6,0.03
+442,C0019196,hepatitis C,none,feeling suicidal,0.1,0.03
+443,C0019196,hepatitis C,none,cough,0.9,0.03
+444,C0019196,hepatitis C,none,ache,0.6,0.03
+445,C0019196,hepatitis C,none,macerated skin,0.3,0.03
+446,C0019196,hepatitis C,none,heavy feeling,0.6,0.03
+447,C0019196,hepatitis C,none,hallucinations auditory,0.1,0.03
+448,C0019196,hepatitis C,none,chill,0.6,0.03
+449,C0019196,hepatitis C,none,asterixis,0.3,0.03
+450,C0019196,hepatitis C,none,patient non compliance,0.3,0.03
+451,C0085096,peripheral vascular disease,none,shortness of breath,0.9,0.03
+452,C0085096,peripheral vascular disease,none,rest pain,0.6,0.03
+453,C0085096,peripheral vascular disease,none,angina pectoris,0.6,0.03
+454,C0085096,peripheral vascular disease,none,unresponsiveness,0.3,0.03
+455,C0085096,peripheral vascular disease,none,hyperkalemia,0.3,0.03
+456,C0085096,peripheral vascular disease,none,sinus rhythm,0.3,0.03
+457,C0085096,peripheral vascular disease,none,labored breathing,0.6,0.03
+458,C0085096,peripheral vascular disease,none,dyspnea,0.9,0.03
+459,C0085096,peripheral vascular disease,none,sore to touch,0.3,0.03
+460,C0085096,peripheral vascular disease,none,anorexia,0.3,0.03
+461,C0085096,peripheral vascular disease,none,sleepy,0.3,0.03
+462,C0020473,hyperlipidemia,none,pain chest,0.6,0.03
+463,C0020473,hyperlipidemia,none,angina pectoris,0.6,0.03
+464,C0020473,hyperlipidemia,none,palpitation,0.6,0.03
+465,C0020473,hyperlipidemia,none,presence of q wave,0.3,0.03
+466,C0020473,hyperlipidemia,none,photopsia,0.1,0.03
+467,C0020473,hyperlipidemia,none,sweat,0.6,0.03
+468,C0020473,hyperlipidemia,none,sweating increased,0.6,0.03
+469,C0020473,hyperlipidemia,none,chest discomfort,0.6,0.03
+470,C0020473,hyperlipidemia,none,shortness of breath,0.6,0.03
+471,C0020473,hyperlipidemia,none,giddy mood,0.3,0.03
+472,C0020473,hyperlipidemia,none,hypokinesia,0.3,0.03
+473,C0020473,hyperlipidemia,none,hemiplegia,0.1,0.03
+474,C0020473,hyperlipidemia,none,dizziness,0.6,0.03
+475,C0005586,bipolar disorder,none,feeling suicidal,0.6,0.03
+476,C0005586,bipolar disorder,none,energy increased,0.6,0.03
+477,C0005586,bipolar disorder,none,suicidal,0.6,0.03
+478,C0005586,bipolar disorder,none,irritable mood,0.9,0.03
+479,C0005586,bipolar disorder,none,agitation,0.9,0.03
+480,C0005586,bipolar disorder,none,has religious belief,0.3,0.03
+481,C0005586,bipolar disorder,none,disturbed family,0.6,0.03
+482,C0005586,bipolar disorder,none,hallucinations auditory,0.6,0.03
+483,C0005586,bipolar disorder,none,verbal auditory hallucinations,0.6,0.03
+484,C0005586,bipolar disorder,none,weepiness,0.6,0.03
+485,C0005586,bipolar disorder,none,behavior hyperactive,0.6,0.03
+486,C0005586,bipolar disorder,none,catatonia,0.3,0.03
+487,C0005586,bipolar disorder,none,feeling hopeless,0.6,0.03
+488,C0005586,bipolar disorder,none,worry,0.9,0.03
+489,C0005586,bipolar disorder,none,sleeplessness,0.9,0.03
+490,C0005586,bipolar disorder,none,hypersomnia,0.6,0.03
+491,C0005586,bipolar disorder,none,difficulty,0.9,0.03
+492,C0005586,bipolar disorder,none,hallucinations visual,0.3,0.03
+493,C0005586,bipolar disorder,none,hyperhidrosis disorder,0.3,0.03
+494,C0005586,bipolar disorder,none,mydriasis,0.3,0.03
+495,C0005586,bipolar disorder,none,extrapyramidal sign,0.3,0.03
+496,C0005586,bipolar disorder,none,loose associations,0.6,0.03
+497,C0005586,bipolar disorder,none,intoxication,0.3,0.03
+498,C0005586,bipolar disorder,none,motor retardation,0.6,0.03
+499,C0005586,bipolar disorder,none,homelessness,0.3,0.03
+500,C0005586,bipolar disorder,none,blackout,0.3,0.03
+501,C0005586,bipolar disorder,none,tremor,0.3,0.03
+502,C0005586,bipolar disorder,none,exhaustion,0.6,0.03
+503,C0028754,obesity,none,pain,0.6,0.03
+504,C0028754,obesity,none,catatonia,0.1,0.03
+505,C0028754,obesity,none,snore,0.6,0.03
+506,C0028754,obesity,none,pain chest,0.6,0.03
+507,C0028754,obesity,none,r wave feature,0.3,0.03
+508,C0028754,obesity,none,has religious belief,0.3,0.03
+509,C0028754,obesity,none,shortness of breath,0.9,0.03
+510,C0028754,obesity,none,fatigue,0.9,0.03
+511,C0028754,obesity,none,tired,0.9,0.03
+512,C0028754,obesity,none,overweight,0.9,0.03
+513,C0028754,obesity,none,systolic murmur,0.3,0.03
+514,C0028754,obesity,none,mood depressed,0.6,0.03
+515,C0028754,obesity,none,ecchymosis,0.3,0.03
+516,C0022116,ischemia,none,drowsiness,0.6,0.03
+517,C0022116,ischemia,none,sleepy,0.6,0.03
+518,C0022116,ischemia,none,pain chest,0.6,0.03
+519,C0022116,ischemia,none,angina pectoris,0.6,0.03
+520,C0022116,ischemia,none,pressure chest,0.6,0.03
+521,C0022116,ischemia,none,chest discomfort,0.6,0.03
+522,C0022116,ischemia,none,shortness of breath,0.6,0.03
+523,C0022116,ischemia,none,dyspnea,0.6,0.03
+524,C0022116,ischemia,none,sinus rhythm,0.3,0.03
+525,C0022116,ischemia,none,bradycardia,0.3,0.03
+526,C0022116,ischemia,none,sweat,0.3,0.03
+527,C0022116,ischemia,none,sweating increased,0.3,0.03
+528,C0022116,ischemia,none,rale,0.3,0.03
+529,C0022116,ischemia,none,asymptomatic,0.1,0.03
+530,C0022116,ischemia,none,anorexia,0.3,0.03
+531,C1623038,cirrhosis,none,ascites,0.6,0.03
+532,C1623038,cirrhosis,none,fall,0.6,0.03
+533,C1623038,cirrhosis,none,splenomegaly,0.6,0.03
+534,C1623038,cirrhosis,none,pruritus,0.9,0.03
+535,C1623038,cirrhosis,none,pain abdominal,0.9,0.03
+536,C1623038,cirrhosis,none,tumor cell invasion,0.1,0.03
+537,C1623038,cirrhosis,none,distended abdomen,0.6,0.03
+538,C1623038,cirrhosis,none,lesion,0.3,0.03
+539,C1623038,cirrhosis,none,hemodynamically stable,0.3,0.03
+540,C1623038,cirrhosis,none,guaiac positive,0.3,0.03
+541,C1623038,cirrhosis,none,sore to touch,0.6,0.03
+542,C1623038,cirrhosis,none,bleeding of vagina,0.3,0.03
+543,C0015230,exanthema,none,fever,0.9,0.03
+544,C0015230,exanthema,none,pruritus,0.6,0.03
+545,C0015230,exanthema,none,macule,0.6,0.03
+546,C0015230,exanthema,none,lesion,0.6,0.03
+547,C0015230,exanthema,none,redness,0.9,0.03
+548,C0015230,exanthema,none,headache,0.6,0.03
+549,C0015230,exanthema,none,apyrexial,0.3,0.03
+550,C0015230,exanthema,none,arthralgia,0.6,0.03
+551,C0015230,exanthema,none,swelling,0.6,0.03
+552,C0015230,exanthema,none,erythema,0.6,0.03
+553,C0015230,exanthema,none,photophobia,0.3,0.03
+554,C0015230,exanthema,none,chill,0.6,0.03
+555,C0015230,exanthema,none,scratch marks,0.3,0.03
+556,C0015230,exanthema,none,pain,0.6,0.03
+557,C0015230,exanthema,none,painful swallowing,0.3,0.03
+558,C0005001,benign prostatic hypertrophy,none,mental status changes,0.3,0.03
+559,C0005001,benign prostatic hypertrophy,none,cachexia,0.1,0.03
+560,C0005001,benign prostatic hypertrophy,none,blackout,0.3,0.03
+561,C0005001,benign prostatic hypertrophy,none,orthostasis,0.3,0.03
+562,C0005001,benign prostatic hypertrophy,none,orthopnea,0.3,0.03
+563,C0005001,benign prostatic hypertrophy,none,night sweat,0.3,0.03
+564,C0005001,benign prostatic hypertrophy,none,distress respiratory,0.6,0.03
+565,C0005001,benign prostatic hypertrophy,none,anorexia,0.6,0.03
+566,C0005001,benign prostatic hypertrophy,none,dysarthria,0.3,0.03
+567,C0022660,kidney failure acute,none,hyperkalemia,0.6,0.03
+568,C0022660,kidney failure acute,none,hypotension,0.6,0.03
+569,C0022660,kidney failure acute,none,hypocalcemia result,0.3,0.03
+570,C0022660,kidney failure acute,none,oliguria,0.6,0.03
+571,C0022660,kidney failure acute,none,hemodynamically stable,0.6,0.03
+572,C0022660,kidney failure acute,none,asthenia,0.6,0.03
+573,C0022660,kidney failure acute,none,hypothermia,0.3,0.03
+574,C0022660,kidney failure acute,none,diarrhea,0.3,0.03
+575,C0022660,kidney failure acute,none,haemorrhage,0.1,0.03
+576,C0022660,kidney failure acute,none,unresponsiveness,0.1,0.03
+577,C0026266,mitral valve insufficiency,none,shortness of breath,0.9,0.03
+578,C0026266,mitral valve insufficiency,none,dyspnea on exertion,0.9,0.03
+579,C0026266,mitral valve insufficiency,none,asymptomatic,0.1,0.03
+580,C0026266,mitral valve insufficiency,none,hypokinesia,0.3,0.03
+581,C0026266,mitral valve insufficiency,none,dyspnea,0.9,0.03
+582,C0026266,mitral valve insufficiency,none,syncope,0.3,0.03
+583,C0026266,mitral valve insufficiency,none,thicken,0.3,0.03
+584,C0026266,mitral valve insufficiency,none,leftatrialhypertrophy,0.6,0.03
+585,C0026266,mitral valve insufficiency,none,palpitation,0.6,0.03
+586,C0026266,mitral valve insufficiency,none,fatigue,0.6,0.03
+587,C0026266,mitral valve insufficiency,none,vomiting,0.3,0.03
+588,C0026266,mitral valve insufficiency,none,pain,0.6,0.03
+589,C0026266,mitral valve insufficiency,none,cardiomegaly,0.6,0.03
+590,C0026266,mitral valve insufficiency,none,chest discomfort,0.6,0.03
+591,C0003864,arthritis,none,pain,0.9,0.03
+592,C0003864,arthritis,none,hemodynamically stable,0.3,0.03
+593,C0003864,arthritis,none,sleeplessness,0.6,0.03
+594,C0003864,arthritis,none,asthenia,0.6,0.03
+595,C0003864,arthritis,none,syncope,0.3,0.03
+596,C0003864,arthritis,none,swelling,0.6,0.03
+597,C0003864,arthritis,none,atypia,0.3,0.03
+598,C0003864,arthritis,none,general unsteadiness,0.6,0.03
+599,C0003864,arthritis,none,shortness of breath,0.6,0.03
+600,C0003864,arthritis,none,distended abdomen,0.3,0.03
+601,C0006277,bronchitis,none,cough,0.9,0.03
+602,C0006277,bronchitis,none,wheezing,0.6,0.03
+603,C0006277,bronchitis,none,shortness of breath,0.9,0.03
+604,C0006277,bronchitis,none,chest tightness,0.6,0.03
+605,C0006277,bronchitis,none,fever,0.6,0.03
+606,C0006277,bronchitis,none,throat sore,0.6,0.03
+607,C0006277,bronchitis,none,productive cough,0.6,0.03
+608,C0006277,bronchitis,none,hepatosplenomegaly,0.3,0.03
+609,C0006277,bronchitis,none,night sweat,0.3,0.03
+610,C0006277,bronchitis,none,haemoptysis,0.3,0.03
+611,C0006277,bronchitis,none,labored breathing,0.6,0.03
+612,C0006277,bronchitis,none,snuffle,0.3,0.03
+613,C0006277,bronchitis,none,hacking cough,0.6,0.03
+614,C0006277,bronchitis,none,dyspnea,0.6,0.03
+615,C0006277,bronchitis,none,chill,0.3,0.03
+616,C0006277,bronchitis,none,stridor,0.3,0.03
+617,C0006277,bronchitis,none,decreased body weight,0.3,0.03
+618,C0018989,hemiparesis,none,dysarthria,0.6,0.03
+619,C0018989,hemiparesis,none,paresis,0.6,0.03
+620,C0018989,hemiparesis,none,asthenia,0.6,0.03
+621,C0018989,hemiparesis,none,aphagia,0.3,0.03
+622,C0018989,hemiparesis,none,seizure,0.3,0.03
+623,C0018989,hemiparesis,none,speech slurred,0.6,0.03
+624,C0018989,hemiparesis,none,focal seizures,0.3,0.03
+625,C0018989,hemiparesis,none,hemiplegia,0.6,0.03
+626,C0018989,hemiparesis,none,abnormal sensation,0.6,0.03
+627,C0018989,hemiparesis,none,unresponsiveness,0.3,0.03
+628,C0018989,hemiparesis,none,stupor,0.3,0.03
+629,C0018989,hemiparesis,none,drowsiness,0.6,0.03
+630,C0018989,hemiparesis,none,sleepy,0.6,0.03
+631,C0018989,hemiparesis,none,fremitus,0.3,0.03
+632,C0018989,hemiparesis,none,Stahli,0.1,0.03
+633,C0018989,hemiparesis,none,stinging sensation,0.3,0.03
+634,C0018989,hemiparesis,none,paralyse,0.3,0.03
+635,C0018989,hemiparesis,none,clonus,0.3,0.03
+636,C0018989,hemiparesis,none,facial paresis,0.6,0.03
+637,C0029456,osteoporosis,none,prostatism,0.3,0.03
+638,C0029456,osteoporosis,none,fall,0.6,0.03
+639,C0029456,osteoporosis,none,hirsutism,0.1,0.03
+640,C0029456,osteoporosis,none,sniffle,0.3,0.03
+641,C0029456,osteoporosis,none,distended abdomen,0.3,0.03
+642,C0029456,osteoporosis,none,vertigo,0.6,0.03
+643,C0029456,osteoporosis,none,numbness of hand,0.3,0.03
+644,C0029456,osteoporosis,none,bradykinesia,0.3,0.03
+645,C0029456,osteoporosis,none,pain,0.9,0.03
+646,C0029456,osteoporosis,none,syncope,0.3,0.03
+647,C0029456,osteoporosis,none,out of breath,0.6,0.03
+648,C0029456,osteoporosis,none,apyrexial,0.6,0.03
+649,C0029456,osteoporosis,none,urge incontinence,0.3,0.03
+650,C0029456,osteoporosis,none,lightheadedness,0.6,0.03
+651,C0007787,transient ischemic attack,none,speech slurred,0.6,0.03
+652,C0007787,transient ischemic attack,none,dysarthria,0.6,0.03
+653,C0007787,transient ischemic attack,none,facial paresis,0.6,0.03
+654,C0007787,transient ischemic attack,none,asthenia,0.6,0.03
+655,C0007787,transient ischemic attack,none,neck stiffness,0.3,0.03
+656,C0007787,transient ischemic attack,none,vertigo,0.6,0.03
+657,C0007787,transient ischemic attack,none,numbness,0.9,0.03
+658,C0007787,transient ischemic attack,none,lightheadedness,0.9,0.03
+659,C0007787,transient ischemic attack,none,extrapyramidal sign,0.1,0.03
+660,C0007787,transient ischemic attack,none,Stahli,0.1,0.03
+661,C0007787,transient ischemic attack,none,vision blurred,0.6,0.03
+662,C0007787,transient ischemic attack,none,headache,0.9,0.03
+663,C0007787,transient ischemic attack,none,room spinning,0.6,0.03
+664,C0007787,transient ischemic attack,none,syncope,0.3,0.03
+665,C0007787,transient ischemic attack,none,difficulty,0.6,0.03
+666,C0007787,transient ischemic attack,none,rambling speech,0.6,0.03
+667,C0007787,transient ischemic attack,none,clumsiness,0.6,0.03
+668,C0001418,adenocarcinoma,none,mass of body structure,0.6,0.03
+669,C0001418,adenocarcinoma,none,lesion,0.6,0.03
+670,C0001418,adenocarcinoma,none,decreased body weight,0.6,0.03
+671,C0001418,adenocarcinoma,none,constipation,0.6,0.03
+672,C0001418,adenocarcinoma,none,fremitus,0.3,0.03
+673,C0001418,adenocarcinoma,none,decreased stool caliber,0.6,0.03
+674,C0001418,adenocarcinoma,none,satiety early,0.6,0.03
+675,C0001418,adenocarcinoma,none,hematochezia,0.6,0.03
+676,C0001418,adenocarcinoma,none,egophony,0.3,0.03
+677,C0001418,adenocarcinoma,none,pain,0.9,0.03
+678,C0001418,adenocarcinoma,none,cicatrisation,0.3,0.03
+679,C0001418,adenocarcinoma,none,scar tissue,0.6,0.03
+680,C0001418,adenocarcinoma,none,pain abdominal,0.9,0.03
+681,C1456784,paranoia,none,hallucinations auditory,0.3,0.03
+682,C1456784,paranoia,none,hallucinations visual,0.3,0.03
+683,C1456784,paranoia,none,agitation,0.6,0.03
+684,C1456784,paranoia,none,irritable mood,0.6,0.03
+685,C1456784,paranoia,none,verbal auditory hallucinations,0.3,0.03
+686,C1456784,paranoia,none,feeling suicidal,0.3,0.03
+687,C1456784,paranoia,none,suicidal,0.3,0.03
+688,C1456784,paranoia,none,terrify,0.3,0.03
+689,C1456784,paranoia,none,neologism,0.3,0.03
+690,C1456784,paranoia,none,homelessness,0.3,0.03
+691,C1456784,paranoia,none,energy increased,0.6,0.03
+692,C1456784,paranoia,none,mood depressed,0.6,0.03
+693,C1456784,paranoia,none,decompensation,0.3,0.03
+694,C1456784,paranoia,none,cicatrisation,0.3,0.03
+695,C1456784,paranoia,none,scar tissue,0.3,0.03
+696,C1456784,paranoia,none,blackout,0.3,0.03
+697,C1456784,paranoia,none,loose associations,0.3,0.03
+698,C0021167,incontinence,none,paraparesis,0.3,0.03
+699,C0021167,incontinence,none,seizure,0.3,0.03
+700,C0021167,incontinence,none,asthenia,0.6,0.03
+701,C0021167,incontinence,none,urge incontinence,0.6,0.03
+702,C0021167,incontinence,none,unconscious state,0.3,0.03
+703,C0021167,incontinence,none,aura,0.3,0.03
+704,C0021167,incontinence,none,moody,0.6,0.03
+705,C0021167,incontinence,none,fear of falling,0.6,0.03
+706,C0021167,incontinence,none,tremor,0.6,0.03
+707,C0021167,incontinence,none,spasm,0.6,0.03
+708,C0021167,incontinence,none,unhappy,0.6,0.03
+709,C0021167,incontinence,none,syncope,0.3,0.03
+710,C0021167,incontinence,none,fall,0.6,0.03
+711,C0021167,incontinence,none,stiffness,0.6,0.03
+712,C0021167,incontinence,none,unresponsiveness,0.3,0.03
+713,C0013405,paroxysmaldyspnea,none,orthopnea,0.6,0.03
+714,C0013405,paroxysmaldyspnea,none,shortness of breath,0.9,0.03
+715,C0013405,paroxysmaldyspnea,none,dyspnea on exertion,0.9,0.03
+716,C0013405,paroxysmaldyspnea,none,jugular venous distention,0.6,0.03
+717,C0013405,paroxysmaldyspnea,none,rale,0.6,0.03
+718,C0013405,paroxysmaldyspnea,none,pain chest,0.6,0.03
+719,C0013405,paroxysmaldyspnea,none,palpitation,0.6,0.03
+720,C0013405,paroxysmaldyspnea,none,sweat,0.6,0.03
+721,C0013405,paroxysmaldyspnea,none,sweating increased,0.6,0.03
+722,C0013405,paroxysmaldyspnea,none,weight gain,0.3,0.03
+723,C0013405,paroxysmaldyspnea,none,cough,0.6,0.03
+724,C0013405,paroxysmaldyspnea,none,dyspnea,0.9,0.03
+725,C0019270,hernia,none,pain abdominal,0.6,0.03
+726,C0019270,hernia,none,pain,0.9,0.03
+727,C0019270,hernia,none,hyperventilation,0.3,0.03
+728,C0019270,hernia,none,excruciating pain,0.1,0.03
+729,C0019270,hernia,none,gag,0.3,0.03
+730,C0019270,hernia,none,nausea,0.6,0.03
+731,C0019270,hernia,none,posturing,0.1,0.03
+732,C0019270,hernia,none,hemiplegia,0.1,0.03
+733,C0019270,hernia,none,sore to touch,0.6,0.03
+734,C0019270,hernia,none,haemorrhage,0.3,0.03
+735,C0019270,hernia,none,apyrexial,0.3,0.03
+736,C0019270,hernia,none,food intolerance,0.6,0.03
+737,C0019270,hernia,none,pulse absent,0.1,0.03
+738,C0019270,hernia,none,asthenia,0.6,0.03
+739,C0019270,hernia,none,mass of body structure,0.3,0.03
+740,C0019270,hernia,none,thicken,0.3,0.03
+741,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,hematuria,0.6,0.03
+742,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,dysesthesia,0.3,0.03
+743,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,asthenia,0.6,0.03
+744,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,polymyalgia,0.3,0.03
+745,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,passed stones,0.3,0.03
+746,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,pleuritic pain,0.3,0.03
+747,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,guaiac positive,0.3,0.03
+748,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,rale,0.3,0.03
+749,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,breath sounds decreased,0.3,0.03
+750,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,urge incontinence,0.6,0.03
+751,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,dysuria,0.6,0.03
+752,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,diarrhea,0.3,0.03
+753,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,vertigo,0.3,0.03
+754,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,qt interval prolonged,0.3,0.03
+755,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,ataxia,0.1,0.03
+756,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,paresis,0.3,0.03
+757,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,hemianopsia homonymous,0.1,0.03
+758,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,tumor cell invasion,0.6,0.03
+759,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,hemodynamically stable,0.3,0.03
+760,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,mass of body structure,0.6,0.03
+761,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,rhonchus,0.3,0.03
+762,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,orthostasis,0.3,0.03
+763,C0376358,malignant neoplasm of prostate or carcinoma prostate,none,decreased body weight,0.6,0.03
+764,C0034063,edema pulmonary,none,urgency ofmicturition,0.3,0.03
+765,C0034063,edema pulmonary,none,shortness of breath,0.9,0.03
+766,C0034063,edema pulmonary,none,rale,0.6,0.03
+767,C0034063,edema pulmonary,none,tachypnea,0.6,0.03
+768,C0034063,edema pulmonary,none,orthopnea,0.6,0.03
+769,C0034063,edema pulmonary,none,Heberden,0.3,0.03
+770,C0034063,edema pulmonary,none,jugular venous distention,0.6,0.03
+771,C0034063,edema pulmonary,none,dyspnea,0.9,0.03
+772,C0034063,edema pulmonary,none,sweat,0.6,0.03
+773,C0034063,edema pulmonary,none,sweating increased,0.6,0.03
+774,C0034063,edema pulmonary,none,patient non compliance,0.3,0.03
+775,C0034063,edema pulmonary,none,chest discomfort,0.6,0.03
+776,C0034063,edema pulmonary,none,hyperkalemia,0.3,0.03
+777,C0034063,edema pulmonary,none,sinus rhythm,0.6,0.03
+778,C0034063,edema pulmonary,none,pain chest,0.6,0.03
+779,C0034063,edema pulmonary,none,hypotension,0.3,0.03
+780,C0034063,edema pulmonary,none,wheezing,0.6,0.03
+781,C0003507,stenosis aortic valve,none,dyspnea on exertion,0.9,0.03
+782,C0003507,stenosis aortic valve,none,syncope,0.6,0.03
+783,C0003507,stenosis aortic valve,none,chest discomfort,0.9,0.03
+784,C0003507,stenosis aortic valve,none,systolic murmur,0.9,0.03
+785,C0003507,stenosis aortic valve,none,sciatica,0.3,0.03
+786,C0003507,stenosis aortic valve,none,angina pectoris,0.6,0.03
+787,C0003507,stenosis aortic valve,none,pain chest,0.9,0.03
+788,C0003507,stenosis aortic valve,none,frothy sputum,0.3,0.03
+789,C0003507,stenosis aortic valve,none,bradycardia,0.6,0.03
+790,C0003507,stenosis aortic valve,none,shortness of breath,0.9,0.03
+791,C0003507,stenosis aortic valve,none,pain,0.6,0.03
+792,C0006142,malignant neoplasm of breast or carcinoma breast,none,mass in breast,0.9,0.03
+793,C0006142,malignant neoplasm of breast or carcinoma breast,none,mass of body structure,0.6,0.03
+794,C0006142,malignant neoplasm of breast or carcinoma breast,none,paresthesia,0.3,0.03
+795,C0006142,malignant neoplasm of breast or carcinoma breast,none,retropulsion,0.1,0.03
+796,C0006142,malignant neoplasm of breast or carcinoma breast,none,erythema,0.6,0.03
+797,C0006142,malignant neoplasm of breast or carcinoma breast,none,difficulty,0.6,0.03
+798,C0006142,malignant neoplasm of breast or carcinoma breast,none,lesion,0.6,0.03
+799,C0006142,malignant neoplasm of breast or carcinoma breast,none,estrogen use,0.3,0.03
+800,C0006142,malignant neoplasm of breast or carcinoma breast,none,burning sensation,0.3,0.03
+801,C0006142,malignant neoplasm of breast or carcinoma breast,none,dyspnea,0.3,0.03
+802,C0006142,malignant neoplasm of breast or carcinoma breast,none,swelling,0.6,0.03
+803,C0006142,malignant neoplasm of breast or carcinoma breast,none,formication,0.1,0.03
+804,C0012813,diverticulitis,none,pain abdominal,0.6,0.03
+805,C0012813,diverticulitis,none,abscess bacterial,0.3,0.03
+806,C0012813,diverticulitis,none,dullness,0.3,0.03
+807,C0012813,diverticulitis,none,red blotches,0.3,0.03
+808,C0012813,diverticulitis,none,diarrhea,0.6,0.03
+809,C0012813,diverticulitis,none,sore to touch,0.6,0.03
+810,C0012813,diverticulitis,none,dysuria,0.6,0.03
+811,C0012813,diverticulitis,none,pain,0.9,0.03
+812,C0012813,diverticulitis,none,vomiting,0.6,0.03
+813,C0012813,diverticulitis,none,sinus rhythm,0.3,0.03
+814,C0012813,diverticulitis,none,colic abdominal,0.6,0.03
+815,C0012813,diverticulitis,none,apyrexial,0.3,0.03
+816,C0012813,diverticulitis,none,abdominal tenderness,0.9,0.03
+817,C0012813,diverticulitis,none,fever,0.6,0.03
+818,C0012813,diverticulitis,none,unsteady gait,0.3,0.03
+819,C0012813,diverticulitis,none,thicken,0.3,0.03
+820,C0012813,diverticulitis,none,urgency ofmicturition,0.6,0.03
+821,C0012813,diverticulitis,none,anorexia,0.6,0.03
+822,C0012813,diverticulitis,none,monoclonal,0.1,0.03
+823,C0012813,diverticulitis,none,constipation,0.6,0.03
+824,C0546817,overload fluid,none,rale,0.6,0.03
+825,C0546817,overload fluid,none,jugular venous distention,0.6,0.03
+826,C0546817,overload fluid,none,hyperkalemia,0.3,0.03
+827,C0546817,overload fluid,none,orthopnea,0.6,0.03
+828,C0546817,overload fluid,none,shortness of breath,0.9,0.03
+829,C0546817,overload fluid,none,drowsiness,0.6,0.03
+830,C0546817,overload fluid,none,sleepy,0.6,0.03
+831,C0546817,overload fluid,none,weight gain,0.6,0.03
+832,C0546817,overload fluid,none,hypokalemia,0.3,0.03
+833,C0546817,overload fluid,none,hypotension,0.6,0.03
+834,C0546817,overload fluid,none,swelling,0.9,0.03
+835,C0546817,overload fluid,none,distended abdomen,0.6,0.03
+836,C0030920,ulcer peptic,none,pain abdominal,0.6,0.03
+837,C0030920,ulcer peptic,none,paraparesis,0.1,0.03
+838,C0030920,ulcer peptic,none,nausea,0.9,0.03
+839,C0030920,ulcer peptic,none,vomiting,0.6,0.03
+840,C0030920,ulcer peptic,none,polymyalgia,0.3,0.03
+841,C0030920,ulcer peptic,none,out of breath,0.6,0.03
+842,C0030920,ulcer peptic,none,pain chest,0.6,0.03
+843,C0030920,ulcer peptic,none,hemiplegia,0.1,0.03
+844,C0030920,ulcer peptic,none,gurgle,0.3,0.03
+845,C0030920,ulcer peptic,none,hunger,0.6,0.03
+846,C0030920,ulcer peptic,none,apyrexial,0.3,0.03
+847,C0030920,ulcer peptic,none,nervousness,0.6,0.03
+848,C0029443,osteomyelitis,none,pain,0.9,0.03
+849,C0029443,osteomyelitis,none,redness,0.6,0.03
+850,C0029443,osteomyelitis,none,prostate tender,0.3,0.03
+851,C0029443,osteomyelitis,none,fever,0.9,0.03
+852,C0029443,osteomyelitis,none,difficulty passing urine,0.6,0.03
+853,C0029443,osteomyelitis,none,sore to touch,0.6,0.03
+854,C0029443,osteomyelitis,none,swelling,0.6,0.03
+855,C0029443,osteomyelitis,none,apyrexial,0.3,0.03
+856,C0029443,osteomyelitis,none,erythema,0.6,0.03
+857,C0029443,osteomyelitis,none,abscess bacterial,0.3,0.03
+858,C0029443,osteomyelitis,none,pain foot,0.6,0.03
+859,C0029443,osteomyelitis,none,urinary hesitation,0.6,0.03
+860,C0017152,gastritis,none,heme positive,0.3,0.03
+861,C0017152,gastritis,none,pain abdominal,0.6,0.03
+862,C0017152,gastritis,none,vomiting,0.6,0.03
+863,C0017152,gastritis,none,disequilibrium,0.3,0.03
+864,C0017152,gastritis,none,nausea,0.9,0.03
+865,C0017152,gastritis,none,intoxication,0.3,0.03
+866,C0017152,gastritis,none,haemorrhage,0.3,0.03
+867,C0017152,gastritis,none,guaiac positive,0.3,0.03
+868,C0017152,gastritis,none,pain,0.9,0.03
+869,C0017152,gastritis,none,decreased body weight,0.6,0.03
+870,C0017152,gastritis,none,sore to touch,0.6,0.03
+871,C0017152,gastritis,none,dizziness,0.6,0.03
+872,C0004610,bacteremia,none,fever,0.9,0.03
+873,C0004610,bacteremia,none,chill,0.6,0.03
+874,C0004610,bacteremia,none,flushing,0.6,0.03
+875,C0004610,bacteremia,none,unresponsiveness,0.3,0.03
+876,C0004610,bacteremia,none,indifferent mood,0.3,0.03
+877,C0004610,bacteremia,none,urinoma,0.1,0.03
+878,C0004610,bacteremia,none,vomiting,0.6,0.03
+879,C0004610,bacteremia,none,distended abdomen,0.3,0.03
+880,C0004610,bacteremia,none,hypoalbuminemia,0.3,0.03
+881,C0004610,bacteremia,none,pustule,0.1,0.03
+882,C0004610,bacteremia,none,prostatism,0.1,0.03
+883,C0004610,bacteremia,none,diarrhea,0.6,0.03
+884,C0004610,bacteremia,none,abdominal tenderness,0.6,0.03
+885,C0004610,bacteremia,none,pleuritic pain,0.3,0.03
+886,C0004610,bacteremia,none,decreased translucency,0.3,0.03
+887,C0004610,bacteremia,none,pallor,0.6,0.03
+888,C0035078,failure kidney,none,orthopnea,0.6,0.03
+889,C0035078,failure kidney,none,oliguria,0.6,0.03
+890,C0035078,failure kidney,none,slowing of urinary stream,0.6,0.03
+891,C0035078,failure kidney,none,extreme exhaustion,0.6,0.03
+892,C0035078,failure kidney,none,unresponsiveness,0.3,0.03
+893,C0035078,failure kidney,none,hypotension,0.6,0.03
+894,C0035078,failure kidney,none,enuresis,0.3,0.03
+895,C0035078,failure kidney,none,shortness of breath,0.9,0.03
+896,C0035078,failure kidney,none,haemorrhage,0.3,0.03
+897,C0035078,failure kidney,none,prostatism,0.3,0.03
+898,C0035078,failure kidney,none,no status change,0.3,0.03
+899,C0035078,failure kidney,none,bedridden,0.6,0.03
+900,C0035078,failure kidney,none,bedridden,0.6,0.03
+901,C0035078,failure kidney,none,fatigue,0.9,0.03
+902,C0002895,sickle cell anemia,none,breakthrough pain,0.6,0.03
+903,C0002895,sickle cell anemia,none,pain back,0.6,0.03
+904,C0002895,sickle cell anemia,none,pain,0.9,0.03
+905,C0002895,sickle cell anemia,none,shortness of breath,0.6,0.03
+906,C0002895,sickle cell anemia,none,snuffle,0.3,0.03
+907,C0002895,sickle cell anemia,none,pain chest,0.6,0.03
+908,C0002895,sickle cell anemia,none,pain abdominal,0.6,0.03
+909,C0002895,sickle cell anemia,none,hepatosplenomegaly,0.3,0.03
+910,C0002895,sickle cell anemia,none,green sputum,0.3,0.03
+911,C0002895,sickle cell anemia,none,apyrexial,0.3,0.03
+912,C0002895,sickle cell anemia,none,headache,0.6,0.03
+913,C0018801,failure heart,none,orthopnea,0.6,0.03
+914,C0018801,failure heart,none,fatigue,0.9,0.03
+915,C0018801,failure heart,none,dyspnea on exertion,0.9,0.03
+916,C0018801,failure heart,none,dyspnea,0.9,0.03
+917,C0018801,failure heart,none,shortness of breath,0.9,0.03
+918,C0018801,failure heart,none,pansystolic murmur,0.6,0.03
+919,C0018801,failure heart,none,jugular venous distention,0.6,0.03
+920,C0018801,failure heart,none,systolic ejection murmur,0.6,0.03
+921,C0018801,failure heart,none,hypotension,0.6,0.03
+922,C0018801,failure heart,none,angina pectoris,0.6,0.03
+923,C0018801,failure heart,none,hypokinesia,0.6,0.03
+924,C0041912,upper respiratory infection,none,cough,0.9,0.03
+925,C0041912,upper respiratory infection,none,throat sore,0.6,0.03
+926,C0041912,upper respiratory infection,none,wheezing,0.6,0.03
+927,C0041912,upper respiratory infection,none,shortness of breath,0.6,0.03
+928,C0041912,upper respiratory infection,none,labored breathing,0.6,0.03
+929,C0041912,upper respiratory infection,none,fever,0.9,0.03
+930,C0041912,upper respiratory infection,none,stuffy nose,0.6,0.03
+931,C0041912,upper respiratory infection,none,non,0.3,0.03
+932,C0041912,upper respiratory infection,none,snuffle,0.3,0.03
+933,C0041912,upper respiratory infection,none,indifferent mood,0.3,0.03
+934,C0041912,upper respiratory infection,none,egophony,0.3,0.03
+935,C0041912,upper respiratory infection,none,barking cough,0.3,0.03
+936,C0041912,upper respiratory infection,none,polymyalgia,0.3,0.03
+937,C0041912,upper respiratory infection,none,pleuritic pain,0.3,0.03
+938,C0041912,upper respiratory infection,none,night sweat,0.3,0.03
+939,C0041912,upper respiratory infection,none,dyspnea,0.6,0.03
+940,C0041912,upper respiratory infection,none,productive cough,0.6,0.03
+941,C0041912,upper respiratory infection,none,decreased translucency,0.3,0.03
+942,C0041912,upper respiratory infection,none,rhonchus,0.3,0.03
+943,C0041912,upper respiratory infection,none,rapid shallow breathing,0.3,0.03
+944,C0041912,upper respiratory infection,none,apyrexial,0.3,0.03
+945,C0041912,upper respiratory infection,none,noisy respiration,0.3,0.03
+946,C0041912,upper respiratory infection,none,nasal discharge present,0.6,0.03
+947,C0041912,upper respiratory infection,none,emphysematous change,0.1,0.03
+948,C0041912,upper respiratory infection,none,frail,0.3,0.03
+949,C0041912,upper respiratory infection,none,cystic lesion,0.1,0.03
+950,C0041912,upper respiratory infection,none,symptom aggravating factors,0.3,0.03
+951,C0041912,upper respiratory infection,none,hemodynamically stable,0.3,0.03
+952,C0019158,hepatitis,none,ascites,0.3,0.03
+953,C0019158,hepatitis,none,spontaneous rupture of membranes,0.1,0.03
+954,C0019158,hepatitis,none,tachypnea,0.6,0.03
+955,C0019158,hepatitis,none,pain abdominal,0.9,0.03
+956,C0019158,hepatitis,none,pruritus,0.6,0.03
+957,C0019158,hepatitis,none,anorexia,0.6,0.03
+958,C0019158,hepatitis,none,transaminitis,0.9,0.03
+959,C0019158,hepatitis,none,projectile vomiting,0.3,0.03
+960,C0019158,hepatitis,none,chill,0.6,0.03
+961,C0019158,hepatitis,none,distress respiratory,0.6,0.03
+962,C0019158,hepatitis,none,fever,0.9,0.03
+963,C0019158,hepatitis,none,vomiting,0.9,0.03
+964,C0020542,hypertension pulmonary,none,shortness of breath,0.9,0.03
+965,C0020542,hypertension pulmonary,none,Stahli,0.3,0.03
+966,C0020542,hypertension pulmonary,none,heavy legs,0.6,0.03
+967,C0020542,hypertension pulmonary,none,breath sounds decreased,0.6,0.03
+968,C0020542,hypertension pulmonary,none,neck stiffness,0.3,0.03
+969,C0020542,hypertension pulmonary,none,dyspnea on exertion,0.9,0.03
+970,C0020542,hypertension pulmonary,none,cyanosis,0.3,0.03
+971,C0020542,hypertension pulmonary,none,hypotension,0.1,0.03
+972,C0020542,hypertension pulmonary,none,leftatrialhypertrophy,0.3,0.03
+973,C0011168,deglutition disorder,none,paresthesia,0.6,0.03
+974,C0011168,deglutition disorder,none,titubation,0.3,0.03
+975,C0011168,deglutition disorder,none,dysarthria,0.6,0.03
+976,C0011168,deglutition disorder,none,painful swallowing,0.6,0.03
+977,C0011168,deglutition disorder,none,hoarseness,0.6,0.03
+978,C0011168,deglutition disorder,none,stridor,0.3,0.03
+979,C0011168,deglutition disorder,none,spasm,0.6,0.03
+980,C0011168,deglutition disorder,none,asthenia,0.6,0.03
+981,C0011168,deglutition disorder,none,dysdiadochokinesia,0.3,0.03
+982,C0011168,deglutition disorder,none,ataxia,0.3,0.03
+983,C0011168,deglutition disorder,none,achalasia,0.3,0.03
+984,C0011168,deglutition disorder,none,decreased body weight,0.6,0.03
+985,C0011168,deglutition disorder,none,stiffness,0.6,0.03
+986,C0011168,deglutition disorder,none,lesion,0.3,0.03
+987,C0011168,deglutition disorder,none,side pain,0.6,0.03
+988,C0018099,gout,none,hot flush,0.6,0.03
+989,C0018099,gout,none,pain,0.9,0.03
+990,C0018099,gout,none,redness,0.9,0.03
+991,C0018099,gout,none,swelling,0.9,0.03
+992,C0018099,gout,none,erythema,0.6,0.03
+993,C0018099,gout,none,emphysematous change,0.3,0.03
+994,C0018099,gout,none,sore to touch,0.6,0.03
+995,C0018099,gout,none,hypokinesia,0.3,0.03
+996,C0018099,gout,none,ascites,0.1,0.03
+997,C0018099,gout,none,patient non compliance,0.3,0.03
+998,C0040034,thrombocytopaenia,none,ecchymosis,0.6,0.03
+999,C0040034,thrombocytopaenia,none,monocytosis,0.3,0.03
+1000,C0040034,thrombocytopaenia,none,posteriorrhinorrhea,0.3,0.03
+1001,C0040034,thrombocytopaenia,none,haemorrhage,0.6,0.03
+1002,C0040034,thrombocytopaenia,none,tachypnea,0.6,0.03
+1003,C0040034,thrombocytopaenia,none,fever,0.9,0.03
+1004,C0040034,thrombocytopaenia,none,pruritus,0.3,0.03
+1005,C0040034,thrombocytopaenia,none,hypotension,0.1,0.03
+1006,C0040034,thrombocytopaenia,none,fatigue,0.6,0.03
+1007,C0020615,hypoglycemia,none,unresponsiveness,0.1,0.03
+1008,C0020615,hypoglycemia,none,hypothermia,0.3,0.03
+1009,C0020615,hypoglycemia,none,incoherent,0.6,0.03
+1010,C0020615,hypoglycemia,none,qt interval prolonged,0.3,0.03
+1011,C0020615,hypoglycemia,none,lameness,0.1,0.03
+1012,C0020615,hypoglycemia,none,claudication,0.1,0.03
+1013,C0020615,hypoglycemia,none,unconscious state,0.3,0.03
+1014,C0020615,hypoglycemia,none,clammy skin,0.6,0.03
+1015,C0020615,hypoglycemia,none,polyuria,0.6,0.03
+1016,C0020615,hypoglycemia,none,distress respiratory,0.3,0.03
+1017,C0020615,hypoglycemia,none,hypotension,0.3,0.03
+1018,C0032290,pneumonia aspiration,none,mediastinal shift,0.3,0.03
+1019,C0032290,pneumonia aspiration,none,fever,0.9,0.03
+1020,C0032290,pneumonia aspiration,none,clonus,0.3,0.03
+1021,C0032290,pneumonia aspiration,none,mental status changes,0.6,0.03
+1022,C0032290,pneumonia aspiration,none,decreased translucency,0.3,0.03
+1023,C0032290,pneumonia aspiration,none,unresponsiveness,0.1,0.03
+1024,C0032290,pneumonia aspiration,none,extreme exhaustion,0.6,0.03
+1025,C0032290,pneumonia aspiration,none,stupor,0.3,0.03
+1026,C0032290,pneumonia aspiration,none,seizure,0.3,0.03
+1027,C0032290,pneumonia aspiration,none,transaminitis,0.3,0.03
+1028,C0032290,pneumonia aspiration,none,hemiplegia,0.1,0.03
+1029,C0032290,pneumonia aspiration,none,cough,0.9,0.03
+1030,C0032290,pneumonia aspiration,none,gurgle,0.3,0.03
+1031,C0032290,pneumonia aspiration,none,pain,0.6,0.03
+1032,C0032290,pneumonia aspiration,none,diarrhea,0.6,0.03
+1033,C0032290,pneumonia aspiration,none,pain abdominal,0.6,0.03
+1034,C0009319,colitis,none,fever,0.6,0.03
+1035,C0009319,colitis,none,thicken,0.3,0.03
+1036,C0009319,colitis,none,green sputum,0.3,0.03
+1037,C0009319,colitis,none,vomiting,0.6,0.03
+1038,C0009319,colitis,none,nausea and vomiting,0.6,0.03
+1039,C0009319,colitis,none,awakening early,0.3,0.03
+1040,C0009319,colitis,none,pain,0.6,0.03
+1041,C0009319,colitis,none,nausea,0.6,0.03
+1042,C0009319,colitis,none,chill,0.3,0.03
+1043,C0009319,colitis,none,tenesmus,0.3,0.03
+1044,C0009319,colitis,none,urge incontinence,0.3,0.03
+1045,C0009319,colitis,none,pain abdominal,0.6,0.03
+1046,C0009319,colitis,none,hemodynamically stable,0.3,0.03
+1047,C1510475,diverticulosis,none,fecaluria,0.1,0.03
+1048,C1510475,diverticulosis,none,constipation,0.6,0.03
+1049,C1510475,diverticulosis,none,abscess bacterial,0.3,0.03
+1050,C1510475,diverticulosis,none,heme positive,0.3,0.03
+1051,C1510475,diverticulosis,none,lightheadedness,0.6,0.03
+1052,C1510475,diverticulosis,none,diarrhea,0.6,0.03
+1053,C1510475,diverticulosis,none,haemorrhage,0.3,0.03
+1054,C1510475,diverticulosis,none,pain,0.9,0.03
+1055,C1510475,diverticulosis,none,projectile vomiting,0.3,0.03
+1056,C1510475,diverticulosis,none,pneumatouria,0.1,0.03
+1057,C1510475,diverticulosis,none,cystic lesion,0.3,0.03
+1058,C1510475,diverticulosis,none,anorexia,0.6,0.03
+1059,C1510475,diverticulosis,none,nausea,0.9,0.03
+1060,C1510475,diverticulosis,none,feeling suicidal,0.1,0.03
+1061,C1510475,diverticulosis,none,feeling hopeless,0.3,0.03
+1062,C0038663,suicide attempt,none,hallucinations auditory,0.3,0.03
+1063,C0038663,suicide attempt,none,sleeplessness,0.6,0.03
+1064,C0038663,suicide attempt,none,suicidal,0.3,0.03
+1065,C0038663,suicide attempt,none,motor retardation,0.3,0.03
+1066,C0038663,suicide attempt,none,weepiness,0.6,0.03
+1067,C0038663,suicide attempt,none,unable to concentrate,0.6,0.03
+1068,C0038663,suicide attempt,none,todd paralysis,0.1,0.03
+1069,C0038663,suicide attempt,none,worry,0.9,0.03
+1070,C0038663,suicide attempt,none,fatigue,0.9,0.03
+1071,C0038663,suicide attempt,none,tremor,0.3,0.03
+1072,C0038663,suicide attempt,none,alcoholic withdrawal symptoms,0.3,0.03
+1073,C0038663,suicide attempt,none,agitation,0.6,0.03
+1074,C0038663,suicide attempt,none,unresponsiveness,0.3,0.03
+1075,C0038663,suicide attempt,none,blackout,0.3,0.03
+1076,C0038663,suicide attempt,none,withdraw,0.6,0.03
+1077,C0038663,suicide attempt,none,difficulty,0.6,0.03
+1078,C0038663,suicide attempt,none,irritable mood,0.9,0.03
+1079,C0038663,suicide attempt,none,sensory discomfort,0.3,0.03
+1080,C0038663,suicide attempt,none,drowsiness,0.6,0.03
+1081,C0038663,suicide attempt,none,formication,0.1,0.03
+1082,C0038663,suicide attempt,none,unconscious state,0.3,0.03
+1083,C0038663,suicide attempt,none,fever,0.3,0.03
+1084,C0038663,suicide attempt,none,cough,0.6,0.03
+1085,C0032305,Pneumocystiscariniipneumonia,none,yellow sputum,0.6,0.03
+1086,C0032305,Pneumocystiscariniipneumonia,none,cachexia,0.6,0.03
+1087,C0032305,Pneumocystiscariniipneumonia,none,chill,0.6,0.03
+1088,C0032305,Pneumocystiscariniipneumonia,none,decreased body weight,0.6,0.03
+1089,C0032305,Pneumocystiscariniipneumonia,none,productive cough,0.9,0.03
+1090,C0032305,Pneumocystiscariniipneumonia,none,myalgia,0.6,0.03
+1091,C0032305,Pneumocystiscariniipneumonia,none,diarrhea,0.3,0.03
+1092,C0032305,Pneumocystiscariniipneumonia,none,neck stiffness,0.3,0.03
+1093,C0032305,Pneumocystiscariniipneumonia,none,hacking cough,0.6,0.03
+1094,C0032305,Pneumocystiscariniipneumonia,none,dyspareunia,0.1,0.03
+1095,C0032305,Pneumocystiscariniipneumonia,none,hypokalemia,0.3,0.03
+1096,C0032305,Pneumocystiscariniipneumonia,none,dyspnea on exertion,0.9,0.03
+1097,C0032305,Pneumocystiscariniipneumonia,none,poor dentition,0.3,0.03
+1098,C0032305,Pneumocystiscariniipneumonia,none,transaminitis,0.3,0.03
+1099,C0032305,Pneumocystiscariniipneumonia,none,non,0.3,0.03
+1100,C0032305,Pneumocystiscariniipneumonia,none,headache,0.6,0.03
+1101,C0032305,Pneumocystiscariniipneumonia,none,floppy,0.1,0.03
+1102,C0032305,Pneumocystiscariniipneumonia,none,spontaneous rupture of membranes,0.1,0.03
+1103,C0019163,hepatitis B,none,inappropriate affect,0.3,0.03
+1104,C0019163,hepatitis B,none,tachypnea,0.6,0.03
+1105,C0019163,hepatitis B,none,yellow sputum,0.3,0.03
+1106,C0019163,hepatitis B,none,projectile vomiting,0.1,0.03
+1107,C0019163,hepatitis B,none,poor feeding,0.6,0.03
+1108,C0019163,hepatitis B,none,pain abdominal,0.6,0.03
+1109,C0019163,hepatitis B,none,abdominal tenderness,0.6,0.03
+1110,C0019163,hepatitis B,none,wheelchair bound,0.1,0.03
+1111,C0019163,hepatitis B,none,moan,0.3,0.03
+1112,C0030567,parkinson disease,none,achalasia,0.1,0.03
+1113,C0030567,parkinson disease,none,fall,0.6,0.03
+1114,C0030567,parkinson disease,none,stiffness,0.9,0.03
+1115,C0030567,parkinson disease,none,withdraw,0.3,0.03
+1116,C0030567,parkinson disease,none,agitation,0.6,0.03
+1117,C0030567,parkinson disease,none,hemiplegia,0.3,0.03
+1118,C0030567,parkinson disease,none,difficulty,0.6,0.03
+1119,C0030567,parkinson disease,none,unresponsiveness,0.3,0.03
+1120,C0030567,parkinson disease,none,syncope,0.3,0.03
+1121,C0030567,parkinson disease,none,facial paresis,0.3,0.03
+1122,C0030567,parkinson disease,none,orthostasis,0.3,0.03
+1123,C0030567,parkinson disease,none,worry,0.6,0.03
+1124,C0030567,parkinson disease,none,drowsiness,0.6,0.03
+1125,C0030567,parkinson disease,none,sleepy,0.6,0.03
+1126,C0030567,parkinson disease,none,hematuria,0.3,0.03
+1127,C0030567,parkinson disease,none,tremor,0.9,0.03
+1128,C0030567,parkinson disease,none,night sweat,0.3,0.03
+1129,C0030567,parkinson disease,none,mass of body structure,0.3,0.03
+1130,C0024299,lymphoma,none,lesion,0.6,0.03
+1131,C0024299,lymphoma,none,fever,0.9,0.03
+1132,C0024299,lymphoma,none,welt,0.3,0.03
+1133,C0024299,lymphoma,none,transaminitis,0.3,0.03
+1134,C0024299,lymphoma,none,decreased body weight,0.6,0.03
+1135,C0024299,lymphoma,none,ataxia,0.1,0.03
+1136,C0024299,lymphoma,none,tinnitus,0.1,0.03
+1137,C0024299,lymphoma,none,hydropneumothorax,0.1,0.03
+1138,C0024299,lymphoma,none,superimposition,0.3,0.03
+1139,C0024299,lymphoma,none,haemoptysis,0.3,0.03
+1140,C0024299,lymphoma,none,fatigue,0.9,0.03
+1141,C0024299,lymphoma,none,tired,0.9,0.03
+1142,C0024299,lymphoma,none,polydypsia,0.3,0.03
+1143,C0024299,lymphoma,none,difficulty passing urine,0.6,0.03
+1144,C0020456,hyperglycemia,none,sore to touch,0.3,0.03
+1145,C0020456,hyperglycemia,none,pruritus,0.3,0.03
+1146,C0020456,hyperglycemia,none,feeling strange,0.3,0.03
+1147,C0020456,hyperglycemia,none,pustule,0.3,0.03
+1148,C0020456,hyperglycemia,none,cushingoid facies,0.3,0.03
+1149,C0020456,hyperglycemia,none,cushingoidhabitus,0.3,0.03
+1150,C0020456,hyperglycemia,none,decreased body weight,0.6,0.03
+1151,C0020456,hyperglycemia,none,mood depressed,0.6,0.03
+1152,C0020456,hyperglycemia,none,estrogen use,0.3,0.03
+1153,C0020456,hyperglycemia,none,wheezing,0.3,0.03
+1154,C0020456,hyperglycemia,none,ascites,0.3,0.03
+1155,C0020456,hyperglycemia,none,seizure,0.3,0.03
+1156,C0085584,encephalopathy,none,uncoordination,0.6,0.03
+1157,C0085584,encephalopathy,none,asterixis,0.3,0.03
+1158,C0085584,encephalopathy,none,haemorrhage,0.1,0.03
+1159,C0085584,encephalopathy,none,drowsiness,0.9,0.03
+1160,C0085584,encephalopathy,none,sleepy,0.9,0.03
+1161,C0085584,encephalopathy,none,absences finding,0.6,0.03
+1162,C0085584,encephalopathy,none,posturing,0.3,0.03
+1163,C0085584,encephalopathy,none,aura,0.6,0.03
+1164,C0085584,encephalopathy,none,tonic seizures,0.3,0.03
+1165,C0085584,encephalopathy,none,debilitation,0.6,0.03
+1166,C0085584,encephalopathy,none,consciousness clear,0.1,0.03
+1167,C0085584,encephalopathy,none,unresponsiveness,0.6,0.03
+1168,C0085584,encephalopathy,none,thicken,0.3,0.03
+1169,C0085584,encephalopathy,none,hypokinesia,0.6,0.03
+1170,C0040961,tricuspid valve insufficiency,none,shortness of breath,0.9,0.03
+1171,C0040961,tricuspid valve insufficiency,none,pain,0.6,0.03
+1172,C0040961,tricuspid valve insufficiency,none,vomiting,0.3,0.03
+1173,C0040961,tricuspid valve insufficiency,none,nausea,0.6,0.03
+1174,C0040961,tricuspid valve insufficiency,none,bradycardia,0.3,0.03
+1175,C0040961,tricuspid valve insufficiency,none,pain abdominal,0.6,0.03
+1176,C0040961,tricuspid valve insufficiency,none,fever,0.6,0.03
+1177,C0040961,tricuspid valve insufficiency,none,cicatrisation,0.1,0.03
+1178,C0040961,tricuspid valve insufficiency,none,mediastinal shift,0.1,0.03
+1179,C0040961,tricuspid valve insufficiency,none,impaired cognition,0.3,0.03
+1180,C0002395,Alzheimer,none,drool,0.6,0.03
+1181,C0002395,Alzheimer,none,agitation,0.6,0.03
+1182,C0002395,Alzheimer,none,nightmare,0.6,0.03
+1183,C0002395,Alzheimer,none,rhonchus,0.6,0.03
+1184,C0002395,Alzheimer,none,consciousness clear,0.3,0.03
+1185,C0002395,Alzheimer,none,pin,0.3,0.03
+1186,C0002395,Alzheimer,none,bedridden,0.6,0.03
+1187,C0002395,Alzheimer,none,frail,0.6,0.03
+1188,C0002395,Alzheimer,none,tremor resting,0.6,0.03
+1189,C0002395,Alzheimer,none,hyperkalemia,0.3,0.03
+1190,C0002395,Alzheimer,none,facial paresis,0.3,0.03
+1191,C0002395,Alzheimer,none,groggy,0.6,0.03
+1192,C0002395,Alzheimer,none,muscle twitch,0.6,0.03
+1193,C0002395,Alzheimer,none,wheelchair bound,0.6,0.03
+1194,C0002395,Alzheimer,none,tremor,0.6,0.03
+1195,C0002395,Alzheimer,none,cough,0.6,0.03
+1196,C0002395,Alzheimer,none,fever,0.3,0.03
+1197,C0006840,candidiasis or oralcandidiasis,none,diarrhea,0.6,0.03
+1198,C0006840,candidiasis or oralcandidiasis,none,throat sore,0.9,0.03
+1199,C0006840,candidiasis or oralcandidiasis,none,decreased body weight,0.6,0.03
+1200,C0006840,candidiasis or oralcandidiasis,none,chill,0.6,0.03
+1201,C0006840,candidiasis or oralcandidiasis,none,headache,0.6,0.03
+1202,C0006840,candidiasis or oralcandidiasis,none,abdominal tenderness,0.6,0.03
+1203,C0006840,candidiasis or oralcandidiasis,none,patient non compliance,0.3,0.03
+1204,C0006840,candidiasis or oralcandidiasis,none,photophobia,0.3,0.03
+1205,C0006840,candidiasis or oralcandidiasis,none,night sweat,0.3,0.03
+1206,C0006840,candidiasis or oralcandidiasis,none,painful swallowing,0.9,0.03
+1207,C0006840,candidiasis or oralcandidiasis,none,poor dentition,0.3,0.03
+1208,C0006840,candidiasis or oralcandidiasis,none,transaminitis,0.3,0.03
+1209,C0006840,candidiasis or oralcandidiasis,none,non,0.3,0.03
+1210,C0006840,candidiasis or oralcandidiasis,none,adverse reaction,0.1,0.03
+1211,C0006840,candidiasis or oralcandidiasis,none,adverse effect,0.1,0.03
+1212,C0006840,candidiasis or oralcandidiasis,none,abdominal bloating,0.6,0.03
+1213,C0442874,neuropathy,none,asthenia,0.6,0.03
+1214,C0442874,neuropathy,none,numbness,0.6,0.03
+1215,C0442874,neuropathy,none,nausea and vomiting,0.6,0.03
+1216,C0442874,neuropathy,none,awakening early,0.3,0.03
+1217,C0442874,neuropathy,none,hydropneumothorax,0.1,0.03
+1218,C0442874,neuropathy,none,superimposition,0.3,0.03
+1219,C0442874,neuropathy,none,fatigability,0.6,0.03
+1220,C0442874,neuropathy,none,tenesmus,0.3,0.03
+1221,C0442874,neuropathy,none,pain,0.9,0.03
+1222,C0442874,neuropathy,none,slowing of urinary stream,0.3,0.03
+1223,C0023267,fibroid tumor,none,para 2,0.3,0.03
+1224,C0023267,fibroid tumor,none,haemorrhage,0.3,0.03
+1225,C0023267,fibroid tumor,none,abortion,0.3,0.03
+1226,C0023267,fibroid tumor,none,intermenstrual heavy bleeding,0.6,0.03
+1227,C0023267,fibroid tumor,none,muscle hypotonia,0.3,0.03
+1228,C0023267,fibroid tumor,none,hypotonic,0.3,0.03
+1229,C0023267,fibroid tumor,none,previous pregnancies 2,0.3,0.03
+1230,C0023267,fibroid tumor,none,shortness of breath,0.6,0.03
+1231,C0023267,fibroid tumor,none,fever,0.6,0.03
+1232,C0023267,fibroid tumor,none,heartburn,0.6,0.03
+1233,C0023267,fibroid tumor,none,primigravida,0.3,0.03
+1234,C0023267,fibroid tumor,none,abnormally hard consistency,0.3,0.03
+1235,C0023267,fibroid tumor,none,proteinemia,0.3,0.03
+1236,C0017601,glaucoma,none,fall,0.6,0.03
+1237,C0017601,glaucoma,none,distended abdomen,0.3,0.03
+1238,C0017601,glaucoma,none,unsteady gait,0.6,0.03
+1239,C0017601,glaucoma,none,paresthesia,0.3,0.03
+1240,C0017601,glaucoma,none,hyponatremia,0.3,0.03
+1241,C0017601,glaucoma,none,agitation,0.3,0.03
+1242,C0017601,glaucoma,none,unconscious state,0.1,0.03
+1243,C0017601,glaucoma,none,burning sensation,0.3,0.03
+1244,C0017601,glaucoma,none,lesion,0.3,0.03
+1245,C0017601,glaucoma,none,mass of body structure,0.3,0.03
+1246,C0027627,neoplasm metastasis,none,thicken,0.3,0.03
+1247,C0027627,neoplasm metastasis,none,tumor cell invasion,0.6,0.03
+1248,C0027627,neoplasm metastasis,none,metastatic lesion,0.6,0.03
+1249,C0027627,neoplasm metastasis,none,pain neck,0.6,0.03
+1250,C0027627,neoplasm metastasis,none,lung nodule,0.6,0.03
+1251,C0027627,neoplasm metastasis,none,pain,0.9,0.03
+1252,C0027627,neoplasm metastasis,none,pain abdominal,0.6,0.03
+1253,C0027627,neoplasm metastasis,none,food intolerance,0.3,0.03
+1254,C0027627,neoplasm metastasis,none,mass of body structure,0.6,0.03
+1255,C0027627,neoplasm metastasis,none,atypia,0.6,0.03
+1256,C0007102,malignant tumor of colon or carcinoma colon,none,lesion,0.6,0.03
+1257,C0007102,malignant tumor of colon or carcinoma colon,none,prostatism,0.3,0.03
+1258,C0007102,malignant tumor of colon or carcinoma colon,none,constipation,0.6,0.03
+1259,C0007102,malignant tumor of colon or carcinoma colon,none,general discomfort,0.6,0.03
+1260,C0007102,malignant tumor of colon or carcinoma colon,none,diarrhea,0.6,0.03
+1261,C0007102,malignant tumor of colon or carcinoma colon,none,pain abdominal,0.9,0.03
+1262,C0007102,malignant tumor of colon or carcinoma colon,none,urinary hesitation,0.3,0.03
+1263,C0007102,malignant tumor of colon or carcinoma colon,none,dizzy spells,0.6,0.03
+1264,C0007102,malignant tumor of colon or carcinoma colon,none,shooting pain,0.6,0.03
+1265,C0007102,malignant tumor of colon or carcinoma colon,none,bradycardia,0.3,0.03
+1266,C0007102,malignant tumor of colon or carcinoma colon,none,vomiting,0.6,0.03
+1267,C0007102,malignant tumor of colon or carcinoma colon,none,systolic ejection murmur,0.3,0.03
+1268,C0007102,malignant tumor of colon or carcinoma colon,none,nausea,0.9,0.03
+1269,C0007102,malignant tumor of colon or carcinoma colon,none,hyperemesis,0.3,0.03
+1270,C0007102,malignant tumor of colon or carcinoma colon,none,polydypsia,0.3,0.03
+1271,C0011880,ketoacidosis diabetic,none,polyuria,0.6,0.03
+1272,C0011880,ketoacidosis diabetic,none,vomiting,0.6,0.03
+1273,C0011880,ketoacidosis diabetic,none,nausea,0.6,0.03
+1274,C0011880,ketoacidosis diabetic,none,pain abdominal,0.6,0.03
+1275,C0011880,ketoacidosis diabetic,none,milky,0.3,0.03
+1276,C0011880,ketoacidosis diabetic,none,feeling strange,0.3,0.03
+1277,C0011880,ketoacidosis diabetic,none,gurgle,0.3,0.03
+1278,C0011880,ketoacidosis diabetic,none,nervousness,0.6,0.03
+1279,C0011880,ketoacidosis diabetic,none,abdominal tenderness,0.6,0.03
+1280,C0011880,ketoacidosis diabetic,none,regurgitates after swallowing,0.3,0.03
+1281,C0011880,ketoacidosis diabetic,none,vision blurred,0.6,0.03
+1282,C0011880,ketoacidosis diabetic,none,urinary hesitation,0.3,0.03
+1283,C0011880,ketoacidosis diabetic,none,diarrhea,0.6,0.03
+1284,C0011880,ketoacidosis diabetic,none,seizure,0.1,0.03
+1285,C0011880,ketoacidosis diabetic,none,aura,0.3,0.03
+1286,C0014549,tonic or tonic,none,drowsiness,0.6,0.03
+1287,C0014549,tonic or tonic,none,lip smacking,0.3,0.03
+1288,C0014549,tonic or tonic,none,myoclonus,0.3,0.03
+1289,C0014549,tonic or tonic,none,tremor,0.6,0.03
+1290,C0014549,tonic or tonic,none,phonophobia,0.3,0.03
+1291,C0014549,tonic or tonic,none,rolling of eyes,0.6,0.03
+1292,C0014549,tonic or tonic,none,sleepy,0.6,0.03
+1293,C0014549,tonic or tonic,none,hirsutism,0.3,0.03
+1294,C0014549,tonic or tonic,none,moody,0.6,0.03
+1295,C0014549,tonic or tonic,none,muscle twitch,0.6,0.03
+1296,C0014549,tonic or tonic,none,unresponsiveness,0.6,0.03
+1297,C0014549,tonic or tonic,none,headache,0.6,0.03
+1298,C0014549,tonic or tonic,none,ambidexterity,0.3,0.03
+1299,C0014549,tonic or tonic,none,absences finding,0.3,0.03
+1300,C0014549,tonic or tonic,none,spasm,0.6,0.03
+1301,C0014549,tonic or tonic,none,decreased body weight,0.6,0.03
+1302,C0014549,tonic or tonic,none,tumor cell invasion,0.1,0.03
+1303,C1145670,respiratory failure,none,hemiplegia,0.1,0.03
+1304,C1145670,respiratory failure,none,snore,0.3,0.03
+1305,C1145670,respiratory failure,none,unresponsiveness,0.6,0.03
+1306,C1145670,respiratory failure,none,productive cough,0.9,0.03
+1307,C1145670,respiratory failure,none,dyspnea,0.9,0.03
+1308,C1145670,respiratory failure,none,tachypnea,0.9,0.03
+1309,C1145670,respiratory failure,none,hyperkalemia,0.3,0.03
+1310,C1145670,respiratory failure,none,hypokinesia,0.3,0.03
+1311,C1145670,respiratory failure,none,sinus rhythm,0.6,0.03
+1312,C1145670,respiratory failure,none,general unsteadiness,0.6,0.03
+1313,C1145670,respiratory failure,none,bruit,0.3,0.03
+1314,C1145670,respiratory failure,none,consciousness clear,0.1,0.03
+1315,C1145670,respiratory failure,none,shortness of breath,0.9,0.03
+1316,C1145670,respiratory failure,none,lesion,0.3,0.03
+1317,C1145670,respiratory failure,none,redness,0.3,0.03
+1318,C0025202,melanoma,none,mass of body structure,0.3,0.03
+1319,C0025202,melanoma,none,paraparesis,0.1,0.03
+1320,C0025202,melanoma,none,fever,0.6,0.03
+1321,C0025202,melanoma,none,gravida 0,0.3,0.03
+1322,C0025202,melanoma,none,pain,0.6,0.03
+1323,C0025202,melanoma,none,pruritus,0.3,0.03
+1324,C0025202,melanoma,none,mass in breast,0.3,0.03
+1325,C0025202,melanoma,none,vomiting,0.3,0.03
+1326,C0025202,melanoma,none,diarrhea,0.3,0.03
+1327,C0017160,gastroenteritis,none,pain abdominal,0.6,0.03
+1328,C0017160,gastroenteritis,none,breath,0.6,0.03
+1329,C0017160,gastroenteritis,none,nausea,0.9,0.03
+1330,C0017160,gastroenteritis,none,decreased body weight,0.6,0.03
+1331,C0017160,gastroenteritis,none,sore to touch,0.3,0.03
+1332,C0017160,gastroenteritis,none,scleralicterus,0.3,0.03
+1333,C0017160,gastroenteritis,none,fever,0.9,0.03
+1334,C0017160,gastroenteritis,none,myalgia,0.6,0.03
+1335,C0017160,gastroenteritis,none,hyponatremia,0.3,0.03
+1336,C0017160,gastroenteritis,none,retch,0.6,0.03
+1337,C0017160,gastroenteritis,none,mass of body structure,0.3,0.03
+1338,C0017160,gastroenteritis,none,decreased body weight,0.6,0.03
+1339,C0242379,malignant neoplasm of lung or carcinoma of lung,none,lesion,0.9,0.03
+1340,C0242379,malignant neoplasm of lung or carcinoma of lung,none,cough,0.9,0.03
+1341,C0242379,malignant neoplasm of lung or carcinoma of lung,none,lung nodule,0.9,0.03
+1342,C0242379,malignant neoplasm of lung or carcinoma of lung,none,shortness of breath,0.9,0.03
+1343,C0242379,malignant neoplasm of lung or carcinoma of lung,none,haemoptysis,0.6,0.03
+1344,C0242379,malignant neoplasm of lung or carcinoma of lung,none,debilitation,0.6,0.03
+1345,C0242379,malignant neoplasm of lung or carcinoma of lung,none,gurgle,0.3,0.03
+1346,C0242379,malignant neoplasm of lung or carcinoma of lung,none,ache,0.3,0.03
+1347,C0242379,malignant neoplasm of lung or carcinoma of lung,none,rale,0.3,0.03
+1348,C0242379,malignant neoplasm of lung or carcinoma of lung,none,night sweat,0.3,0.03
+1349,C0242379,malignant neoplasm of lung or carcinoma of lung,none,decreased translucency,0.1,0.03
+1350,C0242379,malignant neoplasm of lung or carcinoma of lung,none,asthenia,0.1,0.03
+1351,C0242379,malignant neoplasm of lung or carcinoma of lung,none,metastatic lesion,0.1,0.03
+1352,C0242379,malignant neoplasm of lung or carcinoma of lung,none,agitation,0.1,0.03
+1353,C0242379,malignant neoplasm of lung or carcinoma of lung,none,irritable mood,0.1,0.03
+1354,C0031212,personality disorder,none,nightmare,0.3,0.03
+1355,C0031212,personality disorder,none,feeling hopeless,0.6,0.03
+1356,C0031212,personality disorder,none,transsexual,0.1,0.03
+1357,C0031212,personality disorder,none,hallucinations auditory,0.3,0.03
+1358,C0031212,personality disorder,none,irritable mood,0.9,0.03
+1359,C0031212,personality disorder,none,sleeplessness,0.6,0.03
+1360,C0031212,personality disorder,none,agitation,0.6,0.03
+1361,C0031212,personality disorder,none,weepiness,0.6,0.03
+1362,C0031212,personality disorder,none,mood depressed,0.9,0.03
+1363,C0031212,personality disorder,none,scratch marks,0.3,0.03
+1364,C0031212,personality disorder,none,nausea and vomiting,0.6,0.03
+1365,C0031212,personality disorder,none,extreme exhaustion,0.6,0.03
+1366,C0031212,personality disorder,none,side pain,0.3,0.03
+1367,C0031212,personality disorder,none,worry,0.9,0.03
+1368,C0031212,personality disorder,none,enuresis,0.3,0.03
+1369,C0031212,personality disorder,none,homelessness,0.1,0.03
+1370,C0031212,personality disorder,none,nervousness,0.9,0.03
+1371,C0031212,personality disorder,none,ascites,0.1,0.03
+1372,C0031212,personality disorder,none,pruritus,0.3,0.03
+1373,C0019204,primary carcinoma of the liver cells,none,mass of body structure,0.6,0.03
+1374,C0019204,primary carcinoma of the liver cells,none,splenomegaly,0.6,0.03
+1375,C0019204,primary carcinoma of the liver cells,none,lesion,0.6,0.03
+1376,C0019204,primary carcinoma of the liver cells,none,paresis,0.3,0.03
+1377,C0019204,primary carcinoma of the liver cells,none,tumor cell invasion,0.6,0.03
+1378,C0019204,primary carcinoma of the liver cells,none,room spinning,0.1,0.03
+1379,C0019204,primary carcinoma of the liver cells,none,haemorrhage,0.3,0.03
+1380,C0019204,primary carcinoma of the liver cells,none,thicken,0.3,0.03
+1381,C0019204,primary carcinoma of the liver cells,none,indifferent mood,0.3,0.03
+1382,C0019204,primary carcinoma of the liver cells,none,cachexia,0.6,0.03
+1383,C0019204,primary carcinoma of the liver cells,none,hypothermia,0.3,0.03
+1384,C0019204,primary carcinoma of the liver cells,none,pain abdominal,0.9,0.03
+1385,C0019204,primary carcinoma of the liver cells,none,hepatomegaly,0.9,0.03
+1386,C0019204,primary carcinoma of the liver cells,none,hematocrit decreased,0.6,0.03
+1387,C0019204,primary carcinoma of the liver cells,none,stupor,0.1,0.03
+1388,C0019204,primary carcinoma of the liver cells,none,decreased body weight,0.6,0.03
+1389,C0019204,primary carcinoma of the liver cells,none,shortness of breath,0.6,0.03
+1390,C0019204,primary carcinoma of the liver cells,none,cough,0.6,0.03
+1391,C0034067,emphysema pulmonary,none,behavior showing increased motor activity,0.6,0.03
+1392,C0034067,emphysema pulmonary,none,scar tissue,0.3,0.03
+1393,C0034067,emphysema pulmonary,none,dyspnea on exertion,0.9,0.03
+1394,C0034067,emphysema pulmonary,none,coordination abnormal,0.6,0.03
+1395,C0034067,emphysema pulmonary,none,myalgia,0.6,0.03
+1396,C0034067,emphysema pulmonary,none,hypercapnia,0.3,0.03
+1397,C0034067,emphysema pulmonary,none,clammy skin,0.6,0.03
+1398,C0034067,emphysema pulmonary,none,has religious belief,0.1,0.03
+1399,C0034067,emphysema pulmonary,none,room spinning,0.3,0.03
+1400,C0034067,emphysema pulmonary,none,moan,0.3,0.03
+1401,C0034067,emphysema pulmonary,none,night sweat,0.6,0.03
+1402,C0034067,emphysema pulmonary,none,cachexia,0.3,0.03
+1403,C0034067,emphysema pulmonary,none,symptom aggravating factors,0.3,0.03
+1404,C0034067,emphysema pulmonary,none,dyspnea,0.9,0.03
+1405,C0034067,emphysema pulmonary,none,rale,0.6,0.03
+1406,C0034067,emphysema pulmonary,none,flushing,0.6,0.03
+1407,C0034067,emphysema pulmonary,none,painful swallowing,0.3,0.03
+1408,C0034067,emphysema pulmonary,none,arthralgia,0.6,0.03
+1409,C0034067,emphysema pulmonary,none,choke,0.3,0.03
+1410,C0034067,emphysema pulmonary,none,tenesmus,0.3,0.03
+1411,C0034067,emphysema pulmonary,none,constipation,0.6,0.03
+1412,C0019112,hemorrhoids,none,haemorrhage,0.3,0.03
+1413,C0019112,hemorrhoids,none,bowel sounds decreased,0.6,0.03
+1414,C0019112,hemorrhoids,none,decreased stool caliber,0.6,0.03
+1415,C0019112,hemorrhoids,none,nausea and vomiting,0.6,0.03
+1416,C0019112,hemorrhoids,none,hunger,0.6,0.03
+1417,C0019112,hemorrhoids,none,diarrhea,0.6,0.03
+1418,C0019112,hemorrhoids,none,dizziness,0.6,0.03
+1419,C0019112,hemorrhoids,none,hyponatremia,0.3,0.03
+1420,C0019112,hemorrhoids,none,clonus,0.1,0.03
+1421,C0019112,hemorrhoids,none,pain,0.9,0.03
+1422,C0019112,hemorrhoids,none,achalasia,0.1,0.03
+1423,C0019112,hemorrhoids,none,burning sensation,0.6,0.03
+1424,C0019112,hemorrhoids,none,guaiac positive,0.6,0.03
+1425,C0019112,hemorrhoids,none,numbness of hand,0.3,0.03
+1426,C0019112,hemorrhoids,none,wheezing,0.3,0.03
+1427,C0019112,hemorrhoids,none,cough,0.6,0.03
+1428,C0006266,spasm bronchial,none,shortness of breath,0.9,0.03
+1429,C0006266,spasm bronchial,none,scar tissue,0.3,0.03
+1430,C0006266,spasm bronchial,none,apyrexial,0.6,0.03
+1431,C0006266,spasm bronchial,none,no known drug allergies,0.6,0.03
+1432,C0006266,spasm bronchial,none,pain,0.6,0.03
+1433,C0006266,spasm bronchial,none,productive cough,0.9,0.03
+1434,C0006266,spasm bronchial,none,throat sore,0.6,0.03
+1435,C0006266,spasm bronchial,none,dyspnea,0.9,0.03
+1436,C0006266,spasm bronchial,none,chest tightness,0.9,0.03
+1437,C0006266,spasm bronchial,none,hypoxemia,0.6,0.03
+1438,C0006266,spasm bronchial,none,tachypnea,0.6,0.03
+1439,C0006266,spasm bronchial,none,sensory discomfort,0.3,0.03
+1440,C0006266,spasm bronchial,none,fever,0.6,0.03
+1441,C0006266,spasm bronchial,none,vomiting,0.3,0.03
+1442,C0006266,spasm bronchial,none,rhonchus,0.6,0.03
+1443,C0006266,spasm bronchial,none,hemiplegia,0.1,0.03
+1444,C0006266,spasm bronchial,none,fremitus,0.3,0.03
+1445,C0003537,aphasia,none,clonus,0.1,0.03
+1446,C0003537,aphasia,none,egophony,0.1,0.03
+1447,C0003537,aphasia,none,facial paresis,0.1,0.03
+1448,C0003537,aphasia,none,aphagia,0.1,0.03
+1449,C0003537,aphasia,none,muscle twitch,0.1,0.03
+1450,C0003537,aphasia,none,paralyse,0.1,0.03
+1451,C0003537,aphasia,none,low back pain,0.1,0.03
+1452,C0003537,aphasia,none,charleyhorse,0.1,0.03
+1453,C0028756,obesity morbid,none,out of breath,0.9,0.03
+1454,C0028756,obesity morbid,none,sedentary,0.6,0.03
+1455,C0028756,obesity morbid,none,angina pectoris,0.6,0.03
+1456,C0028756,obesity morbid,none,cough,0.6,0.03
+1457,C0028756,obesity morbid,none,unhappy,0.6,0.03
+1458,C0028756,obesity morbid,none,labored breathing,0.9,0.03
+1459,C0028756,obesity morbid,none,hypothermia,0.3,0.03
+1460,C0028756,obesity morbid,none,dyspnea,0.9,0.03
+1461,C0028756,obesity morbid,none,hematocrit decreased,0.3,0.03
+1462,C0028756,obesity morbid,none,wheezing,0.6,0.03
+1463,C0028756,obesity morbid,none,hypoxemia,0.6,0.03
+1464,C0028756,obesity morbid,none,renal angle tenderness,0.3,0.03
+1465,C0028756,obesity morbid,none,feels hot,0.6,0.03
+1466,C0034186,pyelonephritis,none,fever,0.9,0.03
+1467,C0034186,pyelonephritis,none,pain,0.6,0.03
+1468,C0034186,pyelonephritis,none,urgency ofmicturition,0.6,0.03
+1469,C0034186,pyelonephritis,none,hematuria,0.3,0.03
+1470,C0034186,pyelonephritis,none,vomiting,0.6,0.03
+1471,C0034186,pyelonephritis,none,chill,0.6,0.03
+1472,C0034186,pyelonephritis,none,diarrhea,0.3,0.03
+1473,C0034186,pyelonephritis,none,nausea,0.6,0.03
+1474,C0034186,pyelonephritis,none,pain abdominal,0.6,0.03
+1475,C0034186,pyelonephritis,none,myalgia,0.3,0.03
+1476,C0014118,endocarditis,none,pleuritic pain,0.6,0.03
+1477,C0014118,endocarditis,none,thicken,0.3,0.03
+1478,C0014118,endocarditis,none,myalgia,0.6,0.03
+1479,C0014118,endocarditis,none,apyrexial,0.3,0.03
+1480,C0014118,endocarditis,none,night sweat,0.6,0.03
+1481,C0014118,endocarditis,none,flare,0.3,0.03
+1482,C0014118,endocarditis,none,shortness of breath,0.9,0.03
+1483,C0014118,endocarditis,none,orthopnea,0.6,0.03
+1484,C0014118,endocarditis,none,abscess bacterial,0.3,0.03
+1485,C0014118,endocarditis,none,hypotension,0.6,0.03
+1486,C0014118,endocarditis,none,cough,0.9,0.03
+1487,C0014118,endocarditis,none,metastatic lesion,0.1,0.03
+1488,C0014118,endocarditis,none,breath sounds decreased,0.6,0.03
+1489,C0014118,endocarditis,none,decreased body weight,0.6,0.03
+1490,C0014118,endocarditis,none,decreased body weight,0.6,0.03
+1491,C0014118,endocarditis,none,pulsusparadoxus,0.3,0.03
+1492,C0014118,endocarditis,none,hypokinesia,0.6,0.03
+1493,C0031039,effusion pericardial or pericardial effusion body substance,none,pericardial friction rub,0.6,0.03
+1494,C0031039,effusion pericardial or pericardial effusion body substance,none,dyspnea,0.6,0.03
+1495,C0031039,effusion pericardial or pericardial effusion body substance,none,shortness of breath,0.9,0.03
+1496,C0031039,effusion pericardial or pericardial effusion body substance,none,hemodynamically stable,0.6,0.03
+1497,C0031039,effusion pericardial or pericardial effusion body substance,none,cardiomegaly,0.6,0.03
+1498,C0031039,effusion pericardial or pericardial effusion body substance,none,hypotension,0.3,0.03
+1499,C0031039,effusion pericardial or pericardial effusion body substance,none,sputum purulent,0.3,0.03
+1500,C0031039,effusion pericardial or pericardial effusion body substance,none,facial paresis,0.1,0.03
+1501,C0031039,effusion pericardial or pericardial effusion body substance,none,pain,0.6,0.03
+1502,C0031039,effusion pericardial or pericardial effusion body substance,none,oliguria,0.3,0.03
+1503,C0031039,effusion pericardial or pericardial effusion body substance,none,blackout,0.3,0.03
+1504,C0031039,effusion pericardial or pericardial effusion body substance,none,intoxication,0.1,0.03
+1505,C0001973,chronic alcoholic intoxication,none,tremor,0.9,0.03
+1506,C0001973,chronic alcoholic intoxication,none,hallucinations auditory,0.6,0.03
+1507,C0001973,chronic alcoholic intoxication,none,suicidal,0.6,0.03
+1508,C0001973,chronic alcoholic intoxication,none,hoard,0.3,0.03
+1509,C0001973,chronic alcoholic intoxication,none,irritable mood,0.9,0.03
+1510,C0001973,chronic alcoholic intoxication,none,feeling hopeless,0.6,0.03
+1511,C0001973,chronic alcoholic intoxication,none,feeling suicidal,0.6,0.03
+1512,C0001973,chronic alcoholic intoxication,none,neologism,0.3,0.03
+1513,C0001973,chronic alcoholic intoxication,none,seizure,0.3,0.03
+1514,C0001973,chronic alcoholic intoxication,none,homelessness,0.3,0.03
+1515,C0001973,chronic alcoholic intoxication,none,sleeplessness,0.9,0.03
+1516,C0001973,chronic alcoholic intoxication,none,unconscious state,0.1,0.03
+1517,C0001973,chronic alcoholic intoxication,none,panic,0.6,0.03
+1518,C0001973,chronic alcoholic intoxication,none,breath sounds decreased,0.1,0.03
+1519,C0001973,chronic alcoholic intoxication,none,shortness of breath,0.6,0.03
+1520,C0032326,pneumothorax,none,dyspnea,0.9,0.03
+1521,C0032326,pneumothorax,none,cardiovascular finding,0.6,0.03
+1522,C0032326,pneumothorax,none,cardiovascular event,0.3,0.03
+1523,C0032326,pneumothorax,none,haemoptysis,0.3,0.03
+1524,C0032326,pneumothorax,none,cough,0.9,0.03
+1525,C0032326,pneumothorax,none,hypercapnia,0.3,0.03
+1526,C0032326,pneumothorax,none,soft tissue swelling,0.6,0.03
+1527,C0032326,pneumothorax,none,prostatism,0.1,0.03
+1528,C0032326,pneumothorax,none,agitation,0.6,0.03
+1529,C0011206,delirium,none,unsteady gait,0.6,0.03
+1530,C0011206,delirium,none,withdraw,0.6,0.03
+1531,C0011206,delirium,none,hyponatremia,0.3,0.03
+1532,C0011206,delirium,none,verbally abusive behavior,0.3,0.03
+1533,C0011206,delirium,none,feeling suicidal,0.3,0.03
+1534,C0011206,delirium,none,unresponsiveness,0.6,0.03
+1535,C0011206,delirium,none,worry,0.6,0.03
+1536,C0011206,delirium,none,drowsiness,0.6,0.03
+1537,C0011206,delirium,none,sleepy,0.6,0.03
+1538,C0011206,delirium,none,hallucinations auditory,0.3,0.03
+1539,C0011206,delirium,none,suicidal,0.3,0.03
+1540,C0011206,delirium,none,fever,0.6,0.03
+1541,C0011206,delirium,none,diarrhea,0.6,0.03
+1542,C0027947,neutropenia,none,transaminitis,0.3,0.03
+1543,C0027947,neutropenia,none,splenomegaly,0.1,0.03
+1544,C0027947,neutropenia,none,night sweat,0.6,0.03
+1545,C0027947,neutropenia,none,apyrexial,0.6,0.03
+1546,C0027947,neutropenia,none,lesion,0.6,0.03
+1547,C0027947,neutropenia,none,snuffle,0.3,0.03
+1548,C0027947,neutropenia,none,chill,0.6,0.03
+1549,C0027947,neutropenia,none,cough,0.9,0.03
+1550,C0027947,neutropenia,none,monoclonal,0.3,0.03
+1551,C0027947,neutropenia,none,hypocalcemia result,0.3,0.03
+1552,C0027947,neutropenia,none,oliguria,0.3,0.03
+1553,C0027947,neutropenia,none,rhd positive,0.1,0.03
+1554,C0027947,neutropenia,none,distress respiratory,0.6,0.03
+1555,C0020433,hyperbilirubinemia,none,cyanosis,0.1,0.03
+1556,C0020433,hyperbilirubinemia,none,tachypnea,0.6,0.03
+1557,C0020433,hyperbilirubinemia,none,para 1,0.3,0.03
+1558,C0020433,hyperbilirubinemia,none,bradycardia,0.1,0.03
+1559,C0020433,hyperbilirubinemia,none,breech presentation,0.3,0.03
+1560,C0020433,hyperbilirubinemia,none,cushingoid facies,0.1,0.03
+1561,C0020433,hyperbilirubinemia,none,cushingoidhabitus,0.1,0.03
+1562,C0020433,hyperbilirubinemia,none,cough,0.6,0.03
+1563,C0020433,hyperbilirubinemia,none,myalgia,0.6,0.03
+1564,C0021400,influenza,none,uncoordination,0.1,0.03
+1565,C0021400,influenza,none,fever,0.9,0.03
+1566,C0021400,influenza,none,pleuritic pain,0.3,0.03
+1567,C0021400,influenza,none,snuffle,0.3,0.03
+1568,C0021400,influenza,none,throat sore,0.6,0.03
+1569,C0021400,influenza,none,malaise,0.9,0.03
+1570,C0021400,influenza,none,debilitation,0.6,0.03
+1571,C0021400,influenza,none,symptom aggravating factors,0.3,0.03
+1572,C0021400,influenza,none,chill,0.9,0.03
+1573,C0021400,influenza,none,scleralicterus,0.1,0.03
+1574,C0021400,influenza,none,nasal flaring,0.3,0.03
+1575,C0021400,influenza,none,dysuria,0.3,0.03
+1576,C0021400,influenza,none,lip smacking,0.3,0.03
+1577,C0021400,influenza,none,headache,0.9,0.03
+1578,C0021400,influenza,none,sneeze,0.6,0.03
+1579,C0021400,influenza,none,snore,0.3,0.03
+1580,C0021400,influenza,none,green sputum,0.3,0.03
+1581,C0021400,influenza,none,shortness of breath,0.6,0.03
+1582,C0021400,influenza,none,distress respiratory,0.6,0.03
+1583,C0021400,influenza,none,blackout,0.1,0.03
+1584,C0021400,influenza,none,extreme exhaustion,0.6,0.03
+1585,C0439857,dependence,none,intoxication,0.6,0.03
+1586,C0439857,dependence,none,tremor,0.6,0.03
+1587,C0439857,dependence,none,agitation,0.6,0.03
+1588,C0439857,dependence,none,suicidal,0.3,0.03
+1589,C0439857,dependence,none,homelessness,0.3,0.03
+1590,C0439857,dependence,none,prostatism,0.3,0.03
+1591,C0439857,dependence,none,lethargy,0.6,0.03
+1592,C0439857,dependence,none,seizure,0.3,0.03
+1593,C0439857,dependence,none,muscle twitch,0.6,0.03
+1594,C0439857,dependence,none,stuffy nose,0.3,0.03
+1595,C0439857,dependence,none,feeling hopeless,0.6,0.03
+1596,C0439857,dependence,none,heavy legs,0.6,0.03
+1597,C0439857,dependence,none,rale,0.3,0.03
+1598,C0087086,thrombus,none,hypokinesia,0.6,0.03
+1599,C0087086,thrombus,none,anorexia,0.6,0.03
+1600,C0087086,thrombus,none,hypertonicity,0.3,0.03
+1601,C0087086,thrombus,none,shortness of breath,0.9,0.03
+1602,C0087086,thrombus,none,hypoalbuminemia,0.3,0.03
+1603,C0087086,thrombus,none,pruritus,0.6,0.03
+1604,C0087086,thrombus,none,sore to touch,0.6,0.03
+1605,C0087086,thrombus,none,hemodynamically stable,0.3,0.03
+1606,C0087086,thrombus,none,facial paresis,0.1,0.03
+1607,C0087086,thrombus,none,vomiting,0.6,0.03
+1608,C0087086,thrombus,none,stool color yellow,0.3,0.03
+1609,C0008325,cholecystitis,none,moan,0.3,0.03
+1610,C0008325,cholecystitis,none,nausea,0.6,0.03
+1611,C0008325,cholecystitis,none,pain abdominal,0.6,0.03
+1612,C0008325,cholecystitis,none,Murphy,0.3,0.03
+1613,C0008325,cholecystitis,none,flatulence,0.6,0.03
+1614,C0008325,cholecystitis,none,colic abdominal,0.6,0.03
+1615,C0008325,cholecystitis,none,pain,0.9,0.03
+1616,C0008325,cholecystitis,none,ascites,0.3,0.03
+1617,C0008325,cholecystitis,none,diarrhea,0.6,0.03
+1618,C0008325,cholecystitis,none,qt interval prolonged,0.3,0.03
+1619,C0008325,cholecystitis,none,cardiovascular finding,0.3,0.03
+1620,C0008325,cholecystitis,none,cardiovascular event,0.3,0.03
+1621,C0008325,cholecystitis,none,groggy,0.3,0.03
+1622,C0008325,cholecystitis,none,sinus rhythm,0.3,0.03
+1623,C0008325,cholecystitis,none,gasping for breath,0.3,0.03
+1624,C0008325,cholecystitis,none,constipation,0.6,0.03
+1625,C0008325,cholecystitis,none,feces in rectum,0.3,0.03
+1626,C0008325,cholecystitis,none,abnormally hard consistency,0.3,0.03
+1627,C0019291,herniahiatal,none,pain abdominal,0.6,0.03
+1628,C0019291,herniahiatal,none,fatigability,0.6,0.03
+1629,C0019291,herniahiatal,none,prodrome,0.3,0.03
+1630,C0019291,herniahiatal,none,vomiting,0.6,0.03
+1631,C0019291,herniahiatal,none,nausea,0.9,0.03
+1632,C0019291,herniahiatal,none,myalgia,0.9,0.03
+1633,C0019291,herniahiatal,none,hyponatremia,0.3,0.03
+1634,C0019291,herniahiatal,none,sore to touch,0.3,0.03
+1635,C0019291,herniahiatal,none,general discomfort,0.6,0.03
+1636,C0019291,herniahiatal,none,dyspnea on exertion,0.6,0.03
+1637,C0019291,herniahiatal,none,asterixis,0.1,0.03
+1638,C0019291,herniahiatal,none,guaiac positive,0.3,0.03
+1639,C0019291,herniahiatal,none,numbness of hand,0.3,0.03
+1640,C0019291,herniahiatal,none,headache,0.9,0.03
+1641,C0019291,herniahiatal,none,photophobia,0.6,0.03
+1642,C0030312,pancytopenia,none,hypoproteinemia,0.6,0.03
+1643,C0030312,pancytopenia,none,fatigue,0.9,0.03
+1644,C0030312,pancytopenia,none,haemorrhage,0.3,0.03
+1645,C0030312,pancytopenia,none,fatigability,0.6,0.03
+1646,C0030312,pancytopenia,none,cushingoid facies,0.3,0.03
+1647,C0030312,pancytopenia,none,cushingoidhabitus,0.3,0.03
+1648,C0030312,pancytopenia,none,stool color yellow,0.6,0.03
+1649,C0030312,pancytopenia,none,colic abdominal,0.6,0.03
+1650,C0008350,cholelithiasis or biliary calculus,none,vomiting,0.6,0.03
+1651,C0008350,cholelithiasis or biliary calculus,none,nausea,0.6,0.03
+1652,C0008350,cholelithiasis or biliary calculus,none,pain abdominal,0.6,0.03
+1653,C0008350,cholelithiasis or biliary calculus,none,pain,0.6,0.03
+1654,C0008350,cholelithiasis or biliary calculus,none,cushingoid facies,0.3,0.03
+1655,C0008350,cholelithiasis or biliary calculus,none,cushingoidhabitus,0.3,0.03
+1656,C0008350,cholelithiasis or biliary calculus,none,ascites,0.3,0.03
+1657,C0008350,cholelithiasis or biliary calculus,none,thicken,0.3,0.03
+1658,C0008350,cholelithiasis or biliary calculus,none,sore to touch,0.3,0.03
+1659,C0008350,cholelithiasis or biliary calculus,none,diarrhea,0.6,0.03
+1660,C0008350,cholelithiasis or biliary calculus,none,apyrexial,0.3,0.03
+1661,C0008350,cholelithiasis or biliary calculus,none,palpitation,0.3,0.03
+1662,C0039239,tachycardia sinus,none,leftatrialhypertrophy,0.3,0.03
+1663,C0039239,tachycardia sinus,none,sweat,0.6,0.03
+1664,C0039239,tachycardia sinus,none,sweating increased,0.6,0.03
+1665,C0039239,tachycardia sinus,none,alcohol binge episode,0.3,0.03
+1666,C0039239,tachycardia sinus,none,pressure chest,0.6,0.03
+1667,C0039239,tachycardia sinus,none,scar tissue,0.3,0.03
+1668,C0039239,tachycardia sinus,none,cardiovascular finding,0.6,0.03
+1669,C0039239,tachycardia sinus,none,cardiovascular event,0.3,0.03
+1670,C0039239,tachycardia sinus,none,orthostasis,0.6,0.03
+1671,C0039239,tachycardia sinus,none,shortness of breath,0.9,0.03
+1672,C0039239,tachycardia sinus,none,t wave inverted,0.3,0.03
+1673,C0039239,tachycardia sinus,none,vomiting,0.6,0.03
+1674,C0039239,tachycardia sinus,none,pain abdominal,0.6,0.03
+1675,C1258215,ileus,none,abscess bacterial,0.3,0.03
+1676,C1258215,ileus,none,abdomen acute,0.6,0.03
+1677,C1258215,ileus,none,air fluid level,0.3,0.03
+1678,C1258215,ileus,none,catching breath,0.1,0.03
+1679,C1258215,ileus,none,abdominal tenderness,0.9,0.03
+1680,C1258215,ileus,none,nausea,0.9,0.03
+1681,C1258215,ileus,none,sore to touch,0.6,0.03
+1682,C1258215,ileus,none,flatulence,0.6,0.03
+1683,C1258215,ileus,none,diarrhea,0.6,0.03
+1684,C1258215,ileus,none,mass of body structure,0.3,0.03
+1685,C1258215,ileus,none,apyrexial,0.3,0.03
+1686,C1258215,ileus,none,constipation,0.6,0.03
+1687,C1258215,ileus,none,thicken,0.3,0.03
+1688,C1258215,ileus,none,gravida 0,0.3,0.03
+1689,C1258215,ileus,none,pain abdominal,0.9,0.03
+1690,C0001511,adhesion,none,flatulence,0.6,0.03
+1691,C0001511,adhesion,none,pain,0.9,0.03
+1692,C0001511,adhesion,none,large,0.3,0.03
+1693,C0001511,adhesion,none,para 1,0.3,0.03
+1694,C0001511,adhesion,none,vomiting,0.6,0.03
+1695,C0001511,adhesion,none,lung nodule,0.3,0.03
+1696,C0001511,adhesion,none,breech presentation,0.3,0.03
+1697,C0001511,adhesion,none,shortness of breath,0.6,0.03
+1698,C0001511,adhesion,none,decreased body weight,0.6,0.03
+1699,C0001511,adhesion,none,immobile,0.3,0.03
+1700,C0001511,adhesion,none,unsteady gait,0.3,0.03
+1701,C0001511,adhesion,none,hallucinations visual,0.1,0.03
+1702,C0001511,adhesion,none,feeling suicidal,0.1,0.03
+1703,C0011253,delusion,none,loose associations,0.6,0.03
+1704,C0011253,delusion,none,giddy mood,0.6,0.03
+1705,C0011253,delusion,none,feeling hopeless,0.6,0.03
+1706,C0011253,delusion,none,agitation,0.9,0.03
+1707,C0011253,delusion,none,hallucinations auditory,0.6,0.03
+1708,C0011253,delusion,none,irritable mood,0.9,0.03
+1709,C0011253,delusion,none,sleeplessness,0.6,0.03
+1710,C0011253,delusion,none,neologism,0.3,0.03
+1711,C0011253,delusion,none,homicidal thoughts,0.1,0.03
+1712,C0011253,delusion,none,disturbed family,0.6,0.03
+1713,C0011253,delusion,none,worry,0.9,0.03
+1714,C0011253,delusion,none,decompensation,0.3,0.03
+1715,C0011253,delusion,none,verbally abusive behavior,0.6,0.03
+1716,C0011253,delusion,none,catatonia,0.1,0.03
+1717,C0011253,delusion,none,suicidal,0.6,0.03
+1718,C0011253,delusion,none,terrify,0.3,0.03
+1719,C0011253,delusion,none,blackout,0.3,0.03
+1720,C0011253,delusion,none,weepiness,0.6,0.03
+1721,C0011253,delusion,none,impaired cognition,0.6,0.03
+1722,C0233472,affect labile,none,extreme exhaustion,0.9,0.03
+1723,C0233472,affect labile,none,sleeplessness,0.6,0.03
+1724,C0233472,affect labile,none,enuresis,0.3,0.03
+1725,C0233472,affect labile,none,patient non compliance,0.3,0.03
+1726,C0233472,affect labile,none,feeling hopeless,0.6,0.03
+1727,C0233472,affect labile,none,hallucinations visual,0.1,0.03
+1728,C0233472,affect labile,none,bedridden,0.6,0.03
+1729,C0233472,affect labile,none,bedridden,0.6,0.03
+1730,C0233472,affect labile,none,prostatism,0.3,0.03
+1731,C0011127,decubitus ulcer,none,systolic murmur,0.1,0.03
+1732,C0011127,decubitus ulcer,none,frail,0.6,0.03
+1733,C0011127,decubitus ulcer,none,fever,0.6,0.03
