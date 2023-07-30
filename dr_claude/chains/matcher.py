@@ -69,7 +69,7 @@ class MatchingChain(Chain):
                 f"Retrieved {len(symptom.input_documents)} documents for {symptom.symptom}"
             )
             logger.debug(f"Retrieved documents: {symptom.input_documents}")
-        return self.run_matching_batch(symptom_list)
+        return self.run_matching_loop(symptom_list)
 
     async def _acall(
         self,

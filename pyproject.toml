@@ -24,6 +24,10 @@ pip = "^23.2.1"
 install = "^1.3.5"
 nvidia-cuda-cupti-cu11 = "^11.8.87"
 transformers = "^4.31.0"
+fastapi = "^0.100.1"
+uvicorn = "^0.23.1"
+jinja2 = "^3.1.2"
+websockets = "^11.0.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
