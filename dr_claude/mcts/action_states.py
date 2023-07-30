@@ -1,8 +1,10 @@
 import abc
+import loguru
 import copy
 import math
 import random
-from typing import Collection, Dict, List, Optional, Set, Union
+from typing import Collection, Dict, Generic, List, Optional, Set, TypeVar, Union
+from typing_extensions import Self
 
 import numpy as np
 
@@ -10,21 +12,24 @@ from dr_claude import datamodels
 from dr_claude.mcts import probability_calcs
 
 
-class ActionState(abc.ABC):
+T = TypeVar("T")
+
+
+class ActionState(abc.ABC, Generic[T]):
     """
     Base class for the state of the game
     """
 
     @abc.abstractmethod
-    def getCurrentPlayer(self):
+    def getCurrentPlayer(self) -> int:
         ...
 
     @abc.abstractmethod
-    def getPossibleActions(self):
+    def getPossibleActions(self) -> List[T]:
         ...
 
     @abc.abstractmethod
-    def takeAction(self, action):
+    def takeAction(self, action: T) -> Self:
         ...
 
     @abc.abstractmethod
@@ -36,18 +41,14 @@ class ActionState(abc.ABC):
         ...
 
 
-class NextBestActionState(ActionState, abc.ABC):
+class NextBestActionState(
+    ActionState[Union[datamodels.Symptom, datamodels.Condition]], abc.ABC
+):
     """
     base class for simulating next best action for diagnosis
     """
 
     diagnosis: Optional[datamodels.Condition] = None
-    pertinent_pos: Set[
-        datamodels.Symptom
-    ]  # symptoms that are confirmed pertinent positives
-    pertinent_neg: Set[
-        datamodels.Symptom
-    ]  # symptoms that are confirmed pertinent negatives
 
     def takeAction(
         self, action: Union[datamodels.Symptom, datamodels.Condition]
@@ -77,7 +78,35 @@ class NextBestActionState(ActionState, abc.ABC):
 DEFAULT_DISCOUNT_RATE = 0.1
 
 
-class SimulationNextActionState(NextBestActionState):
+class SimulationMixin:
+    dynamics: datamodels.ProbabilityMatrix
+    pertinent_pos: Set[datamodels.Symptom]
+    pertinent_neg: Set[datamodels.Symptom]
+
+    def getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
+        condition_posterior = self.getConditionProbabilityVector()
+        symptom_posterior = probability_calcs.compute_symptom_posterior_flat_prior_dict(
+            matrix=self.dynamics,
+            condition_probas=condition_posterior,
+        )
+        return symptom_posterior
+
+    def getConditionProbabilityVector(self) -> np.ndarray:
+        return probability_calcs.compute_condition_posterior_flat_prior(
+            self.dynamics,
+            pertinent_positives=self.pertinent_pos,
+            pertinent_negatives=self.pertinent_neg,
+        )
+
+    def getConditionProbabilityDict(self) -> Dict[datamodels.Condition, float]:
+        return probability_calcs.compute_condition_posterior_flat_prior_dict(
+            self.dynamics,
+            pertinent_positives=self.pertinent_pos,
+            pertinent_negatives=self.pertinent_neg,
+        )
+
+
+class SimulationNextActionState(SimulationMixin, NextBestActionState):
     def __init__(
         self,
         matrix: datamodels.ProbabilityMatrix,
@@ -109,16 +138,6 @@ class SimulationNextActionState(NextBestActionState):
     ) -> List[Union[datamodels.Symptom, datamodels.Condition]]:
         return list(self.remaining_symptoms.union(self.conditions))
 
-    def takeAction(
-        self, action: Union[datamodels.Symptom, datamodels.Condition]
-    ) -> "NextBestActionState":
-        if isinstance(action, datamodels.Symptom):
-            return self.handleSymptom(action)
-        elif isinstance(action, datamodels.Condition):
-            return self.handleDiagnostic(action)
-        else:
-            raise ValueError(f"Unknown action type {action}")
-
     def handleSymptom(self, symptom: datamodels.Symptom) -> "NextBestActionState":
         next_self = copy.deepcopy(self)
         next_self.remaining_symptoms.remove(symptom)
@@ -129,28 +148,6 @@ class SimulationNextActionState(NextBestActionState):
             next_self.pertinent_neg.add(symptom)
         self.increment_discount_factor()
         return next_self
-
-    def getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
-        condition_posterior = self.getConditionProbabilityVector()
-        symptom_posterior = probability_calcs.compute_symptom_posterior_flat_prior_dict(
-            matrix=self.dynamics,
-            condition_probas=condition_posterior,
-        )
-        return symptom_posterior
-
-    def getConditionProbabilityVector(self) -> np.ndarray:
-        return probability_calcs.compute_condition_posterior_flat_prior(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
-
-    def getConditionProbabilityDict(self) -> Dict[datamodels.Condition, float]:
-        return probability_calcs.compute_condition_posterior_flat_prior_dict(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
 
     def handleDiagnostic(
         self, condition: datamodels.Condition
@@ -171,3 +168,33 @@ class SimulationNextActionState(NextBestActionState):
         assert self.diagnosis is not None
         return conditions[self.dynamics.columns[self.diagnosis]]
 
+
+"""
+Rollout policy
+"""
+
+
+class RollOutPolicy(abc.ABC):
+    @abc.abstractmethod
+    def __call__(self, state: ActionState) -> float:
+        ...
+
+
+class RandomRollOutPolicy(RollOutPolicy):
+    def __call__(self, state: NextBestActionState) -> float:
+        while not state.isTerminal():
+            try:
+                actions_space = state.getPossibleActions()
+                action = random.choice(actions_space)
+            except IndexError:
+                raise Exception(
+                    "Non-terminal state has no possible actions: " + str(state)
+                )
+            state = state.takeAction(action)
+        return state.getReward()
+
+
+class ArgMaxDiagnosisRolloutPolicy(RollOutPolicy):
+    def __call__(self, state: SimulationNextActionState) -> float:
+        actions_space = state.getConditionProbabilityDict()
+        return max(actions_space.values())
