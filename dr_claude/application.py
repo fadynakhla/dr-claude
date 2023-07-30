@@ -234,7 +234,9 @@ async def run_chain(
         datamodels.Condition,
     ):
         top_k = get_top_k_condition_probas(state, k=K)
-        await websocket.send_json({"brain": [(c.name, p) for c, p in top_k]})
+        await websocket.send_json(
+            {"brain": "\n".join([f"{c.name}: {p*100:.2f}%" for c, p in top_k])}
+        )
 
         q_counter += 1
         if q_counter > 10:
