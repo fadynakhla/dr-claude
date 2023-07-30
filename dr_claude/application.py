@@ -237,6 +237,11 @@ async def run_chain(
         await websocket.send_json(
             {"brain": "\n".join([f"{c.name}: {p*100:.2f}%" for c, p in top_k])}
         )
+        if max(top_k, key=lambda x: x[1])[1] > 0.8:
+            await websocket.send_json(
+                {"condition": f"Is it {max(top_k, key=lambda x: x[1])[0].name}?"}
+            )
+            return max(top_k, key=lambda x: x[1])[0]
 
         q_counter += 1
         if q_counter > 10:
