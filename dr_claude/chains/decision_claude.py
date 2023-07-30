@@ -36,7 +36,8 @@ class DecisionClaude:
         self.chain = get_decision_claude()
 
     def __call__(self, actions: List[datamodels.Symptom], state):
-        inputs = self.get_action_picker_inputs(actions, state)
+        valid_actions = [action for action in actions if self.valid_action(action, state)]
+        inputs = self.get_action_picker_inputs(valid_actions, state)
         response = self.chain(inputs)
         action = response["text"].strip()
         logger.info(f"Chosen Action: {action}")
