@@ -6,6 +6,23 @@ A Next Best Action Engine to help healthcare professionals "pathfind" towards th
 
 We use a [Disease-Symptom Knowledge Database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html) for Dr Claude to reason over.
 
+## To-do:
+
+All the code was written in 24 hours, so there is some general refactoring and features to polish up to make Dr Claude more robust.
+
+Immediate priorities:
+
+- [ ] Improve the symptom retriever model
+- [ ] Improve efficiency of MCTS expansion step
+- [ ] Improve prompts and abstract away underlying LLM
+- [ ] Unit tests
+- [ ] General cleanup and refactoring!
+
+Next:
+
+- [ ] Async MCTS
+- [ ] Add: Dr Claude callback during MCTS
+
 ## 1. Getting Started
 
 We're using [Poetry](https://python-poetry.org/docs/) for managing dependencies.
