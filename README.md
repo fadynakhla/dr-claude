@@ -6,6 +6,8 @@ A Next Best Action Engine to help healthcare professionals "pathfind" towards th
 
 We use a [Disease-Symptom Knowledge Database](https://people.dbmi.columbia.edu/~friedma/Projects/DiseaseSymptomKB/index.html) for Dr Claude to reason over.
 
+Third Place Winner 🥉 at the [Anthropic Claude 2 Hackathon](https://claude2hackathon.devpost.com/)!
+
 ## To-do:
 
 All the code was written in 24 hours, so there is some general refactoring and features to polish up to make Dr Claude more robust.
@@ -26,7 +28,6 @@ Next:
 ## 1. Getting Started
 
 We're using [Poetry](https://python-poetry.org/docs/) for managing dependencies.
-
 
 Run `poetry install` to install dependencies, then `make app` to start the engine.
 
