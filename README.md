@@ -14,6 +14,7 @@ All the code was written in 24 hours, so there is some general refactoring and f
 
 Immediate priorities:
 
+- [ ] Add non-websocket endpoints
 - [ ] Improve the symptom retriever model
 - [ ] Improve efficiency of MCTS expansion step
 - [ ] Improve prompts and abstract away underlying LLM
