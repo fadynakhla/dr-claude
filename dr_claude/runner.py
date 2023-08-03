@@ -28,8 +28,7 @@ def main():
 
     action_picker = decision_claude.DecisionClaude()
     note = ("The patient has syncope, vertigo, nausea and is sweating",)
-    embedding_model_name = "/data/models/RoSaBERTa_large/"
-    # embedding_model_name = "roberta-large"
+    embedding_model_name = "roberta-large"
     retrieval_config = retriever.HuggingFaceEncoderEmbeddingsConfig(
         model_name_or_path=embedding_model_name,
         device="cpu",
