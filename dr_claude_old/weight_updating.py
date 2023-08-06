@@ -9,7 +9,7 @@ from langchain.llms import Anthropic
 from langchain import LLMChain, PromptTemplate
 from langchain.schema import BaseOutputParser
 
-from dr_claude import datamodels
+from dr_claude_old import datamodels
 
 DEFAULT_FREQ_TERM_TO_WEIGHT = {
     "Very common": 0.9,
@@ -109,7 +109,7 @@ async def get_updated_weights(
 
 
 def main() -> None:
-    from dr_claude import kb_reading
+    from dr_claude_old import kb_reading
 
     llm = Anthropic(model="claude-2", temperature=0.0, max_tokens_to_sample=2000)
     prompt_template = """Here is a list of symptoms for the condition {condition}.

@@ -8,8 +8,8 @@ from typing_extensions import Self
 
 import numpy as np
 
-from dr_claude import datamodels
-from dr_claude.claude_mcts import probability_calcs
+from dr_claude_old import datamodels
+from dr_claude_old.claude_mcts import probability_calcs
 
 
 T = TypeVar("T")

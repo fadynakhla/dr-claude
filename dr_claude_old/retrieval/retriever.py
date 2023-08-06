@@ -3,7 +3,7 @@ from transformers import AutoTokenizer, AutoModel
 from langchain.vectorstores import FAISS
 from langchain.vectorstores.utils import DistanceStrategy
 
-from dr_claude.retrieval.embeddings import (
+from dr_claude_old.retrieval.embeddings import (
     HuggingFaceEncoderEmbeddings,
     HuggingFaceEncoderEmbeddingsConfig,
 )

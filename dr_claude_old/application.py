@@ -11,10 +11,10 @@ from langchain.callbacks.base import AsyncCallbackHandler, BaseCallbackHandler
 
 from loguru import logger
 
-from dr_claude import kb_reading, datamodels, chaining_the_chains
-from dr_claude.retrieval import retriever
-from dr_claude.claude_mcts import action_states, multi_choice_mcts
-from dr_claude.chains import (
+from dr_claude_old import kb_reading, datamodels, chaining_the_chains
+from dr_claude_old.retrieval import retriever
+from dr_claude_old.claude_mcts import action_states, multi_choice_mcts
+from dr_claude_old.chains import (
     decision_claude,
     matcher,
     prompts,
@@ -26,7 +26,7 @@ from dr_claude.chains import (
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
-from dr_claude.retrieval.retriever import HuggingFAISS
+from dr_claude_old.retrieval.retriever import HuggingFAISS
 import json
 from loguru import logger
 

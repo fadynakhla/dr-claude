@@ -5,8 +5,8 @@ from langchain.chat_models import ChatAnthropic
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
-from dr_claude import datamodels
-from dr_claude.claude_mcts import action_states
+from dr_claude_old import datamodels
+from dr_claude_old.claude_mcts import action_states
 
 
 logger = loguru.logger

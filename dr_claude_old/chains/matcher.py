@@ -14,8 +14,8 @@ from langchain.docstore.document import Document
 from langchain.vectorstores.base import VectorStoreRetriever
 from langchain.schema.output_parser import BaseOutputParser
 
-from dr_claude.retrieval.retriever import HuggingFAISS
-from dr_claude.retrieval.embeddings import HuggingFaceEncoderEmbeddingsConfig
+from dr_claude_old.retrieval.retriever import HuggingFAISS
+from dr_claude_old.retrieval.embeddings import HuggingFaceEncoderEmbeddingsConfig
 
 
 logger = loguru.logger
@@ -260,7 +260,7 @@ def parse_xml_line(line: str) -> str:
 
 
 if __name__ == "__main__":
-    from dr_claude.chains import prompts
+    from dr_claude_old.chains import prompts
 
     chain = MatchingChain.from_anthropic(
         symptom_extract_prompt=prompts.SYMPTOM_EXTRACT_PROMPT,

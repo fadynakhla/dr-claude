@@ -2,10 +2,10 @@ from typing import List, Union, Dict
 import mcts
 from loguru import logger
 
-from dr_claude import kb_reading, datamodels, chaining_the_chains
-from dr_claude.retrieval import retriever
-from dr_claude.claude_mcts import action_states, multi_choice_mcts
-from dr_claude.chains import decision_claude, doctor, matcher, patient, prompts
+from dr_claude_old import kb_reading, datamodels, chaining_the_chains
+from dr_claude_old.retrieval import retriever
+from dr_claude_old.claude_mcts import action_states, multi_choice_mcts
+from dr_claude_old.chains import decision_claude, doctor, matcher, patient, prompts
 
 
 def main():
