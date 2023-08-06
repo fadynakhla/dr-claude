@@ -1,7 +1,7 @@
 from dr_claude import datamodels
 
 
-def test_matrix():
+def test_to_numpy():
     db = datamodels.DiseaseSymptomKnowledgeBase(
         condition_symptoms={
             datamodels.Condition(name="COVID-19", umls_code="C0000001"): [

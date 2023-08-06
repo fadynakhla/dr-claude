@@ -75,8 +75,11 @@ class WeightedSymptom(Symptom):
         frozen = True
 
     def __eq__(self, other: Any) -> bool:
+        # TODO: This is not a good __eq__ method!
+        # If isinstance(other, type(self)), then matrix slicing will break
+        # Needs refactoring...
         return (
-            isinstance(other, type(self))
+            isinstance(other, Symptom)
             and self.name == other.name
             and self.umls_code == other.umls_code
         )

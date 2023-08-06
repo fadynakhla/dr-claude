@@ -18,7 +18,6 @@ def test_conditional_condition_proba():
         umls_code="C0000004",
         weight=0.5,
     )
-
     common_symptom = datamodels.WeightedSymptom(
         name="Fever", umls_code="C0000002", weight=0.5
     )
@@ -35,7 +34,6 @@ def test_conditional_condition_proba():
         pertinent_positives=[common_symptom, condition_1_differential_symptom],
         pertinent_negatives=[condition_2_differential_symptom],
     )
-
     assert conditional_probas[condition_1] > conditional_probas[condition_2]
 
 

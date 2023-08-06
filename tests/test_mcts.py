@@ -1,19 +1,15 @@
-import copy
-import random
 from typing import Callable, Collection
-
+import random
 import loguru
 from loguru import logger
 
-from dr_claude_old import datamodels
-from dr_claude_old.claude_mcts import action_states
-
 import mcts
+from dr_claude import datamodels
+from dr_claude.planning import states
+from dr_claude.kb import kb_reading
 
-from dr_claude_old import kb_reading
 
-
-class PatientWithConditionMixin(action_states.SimulationMixin):
+class PatientWithConditionMixin(states.SimulationMixin):
     """
     A mixin for debugging convergence (patient with a condition)
     """
@@ -24,24 +20,16 @@ class PatientWithConditionMixin(action_states.SimulationMixin):
         self.condition = condition
         self.true_pertinent_positives = pert_pos
 
-    # def handleSymptom(self, symptom: datamodels.Symptom) -> Self:
-    #     next_self = copy.deepcopy(self)
-    #     if symptom in next_self.true_pertinent_positives:
-    #         next_self.pertinent_pos.add(symptom)
-    #     else:
-    #         next_self.pertinent_neg.add(symptom)
-    #     return next_self
-
 
 class ConvergenceTestState(
     PatientWithConditionMixin,
-    action_states.SimulationNextActionState,
+    states.SimulationNextActionState,
 ):
     ...
 
 
 def logtrueconditionhook(
-    rollout_policy: action_states.RollOutPolicy, log_freq: int = 10
+    rollout_policy: states.RollOutPolicy, log_freq: int = 10
 ) -> Callable[[ConvergenceTestState], float]:
     counter = int()
 
@@ -72,13 +60,13 @@ def test_convergence():
         if matrix[symptom, the_condition] > symptom.noise_rate
     ]
     state = ConvergenceTestState(matrix, discount_rate=1e-9)
-    # state = action_states.SimulationNextActionState(matrix, discount_rate=1e-9)
+    # state = states.SimulationNextActionState(matrix, discount_rate=1e-9)
 
     state.set_condition(the_condition, the_symptoms)
     state.pertinent_pos.update(random.choices(the_symptoms, k=1))
 
     ## Rollout policy
-    rollout_policy = action_states.ArgMaxDiagnosisRolloutPolicy()
+    rollout_policy = states.ArgMaxDiagnosisRolloutPolicy()
     rollout_policy = logtrueconditionhook(rollout_policy)
 
     ## create the initial state
