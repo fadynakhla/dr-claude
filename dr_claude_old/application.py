@@ -1,13 +1,12 @@
-from typing import Optional, Tuple, Union, Dict, Any, List
+from typing import Optional, Tuple, Any, List
 import asyncio
+import json
 import nest_asyncio
 from uuid import UUID
 from langchain.schema.output import LLMResult
-from starlette.templating import _TemplateResponse
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
-import mcts
-from langchain.callbacks.base import AsyncCallbackHandler, BaseCallbackHandler
+from langchain.callbacks.base import BaseCallbackHandler
 
 from loguru import logger
 
@@ -22,28 +21,13 @@ from dr_claude_old.chains import (
     patient,
     cc_prompts,
 )
-
-
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.templating import Jinja2Templates
 from dr_claude_old.retrieval.retriever import HuggingFAISS
-import json
-from loguru import logger
 
 import transformers
 
 transformers.set_seed(42)
 
 app = FastAPI()
-
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],  # Allows all origins
-#     allow_credentials=True,
-#     allow_methods=["*"],  # Allows all methods
-#     allow_headers=["*"],  # Allows all headers
-# )
 
 nest_asyncio.apply()
 

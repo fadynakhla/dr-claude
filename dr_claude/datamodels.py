@@ -1,6 +1,7 @@
 import collections
 import itertools
 from typing import (
+    Any,
     Dict,
     List,
     NamedTuple,
@@ -16,34 +17,6 @@ import numpy as np
 import pydantic
 
 
-@runtime_checkable
-class HasUMLS(Protocol):
-    """
-    UMLS Mixin
-    """
-
-    umls_code: str
-
-
-HasUMLSClass = TypeVar("HasUMLSClass", bound=HasUMLS)
-
-
-def set_umls_methods(cls: Type[HasUMLSClass]) -> Type[HasUMLSClass]:
-    def __hash__(self: HasUMLSClass) -> int:
-        return hash(self.umls_code)
-
-    def __eq__(self: HasUMLSClass, other: object) -> bool:
-        return (
-            isinstance(other, HasUMLS)
-            and self.umls_code == other.umls_code
-            and self.name
-        )
-
-    cls.__hash__ = __hash__
-    cls.__eq__ = __eq__
-    return cls
-
-
 class Symptom(pydantic.BaseModel):
     """
     Symptom
@@ -56,11 +29,12 @@ class Symptom(pydantic.BaseModel):
     class Config:
         frozen = True
 
-    def __eq__(self, other):
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, Symptom):
+            return False
         return self.name == other.name and self.umls_code == other.umls_code
 
 
-@set_umls_methods
 class Condition(pydantic.BaseModel):
     """
     Condition
