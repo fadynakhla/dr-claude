@@ -1,3 +1,4 @@
+"""Langchain callbacks to send data through the websocket on certain events."""
 from typing import List, Any
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.schema.output import LLMResult

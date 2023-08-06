@@ -5,21 +5,22 @@ from typing import (
     Dict,
     List,
     NamedTuple,
-    Protocol,
     Tuple,
-    Type,
-    TypeVar,
     Union,
-    runtime_checkable,
 )
-
 import numpy as np
 import pydantic
 
 
+class SymptomMatch(pydantic.BaseModel):
+    symptom_match: str
+    present: bool
+
+
 class Symptom(pydantic.BaseModel):
+
     """
-    Symptom
+    A knowledge base symptom representation
     """
 
     name: str
@@ -30,15 +31,27 @@ class Symptom(pydantic.BaseModel):
         frozen = True
 
     def __eq__(self, other: Any) -> bool:
-        if not isinstance(other, Symptom):
-            return False
-        return self.name == other.name and self.umls_code == other.umls_code
+        return (
+            isinstance(other, Symptom)
+            and self.name == other.name
+            and self.umls_code == other.umls_code
+        )
+
+    def __hash__(self) -> int:
+        return hash(self.name) ^ hash(self.umls_code)
 
 
 class Condition(pydantic.BaseModel):
     """
-    Condition
+    A knowledge base condition representation
     """
+
+    def __eq__(self, other: Any) -> bool:
+        return (
+            isinstance(other, Condition)
+            and self.name == other.name
+            and self.umls_code == other.umls_code
+        )
 
     def __hash__(self) -> int:
         return hash(self.name)
@@ -52,7 +65,8 @@ class Condition(pydantic.BaseModel):
 
 class WeightedSymptom(Symptom):
     """
-    Weight
+    A symptom with a weight representing the conditional probability
+    of the symptom given a condition.
     """
 
     weight: float  # between 0,1
@@ -60,17 +74,24 @@ class WeightedSymptom(Symptom):
     class Config:
         frozen = True
 
-    def __eq__(self, other):
-        return self.name == other.name and self.umls_code == other.umls_code
+    def __eq__(self, other: Any) -> bool:
+        return (
+            isinstance(other, type(self))
+            and self.name == other.name
+            and self.umls_code == other.umls_code
+        )
+
+    def __hash__(self) -> int:
+        return hash(self.name) ^ hash(self.umls_code)
 
 
 class DiseaseSymptomKnowledgeBase(pydantic.BaseModel):
+    """
+    The disease symptom knowledge base is a mapping from conditions
+    to weighted symptoms.
+    """
+
     condition_symptoms: Dict[Condition, List[WeightedSymptom]]
-
-
-"""
-Helper methods
-"""
 
 
 class ProbabilityMatrix(NamedTuple):
@@ -153,8 +174,3 @@ class DiseaseSymptomKnowledgeBaseTransformer:
             rows=dict(symptom_idx),
             columns=dict(disease_idx),
         )
-
-
-class SymptomMatch(pydantic.BaseModel):
-    symptom_match: str
-    present: bool
