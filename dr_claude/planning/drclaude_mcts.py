@@ -9,7 +9,7 @@ from dr_claude.planning import states
 
 
 class MultiChildMixin(MCTS):
-    def search(self, initialState: states.ActionState, top_k: int):
+    def search(self, initialState: states.StateBase, top_k: int):
         self.root = TreeNode(initialState, None)
 
         if self.limitType == "time":

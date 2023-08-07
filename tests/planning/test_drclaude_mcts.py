@@ -23,7 +23,7 @@ class PatientWithConditionMixin(states.SimulationMixin):
 
 class ConvergenceTestState(
     PatientWithConditionMixin,
-    states.SimulationNextActionState,
+    states.DiagnosticStateWithDynamicModel,
 ):
     ...
 
@@ -37,7 +37,7 @@ def logtrueconditionhook(
         nonlocal counter
         counter += 1
         if not counter % log_freq:
-            probas = state.getConditionProbabilityDict()
+            probas = state._getConditionProbabilityDict()
             true_condition_proba = probas[state.condition]
             loguru.logger.debug(f"{true_condition_proba=} after {counter} rollouts")
         return rollout_policy(state)

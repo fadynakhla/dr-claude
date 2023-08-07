@@ -15,6 +15,49 @@ class VectorTransformer:
         return {item: vector[i] for item, i in index.items()}
 
 
+class DiagnosticDynamics:
+    """A class that exposes useful dynamics functions over a probability matrix."""
+
+    def __init__(self, probability_matrix: datamodels.ProbabilityMatrix) -> None:
+        self._probability_matrix = probability_matrix
+
+    def getSymptomProbabilityDict(
+        self,
+        pertinent_positives: Collection[datamodels.Symptom],
+        pertinent_negatives: Collection[datamodels.Symptom],
+    ) -> Dict[datamodels.Symptom, float]:
+        condition_posterior = self.getConditionProbabilityVector(
+            pertinent_positives, pertinent_negatives
+        )
+        symptom_posterior = compute_symptom_posterior_flat_prior_dict(
+            matrix=self._probability_matrix,
+            condition_probas=condition_posterior,
+        )
+        return symptom_posterior
+
+    def getConditionProbabilityVector(
+        self,
+        pertinent_positives: Collection[datamodels.Symptom],
+        pertinent_negatives: Collection[datamodels.Symptom],
+    ) -> np.ndarray:
+        return compute_condition_posterior_flat_prior(
+            self._probability_matrix,
+            pertinent_positives=pertinent_positives,
+            pertinent_negatives=pertinent_negatives,
+        )
+
+    def getConditionProbabilityDict(
+        self,
+        pertinent_positives: Collection[datamodels.Symptom],
+        pertinent_negatives: Collection[datamodels.Symptom],
+    ) -> Dict[datamodels.Condition, float]:
+        return compute_condition_posterior_flat_prior_dict(
+            self._probability_matrix,
+            pertinent_positives=pertinent_positives,
+            pertinent_negatives=pertinent_negatives,
+        )
+
+
 def compute_symptom_posterior_flat_prior_dict(
     matrix: datamodels.ProbabilityMatrix,
     condition_probas: Annotated[np.ndarray, "p(condition)"],

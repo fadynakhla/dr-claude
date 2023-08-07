@@ -11,13 +11,14 @@ import numpy as np
 from dr_claude import datamodels
 from dr_claude.planning import probabilistic
 
+DEFAULT_DISCOUNT_RATE = 0.1
 
 T = TypeVar("T")
 
 
-class ActionState(abc.ABC, Generic[T]):
+class StateBase(abc.ABC, Generic[T]):
     """
-    Base class for the state of the game
+    Base class for the state of the game.
     """
 
     @abc.abstractmethod
@@ -41,11 +42,11 @@ class ActionState(abc.ABC, Generic[T]):
         ...
 
 
-class NextBestActionState(
-    ActionState[Union[datamodels.Symptom, datamodels.Condition]], abc.ABC
+class DiagnosticStateBase(
+    StateBase[Union[datamodels.Symptom, datamodels.Condition]], abc.ABC
 ):
     """
-    base class for simulating next best action for diagnosis
+    Base class for simulating next best action for diagnosis
     """
 
     diagnosis: Optional[datamodels.Condition] = None
@@ -53,7 +54,7 @@ class NextBestActionState(
 
     def takeAction(
         self, action: Union[datamodels.Symptom, datamodels.Condition]
-    ) -> "NextBestActionState":
+    ) -> "DiagnosticStateBase":
         if isinstance(action, datamodels.Symptom):
             return self.handleSymptom(action)
         elif isinstance(action, datamodels.Condition):
@@ -62,13 +63,13 @@ class NextBestActionState(
             raise ValueError(f"Unknown action type {action}")
 
     @abc.abstractmethod
-    def handleSymptom(self, symptom: datamodels.Symptom) -> "NextBestActionState":
+    def handleSymptom(self, symptom: datamodels.Symptom) -> "DiagnosticStateBase":
         ...
 
     @abc.abstractmethod
     def handleDiagnostic(
         self, condition: datamodels.Condition
-    ) -> "NextBestActionState":
+    ) -> "DiagnosticStateBase":
         ...
 
 
@@ -76,39 +77,16 @@ class NextBestActionState(
     The state of the game is the set of symptoms that have been asked about
 """
 
-DEFAULT_DISCOUNT_RATE = 0.1
 
+class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
+    """
+    DiagnosticState that uses a dynamics model to simulate
+    transitions and rewards.
+    """
 
-class SimulationMixin:
-    dynamics: datamodels.ProbabilityMatrix
-    pertinent_pos: Set[datamodels.Symptom]
-    pertinent_neg: Set[datamodels.Symptom]
-    remaining_symptoms: Set[datamodels.Symptom]
+    def _init__(self) -> None:
+        ...
 
-    def getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
-        condition_posterior = self.getConditionProbabilityVector()
-        symptom_posterior = probabilistic.compute_symptom_posterior_flat_prior_dict(
-            matrix=self.dynamics,
-            condition_probas=condition_posterior,
-        )
-        return symptom_posterior
-
-    def getConditionProbabilityVector(self) -> np.ndarray:
-        return probabilistic.compute_condition_posterior_flat_prior(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
-
-    def getConditionProbabilityDict(self) -> Dict[datamodels.Condition, float]:
-        return probabilistic.compute_condition_posterior_flat_prior_dict(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
-
-
-class SimulationNextActionState(SimulationMixin, NextBestActionState):
     def __init__(
         self,
         matrix: datamodels.ProbabilityMatrix,
@@ -138,12 +116,16 @@ class SimulationNextActionState(SimulationMixin, NextBestActionState):
     def getPossibleActions(
         self,
     ) -> List[Union[datamodels.Symptom, datamodels.Condition]]:
-        return list(self.remaining_symptoms.union(self.conditions))
+        return list(
+            self.remaining_symptoms.union(self.conditions).difference(
+                self.pertinent_neg.union(self.pertinent_pos)
+            )
+        )
 
-    def handleSymptom(self, symptom: datamodels.Symptom) -> "NextBestActionState":
+    def handleSymptom(self, symptom: datamodels.Symptom) -> "DiagnosticStateBase":
         next_self = copy.deepcopy(self)
         next_self.remaining_symptoms.remove(symptom)
-        proba = self.getSymptomProbabilityDict()[symptom]
+        proba = self._getSymptomProbabilityDict()[symptom]
         if proba > random.uniform(0, 1):
             next_self.pertinent_pos.add(symptom)
         else:
@@ -153,7 +135,7 @@ class SimulationNextActionState(SimulationMixin, NextBestActionState):
 
     def handleDiagnostic(
         self, condition: datamodels.Condition
-    ) -> "NextBestActionState":
+    ) -> "DiagnosticStateBase":
         next_self = copy.deepcopy(self)
         next_self.diagnosis = condition
         return next_self
@@ -170,6 +152,28 @@ class SimulationNextActionState(SimulationMixin, NextBestActionState):
         assert self.diagnosis is not None
         return conditions[self.dynamics.columns[self.diagnosis]]
 
+    def _getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
+        condition_posterior = self._getConditionProbabilityVector()
+        symptom_posterior = probabilistic.compute_symptom_posterior_flat_prior_dict(
+            matrix=self.dynamics,
+            condition_probas=condition_posterior,
+        )
+        return symptom_posterior
+
+    def _getConditionProbabilityVector(self) -> np.ndarray:
+        return probabilistic.compute_condition_posterior_flat_prior(
+            self.dynamics,
+            pertinent_positives=self.pertinent_pos,
+            pertinent_negatives=self.pertinent_neg,
+        )
+
+    def _getConditionProbabilityDict(self) -> Dict[datamodels.Condition, float]:
+        return probabilistic.compute_condition_posterior_flat_prior_dict(
+            self.dynamics,
+            pertinent_positives=self.pertinent_pos,
+            pertinent_negatives=self.pertinent_neg,
+        )
+
 
 """
 Rollout policy
@@ -177,13 +181,19 @@ Rollout policy
 
 
 class RollOutPolicy(abc.ABC):
+    """Interface for an MCTS roll out policy."""
+
     @abc.abstractmethod
-    def __call__(self, state: ActionState) -> float:
+    def __call__(self, state: StateBase) -> float:
+        """Given a state, return a reward."""
         ...
 
 
 class RandomRollOutPolicy(RollOutPolicy):
-    def __call__(self, state: NextBestActionState) -> float:
+    """A RollOutPolicy that takes random actions until it
+    reaches the terminal state, at which it returns the reward."""
+
+    def __call__(self, state: DiagnosticStateBase) -> float:
         while not state.isTerminal():
             try:
                 actions_space = state.getPossibleActions()
@@ -197,6 +207,11 @@ class RandomRollOutPolicy(RollOutPolicy):
 
 
 class ArgMaxDiagnosisRolloutPolicy(RollOutPolicy):
-    def __call__(self, state: SimulationNextActionState) -> float:
-        actions_space = state.getConditionProbabilityDict()
+    """
+    A RollOutPolicy that returns the maximum condition likelihood
+    in the current state.
+    """
+
+    def __call__(self, state: DiagnosticStateWithDynamicModel) -> float:
+        actions_space = state._getConditionProbabilityDict()
         return max(actions_space.values())
