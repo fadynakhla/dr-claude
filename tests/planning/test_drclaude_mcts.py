@@ -3,13 +3,12 @@ import random
 import loguru
 from loguru import logger
 
-import mcts
 from dr_claude import datamodels
-from dr_claude.planning import states
+from dr_claude.planning import states, probabilistic
 from dr_claude.kb import kb_reading
 
 
-class PatientWithConditionMixin(states.SimulationMixin):
+class PatientWithConditionMixin:
     """
     A mixin for debugging convergence (patient with a condition)
     """
@@ -37,7 +36,9 @@ def logtrueconditionhook(
         nonlocal counter
         counter += 1
         if not counter % log_freq:
-            probas = state._getConditionProbabilityDict()
+            probas = state.dynamics.getConditionProbabilityDict(
+                state.pertinent_pos, state.pertinent_neg
+            )
             true_condition_proba = probas[state.condition]
             loguru.logger.debug(f"{true_condition_proba=} after {counter} rollouts")
         return rollout_policy(state)
@@ -46,21 +47,18 @@ def logtrueconditionhook(
 
 
 def test_convergence():
-    ## load the knowledge base
-    # reader = kb_reading.NYPHKnowldegeBaseReader("data/NYPHKnowldegeBase.html")
     reader = kb_reading.CSVKnowledgeBaseReader("data/ClaudeKnowledgeBase.csv")
     kb = reader.load_knowledge_base()
     matrix = datamodels.DiseaseSymptomKnowledgeBaseTransformer.to_numpy(kb)
-    ## create the initial state
     conditions = list(matrix.columns.keys())
-    the_condition = conditions[0]  # TODO chose condiiton here
+    the_condition = conditions[0]  # get the first condition
     the_symptoms = [
         symptom
         for symptom in matrix.rows
         if matrix[symptom, the_condition] > symptom.noise_rate
     ]
-    state = ConvergenceTestState(matrix, discount_rate=1e-9)
-    # state = states.SimulationNextActionState(matrix, discount_rate=1e-9)
+    dynamics = probabilistic.DiagnosticDynamics(matrix)
+    state = ConvergenceTestState(dynamics, discount_rate=1e-9)
 
     state.set_condition(the_condition, the_symptoms)
     state.pertinent_pos.update(random.choices(the_symptoms, k=1))

@@ -1,6 +1,6 @@
 """This module contains functions and classes to deal with probabilistic calculations."""
 
-from typing import Annotated, Collection, Dict, TypeVar
+from typing import Annotated, Collection, Dict, TypeVar, Set
 import numpy as np
 
 from dr_claude import datamodels
@@ -20,6 +20,14 @@ class DiagnosticDynamics:
 
     def __init__(self, probability_matrix: datamodels.ProbabilityMatrix) -> None:
         self._probability_matrix = probability_matrix
+
+    @property
+    def conditions(self) -> Set[datamodels.Condition]:
+        return set(self._probability_matrix.columns.keys())
+
+    @property
+    def symptoms(self) -> Set[datamodels.Symptom]:
+        return set(self._probability_matrix.rows.keys())
 
     def getSymptomProbabilityDict(
         self,

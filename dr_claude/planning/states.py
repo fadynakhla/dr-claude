@@ -1,17 +1,15 @@
 """This module defines the states, actions and MCTS structures."""
 
-from typing import Dict, Generic, List, Optional, Set, TypeVar, Union
+from typing import Generic, List, Optional, Set, TypeVar, Union
 from typing_extensions import Self
 import abc
-import copy
 import math
 import random
-import numpy as np
 
 from dr_claude import datamodels
 from dr_claude.planning import probabilistic
 
-DEFAULT_DISCOUNT_RATE = 0.1
+DEFAULT_DISCOUNT_RATE = 0.05
 
 T = TypeVar("T")
 
@@ -84,20 +82,15 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
     transitions and rewards.
     """
 
-    def _init__(self) -> None:
-        ...
-
     def __init__(
         self,
-        matrix: datamodels.ProbabilityMatrix,
+        dynamics: probabilistic.DiagnosticDynamics,
         discount_rate: Optional[float] = None,
         pertinent_positives: Optional[Set[datamodels.Symptom]] = None,
         pertinent_negatives: Optional[Set[datamodels.Symptom]] = None,
     ) -> None:
         ## the matrix of probabilities (dynamics function)
-        self.dynamics = matrix
-        self.conditions = set(matrix.columns.keys())
-        self.remaining_symptoms = set(matrix.rows.keys())
+        self.dynamics = dynamics
 
         ## consequences of asking a question
         self.pertinent_pos: Set[datamodels.Symptom] = pertinent_positives or set()
@@ -117,66 +110,54 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         self,
     ) -> List[Union[datamodels.Symptom, datamodels.Condition]]:
         return list(
-            self.remaining_symptoms.union(self.conditions).difference(
+            self.remaining_symptoms.union(self.dynamics.conditions).difference(
                 self.pertinent_neg.union(self.pertinent_pos)
             )
         )
 
     def handleSymptom(self, symptom: datamodels.Symptom) -> "DiagnosticStateBase":
-        next_self = copy.deepcopy(self)
-        next_self.remaining_symptoms.remove(symptom)
-        proba = self._getSymptomProbabilityDict()[symptom]
+        next_state = DiagnosticStateWithDynamicModel(
+            self.dynamics,
+            self.discount_factor,
+            self.pertinent_pos,
+            self.pertinent_neg,
+        )
+        next_state.remaining_symptoms.remove(symptom)
+        proba = self.dynamics.getSymptomProbabilityDict(
+            self.pertinent_pos, self.pertinent_neg
+        )[symptom]
         if proba > random.uniform(0, 1):
-            next_self.pertinent_pos.add(symptom)
+            next_state.pertinent_pos.add(symptom)
         else:
-            next_self.pertinent_neg.add(symptom)
+            next_state.pertinent_neg.add(symptom)
         self.increment_discount_factor()
-        return next_self
+        return next_state
 
     def handleDiagnostic(
         self, condition: datamodels.Condition
     ) -> "DiagnosticStateBase":
-        next_self = copy.deepcopy(self)
-        next_self.diagnosis = condition
-        return next_self
+        next_state = DiagnosticStateWithDynamicModel(
+            self.dynamics,
+            self.discount_factor,
+            self.pertinent_pos,
+            self.pertinent_neg,
+        )
+        next_state.diagnosis = condition
+        return next_state
 
     def isTerminal(self) -> bool:
         return len(self.remaining_symptoms) == 0 or self.diagnosis is not None
 
     def getReward(self) -> float:
-        conditions = probabilistic.compute_condition_posterior_flat_prior(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
+        condition_likelihood = self.dynamics.getConditionProbabilityDict(
+            self.pertinent_pos, self.pertinent_neg
         )
         assert self.diagnosis is not None
-        return conditions[self.dynamics.columns[self.diagnosis]]
-
-    def _getSymptomProbabilityDict(self) -> Dict[datamodels.Symptom, float]:
-        condition_posterior = self._getConditionProbabilityVector()
-        symptom_posterior = probabilistic.compute_symptom_posterior_flat_prior_dict(
-            matrix=self.dynamics,
-            condition_probas=condition_posterior,
-        )
-        return symptom_posterior
-
-    def _getConditionProbabilityVector(self) -> np.ndarray:
-        return probabilistic.compute_condition_posterior_flat_prior(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
-
-    def _getConditionProbabilityDict(self) -> Dict[datamodels.Condition, float]:
-        return probabilistic.compute_condition_posterior_flat_prior_dict(
-            self.dynamics,
-            pertinent_positives=self.pertinent_pos,
-            pertinent_negatives=self.pertinent_neg,
-        )
+        return condition_likelihood[self.diagnosis]
 
 
 """
-Rollout policy
+Rollout policies
 """
 
 
@@ -213,5 +194,7 @@ class ArgMaxDiagnosisRolloutPolicy(RollOutPolicy):
     """
 
     def __call__(self, state: DiagnosticStateWithDynamicModel) -> float:
-        actions_space = state._getConditionProbabilityDict()
-        return max(actions_space.values())
+        condition_likelihoods = state.dynamics.getConditionProbabilityDict(
+            state.pertinent_pos, state.pertinent_neg
+        )
+        return max(condition_likelihoods.values())

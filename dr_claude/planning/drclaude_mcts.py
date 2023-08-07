@@ -51,5 +51,5 @@ class MultiChildMixin(MCTS):
         return nodes
 
 
-class MultiChoiceMCTS(MultiChildMixin, mcts):
+class MultiChoiceMCTS(MultiChildMixin, MCTS):
     ...

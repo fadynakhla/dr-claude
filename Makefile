@@ -1,11 +1,14 @@
 all: help
 
 ######################
-# HELP
+# MAIN
 ######################
 
 app:
 	poetry run uvicorn dr_claude.application:app
+
+test:
+	poetry run pytest
 
 ######################
 # FORMATTING

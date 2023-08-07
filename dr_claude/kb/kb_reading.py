@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 
-from dr_claude_old import datamodels
+from dr_claude import datamodels
 
 KG_CSV_COLUMNS = ("Disease Code", "Disease", "Symptom Code", "Symptom")
 
@@ -45,7 +45,8 @@ class NYPHKnowldegeBaseReader(KnowledgeBaseReader):
     def load_symptom_df(self) -> pd.DataFrame:
         soup = BeautifulSoup(self._html_content, "html.parser")
         table = soup.find("table", {"class": "MsoTableWeb3"})
-        rows = table.find_all("tr")
+        assert table is not None
+        rows = table.find_all("tr")  # type: ignore
         data: List = []
 
         for row in rows[1:]:
@@ -65,6 +66,7 @@ class NYPHKnowldegeBaseReader(KnowledgeBaseReader):
             prev_diseases = diseases
             symptoms = parse_umls_string(row.Symptom)
             if not symptoms:
+                assert prev_symptoms is not None
                 symptoms = prev_symptoms
             prev_symptoms = symptoms
             for _, d_code, d_name in get_disease_representation(diseases):
@@ -107,6 +109,7 @@ def make_knowledge_base_from_df(
         noise = row.get("Noise", default_noise)
         if row.Disease != curr_disease:
             curr_disease = row.Disease
+        assert curr_disease is not None
         condition = datamodels.Condition(
             name=curr_disease, umls_code=row["Disease Code"]
         )
