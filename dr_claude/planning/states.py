@@ -2,6 +2,7 @@
 
 from typing import Generic, List, Optional, Set, TypeVar, Union
 from typing_extensions import Self
+import copy
 import abc
 import math
 import random
@@ -48,7 +49,6 @@ class DiagnosticStateBase(
     """
 
     diagnosis: Optional[datamodels.Condition] = None
-    remaining_symptoms: Set[datamodels.Symptom]
 
     def takeAction(
         self, action: Union[datamodels.Symptom, datamodels.Condition]
@@ -89,7 +89,6 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         pertinent_positives: Optional[Set[datamodels.Symptom]] = None,
         pertinent_negatives: Optional[Set[datamodels.Symptom]] = None,
     ) -> None:
-        ## the matrix of probabilities (dynamics function)
         self.dynamics = dynamics
 
         ## consequences of asking a question
@@ -110,7 +109,7 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         self,
     ) -> List[Union[datamodels.Symptom, datamodels.Condition]]:
         return list(
-            self.remaining_symptoms.union(self.dynamics.conditions).difference(
+            self.dynamics.symptoms.union(self.dynamics.conditions).difference(
                 self.pertinent_neg.union(self.pertinent_pos)
             )
         )
@@ -119,10 +118,9 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         next_state = DiagnosticStateWithDynamicModel(
             self.dynamics,
             self.discount_factor,
-            self.pertinent_pos,
-            self.pertinent_neg,
+            copy.copy(self.pertinent_pos),
+            copy.copy(self.pertinent_neg),
         )
-        next_state.remaining_symptoms.remove(symptom)
         proba = self.dynamics.getSymptomProbabilityDict(
             self.pertinent_pos, self.pertinent_neg
         )[symptom]
@@ -139,14 +137,18 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         next_state = DiagnosticStateWithDynamicModel(
             self.dynamics,
             self.discount_factor,
-            self.pertinent_pos,
-            self.pertinent_neg,
+            copy.copy(self.pertinent_pos),
+            copy.copy(self.pertinent_neg),
         )
         next_state.diagnosis = condition
         return next_state
 
     def isTerminal(self) -> bool:
-        return len(self.remaining_symptoms) == 0 or self.diagnosis is not None
+        return self.diagnosis is not None or not len(
+            self.dynamics.symptoms.difference(
+                self.pertinent_pos.union(self.pertinent_neg)
+            )
+        )
 
     def getReward(self) -> float:
         condition_likelihood = self.dynamics.getConditionProbabilityDict(

@@ -1,15 +1,18 @@
-from typing import Any
+from typing import List, Dict
 import math
 import time
 import heapq
 from mcts import mcts as MCTS
 from mcts import treeNode as TreeNode
 
+from dr_claude import datamodels
 from dr_claude.planning import states
 
+CONDITION_PREDICTION_DELAY_FACTOR = 0.65
 
-class MultiChildMixin(MCTS):
-    def search(self, initialState: states.StateBase, top_k: int):
+
+class MultiChildMixin:
+    def search(self: MCTS, initialState: states.StateBase, top_k: int) -> List:
         self.root = TreeNode(initialState, None)
 
         if self.limitType == "time":
@@ -23,7 +26,9 @@ class MultiChildMixin(MCTS):
         bestChild = self.getBestChild(self.root, 0, top_k)
         return self.getAction(self.root, bestChild)
 
-    def getBestChild(self: MCTS, node: TreeNode, explorationValue: float, top_k: int):
+    def getBestChild(
+        self: MCTS, node: TreeNode, explorationValue: float, top_k: int = 1
+    ) -> List[TreeNode]:
         node_values = []
         for i, child in enumerate(node.children.values()):
             nodeValue = (
@@ -31,8 +36,7 @@ class MultiChildMixin(MCTS):
                 + explorationValue
                 * math.sqrt(2 * math.log(node.numVisits) / child.numVisits)
             )
-            # Use negative value because heapq is a min heap, i to break ties
-            heapq.heappush(node_values, (-nodeValue, i, child))
+            heapq.heappush(node_values, (nodeValue, i, child))
             # Keep only the top_k node values
             if len(node_values) > top_k:
                 heapq.heappop(node_values)
@@ -43,13 +47,55 @@ class MultiChildMixin(MCTS):
         top_k_nodes.reverse()
         return top_k_nodes
 
-    def getAction(self, root, bestChild):
-        nodes = []
+    def getAction(self, root: TreeNode, bestChild: List[TreeNode]):
+        nodes: List[TreeNode] = []
         for action, node in root.children.items():
             if node in bestChild:
                 nodes.append(action)
         return nodes
 
+    def selectNode(self: MCTS, node):
+        while not node.isTerminal:
+            if node.isFullyExpanded:
+                node = self.getBestChild(node, self.explorationConstant, top_k=1)[0]
+            else:
+                return self.expand(node)[0]
+        return node
 
-class MultiChoiceMCTS(MultiChildMixin, MCTS):
+    def expand(self, node: TreeNode):
+        """
+        The default method will simply expand one action at a time and return them. However,
+        to make this more efficient, we should expand all the actions at once and set a good prior
+        for them, then use UCT to choose the best child.
+        """
+        actions = node.state.getPossibleActions()
+        symptom_probs: Dict[
+            datamodels.Symptom, float
+        ] = node.state.dynamics.getSymptomProbabilityDict(
+            node.state.pertinent_pos, node.state.pertinent_neg
+        )
+        condition_probs: Dict[
+            datamodels.Condition, float
+        ] = node.state.dynamics.getConditionProbabilityDict(
+            node.state.pertinent_pos, node.state.pertinent_neg
+        )
+        for action in actions:
+            if action not in node.children:
+                child_node = TreeNode(node.state.takeAction(action), node)
+                child_node.numVisits = 1
+                if child_node.isTerminal:
+                    child_node.totalReward += (
+                        condition_probs[action] * CONDITION_PREDICTION_DELAY_FACTOR
+                    )
+                else:
+                    child_node.totalReward += symptom_probs[action]
+                node.children[action] = child_node
+        if len(actions) == len(node.children):
+            node.isFullyExpanded = True
+        if node.numVisits == 0:
+            node.numVisits += len(node.children)
+        return self.getBestChild(node, self.explorationConstant, top_k=1)
+
+
+class DrClaudeMCTS(MultiChildMixin, MCTS):
     ...
