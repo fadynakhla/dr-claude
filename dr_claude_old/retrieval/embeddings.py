@@ -36,10 +36,8 @@ class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
         self.model_name_or_path = model_name_or_path
         self.device = device
         self.pooling = pooling if pooling is not None else "cls"
-        self.tokenizer: transformers.PreTrainedTokenizer = (
-            transformers.AutoTokenizer.from_pretrained(
-                pretrained_model_name_or_path=self.model_name_or_path
-            )
+        self.tokenizer: transformers.PreTrainedTokenizer = transformers.AutoTokenizer.from_pretrained(
+            pretrained_model_name_or_path=self.model_name_or_path  # type: ignore
         )
         self.model: transformers.PreTrainedModel = (
             transformers.AutoModel.from_pretrained(
@@ -94,7 +92,7 @@ class HuggingFaceEncoderEmbeddings(embeddings_base.Embeddings):
             embeddings = model_output.last_hidden_state[:, 0, :].squeeze()
         elif pooling == "mean":
             embeddings = mean_pooling(
-                model_output.last_hidden_state, model_input["attention_mask"]
+                model_output.last_hidden_state, model_input["attention_mask"]  # type: ignore
             )
         else:
             raise ValueError(f"Pooling method {pooling} not supported.")
@@ -118,7 +116,6 @@ def mean_pooling(
     sum_mask = attention_mask_expanded.sum(1)
     sum_mask = torch.clamp(sum_mask, min=1e-9)
     pooled_output = sum_embeddings / sum_mask
-
     return pooled_output
 
 

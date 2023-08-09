@@ -39,7 +39,7 @@ def main():
         retrieval_config=retrieval_config,
         texts=list(set(symptom_name_to_symptom)),
     )
-    doc_chain = doctor.get_doc_chain()
+    doc_chain = doctor.get_doctor_chain()
     patient_chain = patient.get_patient_chain()
     chain_chainer = chaining_the_chains.ChainChainer(
         matcher_chain=matcher_chain,

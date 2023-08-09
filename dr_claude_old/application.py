@@ -145,7 +145,7 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
     await websocket.accept()
     doc_handler = DoctorHandler(websocket)
     patient_handler = PatientHandler(websocket)
-    doc_chain = doctor.get_doc_chain(doc_handler)
+    doc_chain = doctor.get_doctor_chain(doc_handler)
     patient_chain = patient.get_patient_chain(patient_handler)
     chainer = chaining_the_chains.ChainChainer(matcher_chain, doc_chain, patient_chain)
     while True:

@@ -1,3 +1,5 @@
+"""This module contains the doctor question asking prompts and code."""
+
 from langchain.callbacks.base import BaseCallbackHandler
 from langchain.chat_models import ChatAnthropic
 from langchain.chains import LLMChain

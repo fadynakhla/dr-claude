@@ -20,7 +20,7 @@ class HuggingFAISS(FAISS):
     ) -> "HuggingFAISS":
         embeddings = HuggingFaceEncoderEmbeddings.from_config(model_config)
         return cls.from_texts(
-            texts, embeddings, metadatas, ids, distance_strategy=DistanceStrategy.COSINE
+            texts, embeddings, metadatas, ids, distance_strategy=DistanceStrategy.COSINE  # type: ignore
         )
 
 
