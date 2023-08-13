@@ -12,7 +12,7 @@ _doc_prompt_template = (
     "Ensure your response contains only this question, with no additional commentary or elements. The entire response should be the question itself."
     "Keep the question simple. For instance, if the symptom was shortness of breath, you can ask 'Are you experiencing any shortness of breath?'"
     "\nIf the symptom was abdominal cramps, you can ask 'Are have you had any abdominal cramps lately?'"
-    "\n\nNow, phrase a question that lets you confirm or reject whether the patient has the symptom {symptom}."
+    "\n\nNow, phrase a question that lets you confirm or reject whether the patient has the symptom: {symptom}."
     "\n\nQuestion:"
 )
 DOC_PROMPT = PromptTemplate.from_template(_doc_prompt_template)

@@ -90,12 +90,8 @@ class DiagnosticStateWithDynamicModel(DiagnosticStateBase):
         pertinent_negatives: Optional[Set[datamodels.Symptom]] = None,
     ) -> None:
         self.dynamics = dynamics
-
-        ## consequences of asking a question
         self.pertinent_pos: Set[datamodels.Symptom] = pertinent_positives or set()
         self.pertinent_neg: Set[datamodels.Symptom] = pertinent_negatives or set()
-
-        ## discount factor
         self.discount_rate = math.exp(-(discount_rate or DEFAULT_DISCOUNT_RATE))
         self.discount_factor = 1
 

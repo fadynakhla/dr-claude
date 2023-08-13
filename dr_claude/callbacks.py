@@ -11,7 +11,7 @@ from loguru import logger
 class PatientHandler(BaseCallbackHandler):
     """Callback handler for question generation."""
 
-    def __init__(self, websocket: WebSocket):
+    def __init__(self, websocket: WebSocket) -> None:
         self.websocket = websocket
 
     def on_llm_end(
@@ -29,9 +29,9 @@ class PatientHandler(BaseCallbackHandler):
 
 
 class DoctorHandler(BaseCallbackHandler):
-    """Callback handler for question generation."""
+    """Callback handler for doctor question generation."""
 
-    def __init__(self, websocket: WebSocket):
+    def __init__(self, websocket: WebSocket) -> None:
         self.websocket = websocket
 
     def on_llm_end(
