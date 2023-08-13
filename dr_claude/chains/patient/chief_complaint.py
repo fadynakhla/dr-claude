@@ -28,8 +28,6 @@ Select only one and write it below in the following format:
 
 Remember, do not include any other text, ensure your choice is in the provided retrievals, and follow the output format.
 """
-CC_EXTRACT_PROMPT = PromptTemplate.from_template(_symptom_extract_template)
-CC_MATCH_PROMPT = PromptTemplate.from_template(_symptom_match_template)
 
 _RETRIEVAL_XML_ENUM_PROMPT_PREFIX = (
     """Here is the XML schema for some relevant clinical concepts:"""
@@ -48,6 +46,8 @@ _RETRIEVAL_XML_ENUM_PROMPT_SUFFIX = """    </xs:restriction>
 </xs:schema>
 
 Out of the available options specified above, which of the concepts is most similar (or matches) to: '{query}'? Please just output the answer without additional comments or annotation."""
+
+CC_EXTRACT_PROMPT = PromptTemplate.from_template(_symptom_extract_template)
 
 
 class RetrievalXMLEnumPromptTemplate(StringPromptTemplate, BaseModel):

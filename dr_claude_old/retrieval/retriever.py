@@ -1,5 +1,4 @@
 from typing import Dict, List, Optional
-from transformers import AutoTokenizer, AutoModel
 from langchain.vectorstores import FAISS
 from langchain.vectorstores.utils import DistanceStrategy
 
