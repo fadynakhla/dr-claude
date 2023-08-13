@@ -23,7 +23,7 @@ Immediate priorities:
 - [ ] Improve efficiency of MCTS expansion step
 - [ ] Improve prompts and abstract away underlying LLM
 - [ ] Unit tests
-- [ ] General cleanup and refactoring!
+- [ ] General cleanup and refactoring! (in progress: https://github.com/fadynakhla/dr-claude/pull/32)
 
 Next:
 
