@@ -1,7 +1,7 @@
 """Unit tests for probability functions."""
 
-from dr_claude import datamodels
-from dr_claude.planning import probabilistic
+from dr_claude_intermed import datamodels
+from dr_claude_intermed.planning import probabilistic
 
 
 def test_conditional_condition_proba():

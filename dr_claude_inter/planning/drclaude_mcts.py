@@ -5,8 +5,8 @@ import heapq
 from mcts import mcts as MCTS
 from mcts import treeNode as TreeNode
 
-from dr_claude import datamodels
-from dr_claude.planning import states
+from dr_claude_inter import datamodels
+from dr_claude_inter.planning import states
 
 CONDITION_PREDICTION_DELAY_FACTOR = 0.65
 

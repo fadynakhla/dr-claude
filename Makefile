@@ -25,4 +25,5 @@ format:
 help:
 	@echo '----'
 	@echo 'format                       - run code formatters'
-	@echo 'app                    - start backend app'
+	@echo 'test                         - run unit tests'
+	@echo 'app                          - start backend app'

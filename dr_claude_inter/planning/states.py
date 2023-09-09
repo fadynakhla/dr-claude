@@ -7,8 +7,8 @@ import abc
 import math
 import random
 
-from dr_claude import datamodels
-from dr_claude.planning import probabilistic
+from dr_claude_inter import datamodels
+from dr_claude_inter.planning import probabilistic
 
 DEFAULT_DISCOUNT_RATE = 0.05
 

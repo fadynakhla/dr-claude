@@ -12,8 +12,8 @@ import transformers
 from loguru import logger
 
 
-from dr_claude import datamodels
-from dr_claude.kb import kb_reading
+from dr_claude_inter import datamodels
+from dr_claude_inter.kb import kb_reading
 
 
 transformers.set_seed(42)

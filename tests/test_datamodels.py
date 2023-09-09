@@ -1,4 +1,4 @@
-from dr_claude import datamodels
+from dr_claude_intermed import datamodels
 
 
 def test_to_numpy():

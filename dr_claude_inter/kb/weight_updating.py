@@ -13,8 +13,8 @@ from langchain.llms import Anthropic
 from langchain import LLMChain, PromptTemplate
 from langchain.schema import BaseOutputParser
 
-from dr_claude import datamodels
-from dr_claude.kb import kb_reading
+from dr_claude_inter import datamodels
+from dr_claude_inter.kb import kb_reading
 
 # Claude is good at XML outputs.
 _PROMPT_TEMPLATE = """Here is a list of symptoms for the condition {condition}.
