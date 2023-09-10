@@ -1,7 +1,7 @@
 from typing import Annotated, Collection, Dict, TypeVar
 
 import numpy as np
-from dr_claude import datamodels
+from dr_claude_old import datamodels
 
 
 T = TypeVar("T")

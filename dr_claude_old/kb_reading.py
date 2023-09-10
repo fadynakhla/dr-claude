@@ -9,7 +9,7 @@ from langchain import LLMChain
 import pandas as pd
 
 
-from dr_claude import datamodels
+from dr_claude_old import datamodels
 
 KG_CSV_COLUMNS = ("Disease Code", "Disease", "Symptom Code", "Symptom")
 

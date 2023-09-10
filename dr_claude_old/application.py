@@ -1,20 +1,19 @@
-from typing import Optional, Tuple, Union, Dict, Any, List
+from typing import Optional, Tuple, Any, List
 import asyncio
+import json
 import nest_asyncio
 from uuid import UUID
 from langchain.schema.output import LLMResult
-from starlette.templating import _TemplateResponse
-from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 
-import mcts
-from langchain.callbacks.base import AsyncCallbackHandler, BaseCallbackHandler
+from langchain.callbacks.base import BaseCallbackHandler
 
 from loguru import logger
 
-from dr_claude import kb_reading, datamodels, chaining_the_chains
-from dr_claude.retrieval import retriever
-from dr_claude.claude_mcts import action_states, multi_choice_mcts
-from dr_claude.chains import (
+from dr_claude_old import kb_reading, datamodels, chaining_the_chains
+from dr_claude_old.retrieval import retriever
+from dr_claude_old.claude_mcts import action_states, multi_choice_mcts
+from dr_claude_old.chains import (
     decision_claude,
     matcher,
     prompts,
@@ -22,28 +21,13 @@ from dr_claude.chains import (
     patient,
     cc_prompts,
 )
-
-
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.templating import Jinja2Templates
-from dr_claude.retrieval.retriever import HuggingFAISS
-import json
-from loguru import logger
+from dr_claude_old.retrieval.retriever import HuggingFAISS
 
 import transformers
 
 transformers.set_seed(42)
 
 app = FastAPI()
-
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],  # Allows all origins
-#     allow_credentials=True,
-#     allow_methods=["*"],  # Allows all methods
-#     allow_headers=["*"],  # Allows all headers
-# )
 
 nest_asyncio.apply()
 
@@ -161,7 +145,7 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
     await websocket.accept()
     doc_handler = DoctorHandler(websocket)
     patient_handler = PatientHandler(websocket)
-    doc_chain = doctor.get_doc_chain(doc_handler)
+    doc_chain = doctor.get_doctor_chain(doc_handler)
     patient_chain = patient.get_patient_chain(patient_handler)
     chainer = chaining_the_chains.ChainChainer(matcher_chain, doc_chain, patient_chain)
     while True:

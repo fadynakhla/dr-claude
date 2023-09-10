@@ -1,11 +1,14 @@
 all: help
 
 ######################
-# HELP
+# MAIN
 ######################
 
 app:
 	poetry run uvicorn dr_claude.application:app
+
+test:
+	poetry run pytest
 
 ######################
 # FORMATTING
@@ -22,4 +25,5 @@ format:
 help:
 	@echo '----'
 	@echo 'format                       - run code formatters'
-	@echo 'app                    - start backend app'
+	@echo 'test                         - run unit tests'
+	@echo 'app                          - start backend app'

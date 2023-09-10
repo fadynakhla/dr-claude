@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
-from dr_claude.retrieval.retriever import HuggingFAISS
-from dr_claude import datamodels
+from dr_claude_old.retrieval.retriever import HuggingFAISS
+from dr_claude_old import datamodels
 from langchain import LLMChain
 
-from dr_claude.chains import matcher
-from dr_claude.retrieval import retriever
+from dr_claude_old.chains import matcher
+from dr_claude_old.retrieval import retriever
 from loguru import logger
 import time
 

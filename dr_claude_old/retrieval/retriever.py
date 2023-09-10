@@ -1,9 +1,8 @@
 from typing import Dict, List, Optional
-from transformers import AutoTokenizer, AutoModel
 from langchain.vectorstores import FAISS
 from langchain.vectorstores.utils import DistanceStrategy
 
-from dr_claude.retrieval.embeddings import (
+from dr_claude_old.retrieval.embeddings import (
     HuggingFaceEncoderEmbeddings,
     HuggingFaceEncoderEmbeddingsConfig,
 )
@@ -20,7 +19,7 @@ class HuggingFAISS(FAISS):
     ) -> "HuggingFAISS":
         embeddings = HuggingFaceEncoderEmbeddings.from_config(model_config)
         return cls.from_texts(
-            texts, embeddings, metadatas, ids, distance_strategy=DistanceStrategy.COSINE
+            texts, embeddings, metadatas, ids, distance_strategy=DistanceStrategy.COSINE  # type: ignore
         )
 
 
